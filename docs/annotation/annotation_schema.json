@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Annotation schema definition for PolicyLens. Defines allowed label values and validation rules.",
+  "fields": {
+    "comment_id": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_\\-]+$",
+      "required": true,
+      "description": "Unique identifier for this annotation unit."
+    },
+    "source_dataset": {
+      "type": "string",
+      "required": true,
+      "allowed_values": ["ap2016-18"]
+    },
+    "source_row_id": {
+      "type": "string",
+      "required": true
+    },
+    "source_column": {
+      "type": "string",
+      "required": true,
+      "allowed_values": [
+        "practical_idea",
+        "engagement_question",
+        "og_importance",
+        "improvements",
+        "other_comments"
+      ]
+    },
+    "original_text": {
+      "type": "string",
+      "required": true,
+      "min_length": 1,
+      "description": "Verbatim text from the source column. Must not be modified."
+    },
+    "annotator_id": {
+      "type": "string",
+      "required": true
+    },
+    "annotation_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "required": true
+    },
+    "topic": {
+      "type": "string",
+      "required": true,
+      "allowed_values": [
+        "OPEN_DATA",
+        "TRANSPARENCY",
+        "PARTICIPATION",
+        "DIGITAL_SERVICES",
+        "PRIVACY_SECURITY",
+        "COLLABORATION",
+        "TRUST",
+        "CULTURE_CHANGE",
+        "CAPACITY",
+        "INFORMATION_ACCESS",
+        "INNOVATION",
+        "OTHER",
+        "UNCLEAR"
+      ],
+      "note": "DRAFT taxonomy. Subject to revision after pilot inter-annotator agreement study."
+    },
+    "stance": {
+      "type": "string",
+      "required": true,
+      "allowed_values": ["SUPPORT", "OPPOSE", "NEUTRAL"]
+    },
+    "concern": {
+      "type": "string",
+      "required": false,
+      "nullable": true,
+      "max_length": 200,
+      "description": "Concise description of the problem/gap identified. Null if none stated."
+    },
+    "demand": {
+      "type": "string",
+      "required": false,
+      "nullable": true,
+      "max_length": 200,
+      "description": "Concise description of the requested action. Null if none stated."
+    },
+    "annotation_confidence": {
+      "type": "integer",
+      "required": true,
+      "allowed_values": [1, 2, 3],
+      "description": "1=Low, 2=Medium, 3=High"
+    },
+    "requires_review": {
+      "type": "boolean",
+      "required": true
+    },
+    "review_notes": {
+      "type": "string",
+      "required": false,
+      "nullable": true,
+      "description": "Required when requires_review=true."
+    }
+  }
+}

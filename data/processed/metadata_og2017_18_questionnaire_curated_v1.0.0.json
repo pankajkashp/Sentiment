@@ -1,0 +1,220 @@
+{
+  "dataset_id": "og2017-18_questionnaire",
+  "version": "1.0.0",
+  "created_from_raw": "data/raw/Open Government Consultation Data 2017-18 Get Involved Questionnaire.csv",
+  "raw_file_sha256": "bebcc9e5264fc00788c4094b579f90dcf2f8590aaeab528f30a338a7e2344239",
+  "curated_csv": "data/processed/og2017_18_questionnaire_curated_v1.0.0.csv",
+  "curated_csv_sha256": "3c7b22482282d0690cac3e9ea726ed85fbbc96db823cc75193e2bb2d57c8638f",
+  "comments_csv": "data/processed/og2017_18_questionnaire_comments_v1.0.0.csv",
+  "comments_csv_sha256": "159da85f12459c3f6ce6821fdc5c7ea14c9f9fd4547cec7cc1a8c56f7e5ec565",
+  "encoding": "utf-8",
+  "stats": {
+    "dataset_id": "og2017-18_questionnaire",
+    "version": "1.0.0",
+    "total_rows": 8212,
+    "total_columns": 28,
+    "rows_with_open_text": 4118,
+    "rows_without_open_text": 4094,
+    "open_text_coverage_pct": 50.15,
+    "comments_subset_rows": 4118,
+    "text_columns": [
+      "text_q2r_other_transparency",
+      "text_q4r_other_accountability",
+      "text_q6r_other_participation",
+      "text_q8_missed_topics",
+      "text_q9r_other_interest",
+      "text_q11r_other_involvement_activity",
+      "text_q12r_other_involvement_channel",
+      "text_q14_satisfaction_reason",
+      "text_q18_experience_topic",
+      "text_q19r_other_sector"
+    ],
+    "primary_text_columns": [
+      "text_q8_missed_topics",
+      "text_q14_satisfaction_reason",
+      "text_q18_experience_topic"
+    ],
+    "text_counts_per_column": {
+      "text_q2r_other_transparency": 558,
+      "text_q4r_other_accountability": 454,
+      "text_q6r_other_participation": 279,
+      "text_q8_missed_topics": 2196,
+      "text_q9r_other_interest": 424,
+      "text_q11r_other_involvement_activity": 224,
+      "text_q12r_other_involvement_channel": 250,
+      "text_q14_satisfaction_reason": 2346,
+      "text_q18_experience_topic": 849,
+      "text_q19r_other_sector": 388
+    }
+  },
+  "columns": [
+    {
+      "name": "respondent_id",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 8212
+    },
+    {
+      "name": "language",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 2
+    },
+    {
+      "name": "start_date",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 8202
+    },
+    {
+      "name": "end_date",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 8200
+    },
+    {
+      "name": "q1_transparency_important",
+      "dtype": "float64",
+      "null_count": 1,
+      "unique_count": 2
+    },
+    {
+      "name": "text_q2r_other_transparency",
+      "dtype": "object",
+      "null_count": 7654,
+      "unique_count": 557
+    },
+    {
+      "name": "q3_accountability_important",
+      "dtype": "float64",
+      "null_count": 1,
+      "unique_count": 2
+    },
+    {
+      "name": "text_q4r_other_accountability",
+      "dtype": "object",
+      "null_count": 7758,
+      "unique_count": 451
+    },
+    {
+      "name": "q5_participation_important",
+      "dtype": "float64",
+      "null_count": 1,
+      "unique_count": 2
+    },
+    {
+      "name": "text_q6r_other_participation",
+      "dtype": "object",
+      "null_count": 7933,
+      "unique_count": 274
+    },
+    {
+      "name": "text_q8_missed_topics",
+      "dtype": "object",
+      "null_count": 6016,
+      "unique_count": 2162
+    },
+    {
+      "name": "text_q9r_other_interest",
+      "dtype": "object",
+      "null_count": 7788,
+      "unique_count": 424
+    },
+    {
+      "name": "q10_more_involvement",
+      "dtype": "float64",
+      "null_count": 1,
+      "unique_count": 2
+    },
+    {
+      "name": "text_q11r_other_involvement_activity",
+      "dtype": "object",
+      "null_count": 7988,
+      "unique_count": 224
+    },
+    {
+      "name": "text_q12r_other_involvement_channel",
+      "dtype": "object",
+      "null_count": 7962,
+      "unique_count": 227
+    },
+    {
+      "name": "satisfaction_score",
+      "dtype": "float64",
+      "null_count": 1,
+      "unique_count": 6
+    },
+    {
+      "name": "text_q14_satisfaction_reason",
+      "dtype": "object",
+      "null_count": 5866,
+      "unique_count": 2307
+    },
+    {
+      "name": "country",
+      "dtype": "object",
+      "null_count": 106,
+      "unique_count": 124
+    },
+    {
+      "name": "province",
+      "dtype": "object",
+      "null_count": 31,
+      "unique_count": 18
+    },
+    {
+      "name": "city",
+      "dtype": "object",
+      "null_count": 589,
+      "unique_count": 1188
+    },
+    {
+      "name": "text_q18_experience_topic",
+      "dtype": "object",
+      "null_count": 7363,
+      "unique_count": 804
+    },
+    {
+      "name": "stakeholder_sector",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 13
+    },
+    {
+      "name": "text_q19r_other_sector",
+      "dtype": "object",
+      "null_count": 7824,
+      "unique_count": 355
+    },
+    {
+      "name": "on_behalf_of_org",
+      "dtype": "float64",
+      "null_count": 111,
+      "unique_count": 3
+    },
+    {
+      "name": "source_language_raw",
+      "dtype": "object",
+      "null_count": 0,
+      "unique_count": 2
+    },
+    {
+      "name": "has_open_text",
+      "dtype": "bool",
+      "null_count": 0,
+      "unique_count": 2
+    },
+    {
+      "name": "open_text_field_count",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 11
+    },
+    {
+      "name": "primary_text_char_count",
+      "dtype": "int64",
+      "null_count": 0,
+      "unique_count": 749
+    }
+  ]
+}

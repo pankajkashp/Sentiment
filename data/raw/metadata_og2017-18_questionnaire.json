@@ -1,0 +1,38 @@
+{
+  "dataset_id": "og2017-18_questionnaire",
+  "version": "1.0.0",
+  "file_name": "Open Government Consultation Data 2017-18 Get Involved Questionnaire.csv",
+  "file_path": "data/raw/Open Government Consultation Data 2017-18 Get Involved Questionnaire.csv",
+  "sha256": "bebcc9e5264fc00788c4094b579f90dcf2f8590aaeab528f30a338a7e2344239",
+  "description": "Public consultation responses collected via the Canadian Open Government Get Involved Questionnaire (2017-2018) for Canada's 4th Plan on Open Government.",
+  "source": {
+    "organization": "Government of Canada / Treasury Board Secretariat",
+    "program": "Canada's 4th Plan on Open Government (2018-2020) Consultation",
+    "context": "National online consultation questionnaire to engage citizens and stakeholders on transparency, accountability, citizen participation, and strategic priorities.",
+    "url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+    "license": "Open Government Licence – Canada (https://open.canada.ca/en/open-government-licence-canada)",
+    "license_note": "Open Government Licence - Canada applies to published datasets."
+  },
+  "file_properties": {
+    "encoding": "Windows-1252",
+    "delimiter": "comma",
+    "has_multi_row_header": true,
+    "header_row_0": "French column headers",
+    "header_row_1": "English column headers",
+    "data_starts_at_row": 2,
+    "total_rows_including_headers": 8214,
+    "data_rows": 8212,
+    "total_columns": 98
+  },
+  "columns_summary": {
+    "total": 98,
+    "empty_prompt_columns": 8,
+    "administrative_newsletter_columns": 1,
+    "multiselect_checkbox_columns": 65,
+    "attitude_and_satisfaction_rating_columns": 5,
+    "demographic_and_stakeholder_columns": 5,
+    "identifier_and_timestamp_columns": 4,
+    "primary_open_text_columns": 3,
+    "other_specify_open_text_columns": 7
+  }
+}

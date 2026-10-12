@@ -1,0 +1,179 @@
+{
+  "dataset_id": "ap2016-18_individual_comments",
+  "version": "1.0.0",
+  "file_name": "ap2016-18_individual_comments.csv",
+  "file_path": "data/raw/ap2016-18_individual_comments.csv",
+  "description": "Individual public consultation comments collected at Canadian Open Government engagement events, 2016–2018.",
+  "source": {
+    "organization": "Government of Canada / Treasury Board Secretariat",
+    "program": "Action Plan on Open Government 2016–2018",
+    "context": "Public engagement sessions held across multiple Canadian cities to gather citizen and stakeholder input on open government priorities",
+    "url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+    "license": "Open Government Licence – Canada (https://open.canada.ca/en/open-government-licence-canada)",
+    "license_note": "VERIFY LICENSE APPLICABILITY before any public sharing or derivative publication."
+  },
+  "acquisition": {
+    "date_acquired": "UNKNOWN — please record actual acquisition date",
+    "acquired_by": "UNKNOWN — please record",
+    "acquisition_method": "UNKNOWN — manual download / provided by project team / other — please record"
+  },
+  "file_properties": {
+    "encoding": "Windows-1252",
+    "delimiter": "comma",
+    "has_header": true,
+    "total_rows_including_header": 161,
+    "data_rows": 160,
+    "total_columns": 19
+  },
+  "schema": {
+    "columns": [
+      {
+        "index": 0,
+        "raw_name": "Row\nRangée",
+        "semantic_role": "row_id",
+        "dtype": "float64",
+        "notes": "Numeric row identifier. Contains newline in header. 14 missing values (8.8%). No duplicate non-null IDs."
+      },
+      {
+        "index": 1,
+        "raw_name": "Event",
+        "semantic_role": "event_name_en",
+        "dtype": "object",
+        "notes": "Name of the public engagement event (English). 8 unique values. 14 missing."
+      },
+      {
+        "index": 2,
+        "raw_name": "Événement",
+        "semantic_role": "event_name_fr",
+        "dtype": "object",
+        "notes": "Name of the public engagement event (French). 8 unique values. 14 missing."
+      },
+      {
+        "index": 3,
+        "raw_name": "Source\n",
+        "semantic_role": "source_type_en",
+        "dtype": "object",
+        "notes": "Source type in English. Contains trailing newline. 2 unique values ('Indv Comment'). 14 missing."
+      },
+      {
+        "index": 4,
+        "raw_name": "Source ",
+        "semantic_role": "source_type_fr",
+        "dtype": "object",
+        "notes": "Source type in French. Contains trailing space. 2 unique values. 14 missing."
+      },
+      {
+        "index": 5,
+        "raw_name": "Source Language",
+        "semantic_role": "source_language",
+        "dtype": "object",
+        "notes": "Original language of the response. Values: English (139), French (6), 'S' (1, likely data entry error), NaN (14)."
+      },
+      {
+        "index": 6,
+        "raw_name": "Langue de départ",
+        "semantic_role": "source_language_fr",
+        "dtype": "object",
+        "notes": "Original language (French label). 14 missing."
+      },
+      {
+        "index": 7,
+        "raw_name": "Sector",
+        "semantic_role": "stakeholder_sector_en",
+        "dtype": "object",
+        "notes": "Stakeholder sector (English). 10 categories: FedGov, PTGov, Business, Non-profit, MunGov, Student, Academia, Other, Individual. 18 missing."
+      },
+      {
+        "index": 8,
+        "raw_name": "Secteur",
+        "semantic_role": "stakeholder_sector_fr",
+        "dtype": "object",
+        "notes": "Stakeholder sector (French). 11 categories. 20 missing. Slight discrepancy vs English column — requires investigation."
+      },
+      {
+        "index": 9,
+        "raw_name": "Public Engagement Question (Also in Compilation)\nQuestion sur la mobilisation du ",
+        "semantic_role": "engagement_question",
+        "dtype": "object",
+        "notes": "Free-text answer to public engagement question. PRIMARY CANDIDATE for analysis. 112 non-null, 48 missing (30%). Avg length ~76 chars."
+      },
+      {
+        "index": 10,
+        "raw_name": "1 Practical idea (Also in Compilation)\nUne idée pratique (Toujours dans Compilation)",
+        "semantic_role": "practical_idea",
+        "dtype": "object",
+        "notes": "Free-text: one practical idea for open government. PRIMARY CANDIDATE for demand extraction. 125 non-null, 35 missing (21.9%). Avg ~88 chars."
+      },
+      {
+        "index": 11,
+        "raw_name": "3 words\n3 mots",
+        "semantic_role": "three_words",
+        "dtype": "object",
+        "notes": "3 words to describe open government. 117 non-null, 43 missing (26.9%). Short, semi-structured. Use as supplementary signal."
+      },
+      {
+        "index": 12,
+        "raw_name": "OG is important because\nIl est important d\u2019avoir un gouvernement ouvert parce que ",
+        "semantic_role": "og_importance",
+        "dtype": "object",
+        "notes": "Free-text: why open government is important. CANDIDATE for concern/value extraction. 123 non-null, 37 missing (23.1%). Avg ~79 chars."
+      },
+      {
+        "index": 13,
+        "raw_name": "Preferred way(s) to participate in Open Government\nFaçons préférées de participer au Gouvernement ouvert ",
+        "semantic_role": "participation_preference",
+        "dtype": "object",
+        "notes": "Structured numeric codes (e.g. '1,2,3,4,5,6') referencing a participation method codebook NOT included in this file. Codebook required for interpretation. 111 non-null, 49 missing."
+      },
+      {
+        "index": 14,
+        "raw_name": "What did you like most?\nCe que vous avez le plus aimé ?",
+        "semantic_role": "liked_most",
+        "dtype": "object",
+        "notes": "Free-text: what participants liked most about the event. 113 non-null, 47 missing. Avg ~36 chars. Use for sentiment/satisfaction analysis."
+      },
+      {
+        "index": 15,
+        "raw_name": "Dislike?\nCe que vous avez moins aimé ?",
+        "semantic_role": "disliked",
+        "dtype": "object",
+        "notes": "Free-text: what participants disliked. 60 non-null, 100 missing (62.5%). High missingness — interpret carefully. Avg ~46 chars."
+      },
+      {
+        "index": 16,
+        "raw_name": "Improvements? \nAméliorations",
+        "semantic_role": "improvements",
+        "dtype": "object",
+        "notes": "Free-text: suggested improvements. SECONDARY CANDIDATE for demand extraction. 84 non-null, 76 missing (47.5%). Avg ~72 chars."
+      },
+      {
+        "index": 17,
+        "raw_name": "Would you recommend?\nRecommanderiez-vous ",
+        "semantic_role": "recommendation_score",
+        "dtype": "float64",
+        "notes": "Numeric rating 5–10 (NPS-style). 107 non-null, 53 missing (33.1%). Values: 5(3), 6(4), 7(15), 8(36), 9(12), 10(37)."
+      },
+      {
+        "index": 18,
+        "raw_name": "Other comments\nAutres commentaires",
+        "semantic_role": "other_comments",
+        "dtype": "object",
+        "notes": "Free-text catch-all. 32 non-null, 128 missing (80%). Avg ~82 chars. Use as supplementary text signal."
+      }
+    ]
+  },
+  "quality_summary": {
+    "total_rows": 160,
+    "fully_duplicate_rows": 13,
+    "rows_in_duplicate_group": 14,
+    "rows_with_no_row_id": 14,
+    "source_language_anomaly": "'S' value appears once in Source Language — likely data entry error",
+    "bilingual_note": "Many columns exist in both English and French. French responses may contain embedded RT (retranslation) annotations. Must handle bilingual text carefully.",
+    "participation_codebook_missing": true,
+    "participation_codebook_note": "Column 13 contains numeric codes referencing a participation method codebook that is not included in this dataset. Codebook must be obtained before this column can be used.",
+    "sector_discrepancy": "Sector (EN) has 18 nulls, Secteur (FR) has 20 nulls — slight mismatch requires investigation"
+  },
+  "preprocessing_performed": "NONE — this is raw source data. No modifications made.",
+  "created_at": "2026-10-09",
+  "created_by": "PolicyLens automated schema inspection (Phase 1)"
+}

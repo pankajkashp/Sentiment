@@ -1,0 +1,356 @@
+{
+  "dataset_id": "ap2016-18",
+  "dataset_version": "1.0.0",
+  "generated_at": "2026-10-09T04:59:48.455904+00:00",
+  "total_rows": 160,
+  "total_columns": 19,
+  "full_duplicate_rows": 13,
+  "rows_with_no_text_content": 16,
+  "dataframe_hash": "f67c2a923fa9d47c969adc4a9a271fab3fd746752875714f176d5ce920238457",
+  "column_reports": [
+    {
+      "semantic_name": "row_id",
+      "dtype": "float64",
+      "total_rows": 160,
+      "null_count": 14,
+      "null_pct": 8.75,
+      "unique_count": 146,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "35.0",
+        "91.0"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "event_name_en",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 14,
+      "null_pct": 8.75,
+      "unique_count": 7,
+      "duplicate_count": 139,
+      "min_length": 9.0,
+      "max_length": 15.0,
+      "mean_length": 11.82,
+      "sample_values": [
+        "ARMA 2016",
+        "Montreal 2016"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "event_name_fr",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 14,
+      "null_pct": 8.75,
+      "unique_count": 7,
+      "duplicate_count": 139,
+      "min_length": 9.0,
+      "max_length": 15.0,
+      "mean_length": 11.82,
+      "sample_values": [
+        "ARMA 2016",
+        "Montréal 2016"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "source_type_en",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 14,
+      "null_pct": 8.75,
+      "unique_count": 1,
+      "duplicate_count": 145,
+      "min_length": 12.0,
+      "max_length": 12.0,
+      "mean_length": 12.0,
+      "sample_values": [
+        "Indv Comment",
+        "Indv Comment"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "source_type_fr",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 14,
+      "null_pct": 8.75,
+      "unique_count": 1,
+      "duplicate_count": 145,
+      "min_length": 22.0,
+      "max_length": 22.0,
+      "mean_length": 22.0,
+      "sample_values": [
+        "Commentaire individuel",
+        "Commentaire individuel"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "source_language",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 14,
+      "null_pct": 8.75,
+      "unique_count": 3,
+      "duplicate_count": 143,
+      "min_length": 1.0,
+      "max_length": 7.0,
+      "mean_length": 6.92,
+      "sample_values": [
+        "English",
+        "English"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "source_language_fr",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 14,
+      "null_pct": 8.75,
+      "unique_count": 2,
+      "duplicate_count": 144,
+      "min_length": 7.0,
+      "max_length": 8.0,
+      "mean_length": 7.04,
+      "sample_values": [
+        "Anglais",
+        "Anglais"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "stakeholder_sector_en",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 18,
+      "null_pct": 11.25,
+      "unique_count": 9,
+      "duplicate_count": 133,
+      "min_length": 5.0,
+      "max_length": 10.0,
+      "mean_length": 6.47,
+      "sample_values": [
+        "Academia",
+        "Academia"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "stakeholder_sector_fr",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 20,
+      "null_pct": 12.5,
+      "unique_count": 10,
+      "duplicate_count": 130,
+      "min_length": 4.0,
+      "max_length": 28.0,
+      "mean_length": 17.85,
+      "sample_values": [
+        "Milieu universitaire",
+        "Milieu universitaire"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "engagement_question",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 48,
+      "null_pct": 30.0,
+      "unique_count": 112,
+      "duplicate_count": 0,
+      "min_length": 15.0,
+      "max_length": 185.0,
+      "mean_length": 75.87,
+      "sample_values": [
+        "Monitoring of open government initiatives for improvement in government performance - concrete connections. ",
+        "How best can the government of Canada provide leadership on open data?"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 30.0%"
+      ]
+    },
+    {
+      "semantic_name": "practical_idea",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 35,
+      "null_pct": 21.88,
+      "unique_count": 125,
+      "duplicate_count": 0,
+      "min_length": 10.0,
+      "max_length": 283.0,
+      "mean_length": 87.62,
+      "sample_values": [
+        "Describe benefits and intentions clearly. Tie it to cost savings / service improvements.",
+        "Data I want button on each department website with voting-- get at questions lots of people ask."
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "three_words",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 43,
+      "null_pct": 26.88,
+      "unique_count": 117,
+      "duplicate_count": 0,
+      "min_length": 5.0,
+      "max_length": 154.0,
+      "mean_length": 34.55,
+      "sample_values": [
+        "open, data, explanation",
+        "m'informer, recontrer les gens"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 26.9%"
+      ]
+    },
+    {
+      "semantic_name": "og_importance",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 37,
+      "null_pct": 23.12,
+      "unique_count": 123,
+      "duplicate_count": 0,
+      "min_length": 8.0,
+      "max_length": 324.0,
+      "mean_length": 78.73,
+      "sample_values": [
+        "I need to understand what this intiative means to accomplish",
+        "Je m’intéresse aux contextes de développement des données ouvertes et du web sémantique. RT: I am interested in the production of open data and the we"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "participation_preference_codes",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 49,
+      "null_pct": 30.62,
+      "unique_count": 64,
+      "duplicate_count": 47,
+      "min_length": 1.0,
+      "max_length": 84.0,
+      "mean_length": 7.51,
+      "sample_values": [
+        "4, 6",
+        "4,6"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 30.6%"
+      ]
+    },
+    {
+      "semantic_name": "liked_most",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 47,
+      "null_pct": 29.38,
+      "unique_count": 113,
+      "duplicate_count": 0,
+      "min_length": 7.0,
+      "max_length": 147.0,
+      "mean_length": 36.33,
+      "sample_values": [
+        "table discussions",
+        "L’échange d’information et la rencontre de certaines personnes. RT: The exchange of information and the meeting/ coming together of certain people."
+      ],
+      "warnings": [
+        "MEDIUM missingness: 29.4%"
+      ]
+    },
+    {
+      "semantic_name": "disliked",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 100,
+      "null_pct": 62.5,
+      "unique_count": 59,
+      "duplicate_count": 1,
+      "min_length": 3.0,
+      "max_length": 171.0,
+      "mean_length": 45.88,
+      "sample_values": [
+        "the presentation was too long and too vague",
+        "nil"
+      ],
+      "warnings": [
+        "HIGH missingness: 62.5%"
+      ]
+    },
+    {
+      "semantic_name": "improvements",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 76,
+      "null_pct": 47.5,
+      "unique_count": 84,
+      "duplicate_count": 0,
+      "min_length": 6.0,
+      "max_length": 624.0,
+      "mean_length": 71.65,
+      "sample_values": [
+        "too short",
+        "Open, public, in-person consultations are very valuable, especially with a full room. Advertise well to reach capacity"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 47.5%"
+      ]
+    },
+    {
+      "semantic_name": "recommendation_score",
+      "dtype": "float64",
+      "total_rows": 160,
+      "null_count": 53,
+      "null_pct": 33.12,
+      "unique_count": 6,
+      "duplicate_count": 101,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "8.0",
+        "10.0"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 33.1%"
+      ]
+    },
+    {
+      "semantic_name": "other_comments",
+      "dtype": "object",
+      "total_rows": 160,
+      "null_count": 128,
+      "null_pct": 80.0,
+      "unique_count": 32,
+      "duplicate_count": 0,
+      "min_length": 7.0,
+      "max_length": 364.0,
+      "mean_length": 82.22,
+      "sample_values": [
+        "Keep up the good work!",
+        "Open data needs to be cost-effective."
+      ],
+      "warnings": [
+        "HIGH missingness: 80.0%"
+      ]
+    }
+  ],
+  "global_warnings": [
+    "13 fully duplicate rows detected. Deduplication strategy must be decided before annotation split.",
+    "16 rows have no content in any text column."
+  ],
+  "global_errors": []
+}

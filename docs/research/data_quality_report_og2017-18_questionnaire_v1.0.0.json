@@ -1,0 +1,1824 @@
+{
+  "dataset_id": "og2017-18_questionnaire",
+  "dataset_version": "1.0.0",
+  "generated_at": "2026-10-12T08:42:19.972584+00:00",
+  "total_rows": 8212,
+  "total_columns": 98,
+  "full_duplicate_rows": 0,
+  "rows_with_no_text_content": 4470,
+  "dataframe_hash": "bebcc9e5264fc00788c4094b579f90dcf2f8590aaeab528f30a338a7e2344239",
+  "column_reports": [
+    {
+      "semantic_name": "respondent_id",
+      "dtype": "int64",
+      "total_rows": 8212,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8212,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "110000194613",
+        "110000495018"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "language",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 2,
+      "duplicate_count": 8210,
+      "min_length": 17.0,
+      "max_length": 18.0,
+      "mean_length": 17.83,
+      "sample_values": [
+        "English / \nAnglais",
+        "English / \nAnglais"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "start_date",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8202,
+      "duplicate_count": 10,
+      "min_length": 18.0,
+      "max_length": 19.0,
+      "mean_length": 18.75,
+      "sample_values": [
+        "2018-01-11 15:04:41",
+        "2018-02-28 14:38:13"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "end_date",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 8200,
+      "duplicate_count": 12,
+      "min_length": 18.0,
+      "max_length": 19.0,
+      "mean_length": 18.78,
+      "sample_values": [
+        "2018-01-11 15:47:33",
+        "2018-02-28 14:42:02"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "q1_transparency_important",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 1,
+      "null_pct": 0.01,
+      "unique_count": 2,
+      "duplicate_count": 8209,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "q2_transparency_topics_prompt",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_find_person",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4813,
+      "null_pct": 58.61,
+      "unique_count": 1,
+      "duplicate_count": 3398,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 58.6%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_policies_programs",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4964,
+      "null_pct": 60.45,
+      "unique_count": 1,
+      "duplicate_count": 3247,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 60.4%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_request_documents",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4496,
+      "null_pct": 54.75,
+      "unique_count": 1,
+      "duplicate_count": 3715,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "3.0",
+        "3.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 54.7%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_work_of_officials",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6989,
+      "null_pct": 85.11,
+      "unique_count": 1,
+      "duplicate_count": 1222,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "4.0",
+        "4.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 85.1%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_spending",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4450,
+      "null_pct": 54.19,
+      "unique_count": 1,
+      "duplicate_count": 3761,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "5.0",
+        "5.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 54.2%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_same_data_as_gov",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5080,
+      "null_pct": 61.86,
+      "unique_count": 1,
+      "duplicate_count": 3131,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "6.0",
+        "6.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 61.9%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_proactive_disclosure",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6097,
+      "null_pct": 74.25,
+      "unique_count": 1,
+      "duplicate_count": 2114,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "7.0",
+        "7.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 74.2%"
+      ]
+    },
+    {
+      "semantic_name": "q2r_working_with_other_govs",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6381,
+      "null_pct": 77.7,
+      "unique_count": 1,
+      "duplicate_count": 1830,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "8.0",
+        "8.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 77.7%"
+      ]
+    },
+    {
+      "semantic_name": "text_q2r_other_transparency",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7654,
+      "null_pct": 93.21,
+      "unique_count": 557,
+      "duplicate_count": 1,
+      "min_length": 2.0,
+      "max_length": 1558.0,
+      "mean_length": 93.99,
+      "sample_values": [
+        "Having access to study materials and data of scientific research (published or not) funded by the Federal government",
+        "Using gov data to shape public policy"
+      ],
+      "warnings": [
+        "HIGH missingness: 93.2%"
+      ]
+    },
+    {
+      "semantic_name": "q3_accountability_important",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 1,
+      "null_pct": 0.01,
+      "unique_count": 2,
+      "duplicate_count": 8209,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "q4_accountability_needs_prompt",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "q4r_track_spending_conflicts",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 3401,
+      "null_pct": 41.42,
+      "unique_count": 1,
+      "duplicate_count": 4810,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 41.4%"
+      ]
+    },
+    {
+      "semantic_name": "q4r_influence_decision_making",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 3360,
+      "null_pct": 40.92,
+      "unique_count": 1,
+      "duplicate_count": 4851,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 40.9%"
+      ]
+    },
+    {
+      "semantic_name": "q4r_holding_gov_accountable",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 3352,
+      "null_pct": 40.82,
+      "unique_count": 1,
+      "duplicate_count": 4859,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "3.0",
+        "3.0"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 40.8%"
+      ]
+    },
+    {
+      "semantic_name": "q4r_track_commitments",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 3799,
+      "null_pct": 46.26,
+      "unique_count": 1,
+      "duplicate_count": 4412,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "4.0",
+        "4.0"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 46.3%"
+      ]
+    },
+    {
+      "semantic_name": "q4r_privacy_data_protection",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4649,
+      "null_pct": 56.61,
+      "unique_count": 1,
+      "duplicate_count": 3562,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "5.0",
+        "5.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 56.6%"
+      ]
+    },
+    {
+      "semantic_name": "text_q4r_other_accountability",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7758,
+      "null_pct": 94.47,
+      "unique_count": 451,
+      "duplicate_count": 3,
+      "min_length": 1.0,
+      "max_length": 1203.0,
+      "mean_length": 91.93,
+      "sample_values": [
+        "Knowing who influencers fund, and what decision-makers do on the policy areas around which they are being lobbied.",
+        "To know that the government spending does improve Canada's position in the world."
+      ],
+      "warnings": [
+        "HIGH missingness: 94.5%"
+      ]
+    },
+    {
+      "semantic_name": "q5_participation_important",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 1,
+      "null_pct": 0.01,
+      "unique_count": 2,
+      "duplicate_count": 8209,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "q6_participation_ways_prompt",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "q6r_provide_views_concerns",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4396,
+      "null_pct": 53.53,
+      "unique_count": 1,
+      "duplicate_count": 3815,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 53.5%"
+      ]
+    },
+    {
+      "semantic_name": "q6r_input_decision_making",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4125,
+      "null_pct": 50.23,
+      "unique_count": 1,
+      "duplicate_count": 4086,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 50.2%"
+      ]
+    },
+    {
+      "semantic_name": "q6r_interact_other_canadians",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6559,
+      "null_pct": 79.87,
+      "unique_count": 1,
+      "duplicate_count": 1652,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "3.0",
+        "3.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 79.9%"
+      ]
+    },
+    {
+      "semantic_name": "q6r_collaborate_directly",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5187,
+      "null_pct": 63.16,
+      "unique_count": 1,
+      "duplicate_count": 3024,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "4.0",
+        "4.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 63.2%"
+      ]
+    },
+    {
+      "semantic_name": "q6r_share_info_across_depts",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6047,
+      "null_pct": 73.64,
+      "unique_count": 1,
+      "duplicate_count": 2164,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "5.0",
+        "5.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 73.6%"
+      ]
+    },
+    {
+      "semantic_name": "q6r_suggest_service_improvements",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4420,
+      "null_pct": 53.82,
+      "unique_count": 1,
+      "duplicate_count": 3791,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "6.0",
+        "6.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 53.8%"
+      ]
+    },
+    {
+      "semantic_name": "q6r_track_request_status",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5685,
+      "null_pct": 69.23,
+      "unique_count": 1,
+      "duplicate_count": 2526,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "7.0",
+        "7.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 69.2%"
+      ]
+    },
+    {
+      "semantic_name": "text_q6r_other_participation",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7933,
+      "null_pct": 96.6,
+      "unique_count": 274,
+      "duplicate_count": 5,
+      "min_length": 1.0,
+      "max_length": 1650.0,
+      "mean_length": 106.75,
+      "sample_values": [
+        "Having government IT tools work with all platforms, not just Microsoft or Apple",
+        "Vote in an election with good campaign finance regulation."
+      ],
+      "warnings": [
+        "HIGH missingness: 96.6%"
+      ]
+    },
+    {
+      "semantic_name": "q7_strategic_outcomes_prompt",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_income_security_employment",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5606,
+      "null_pct": 68.27,
+      "unique_count": 1,
+      "duplicate_count": 2605,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 68.3%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_economic_growth",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6418,
+      "null_pct": 78.15,
+      "unique_count": 1,
+      "duplicate_count": 1793,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 78.2%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_innovation_knowledge_economy",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6765,
+      "null_pct": 82.38,
+      "unique_count": 1,
+      "duplicate_count": 1446,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "3.0",
+        "3.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 82.4%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_clean_healthy_environment",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5575,
+      "null_pct": 67.89,
+      "unique_count": 1,
+      "duplicate_count": 2636,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "4.0",
+        "4.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 67.9%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_fair_secure_workplace",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7179,
+      "null_pct": 87.42,
+      "unique_count": 1,
+      "duplicate_count": 1032,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "5.0",
+        "5.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 87.4%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_healthy_canadians",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5930,
+      "null_pct": 72.21,
+      "unique_count": 1,
+      "duplicate_count": 2281,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "6.0",
+        "6.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 72.2%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_safe_secure_canada",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5944,
+      "null_pct": 72.38,
+      "unique_count": 1,
+      "duplicate_count": 2267,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "7.0",
+        "7.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 72.4%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_diverse_inclusive_society",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7443,
+      "null_pct": 90.64,
+      "unique_count": 1,
+      "duplicate_count": 768,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "8.0",
+        "8.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 90.6%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_culture_heritage",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7749,
+      "null_pct": 94.36,
+      "unique_count": 1,
+      "duplicate_count": 462,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "9.0",
+        "9.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 94.4%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_safe_secure_world",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7493,
+      "null_pct": 91.24,
+      "unique_count": 1,
+      "duplicate_count": 718,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "10.0",
+        "10.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 91.2%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_global_poverty_reduction",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7268,
+      "null_pct": 88.5,
+      "unique_count": 1,
+      "duplicate_count": 943,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "11.0",
+        "11.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 88.5%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_na_partnership",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7886,
+      "null_pct": 96.03,
+      "unique_count": 1,
+      "duplicate_count": 325,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "12.0",
+        "12.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 96.0%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_global_commerce",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7541,
+      "null_pct": 91.83,
+      "unique_count": 1,
+      "duplicate_count": 670,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "13.0",
+        "13.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 91.8%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_democratic_institutions",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6993,
+      "null_pct": 85.16,
+      "unique_count": 1,
+      "duplicate_count": 1218,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "14.0",
+        "14.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 85.2%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_open_accountable_gov",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5349,
+      "null_pct": 65.14,
+      "unique_count": 1,
+      "duplicate_count": 2862,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "15.0",
+        "15.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 65.1%"
+      ]
+    },
+    {
+      "semantic_name": "q7r_efficient_operations",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5849,
+      "null_pct": 71.23,
+      "unique_count": 1,
+      "duplicate_count": 2362,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "16.0",
+        "16.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 71.2%"
+      ]
+    },
+    {
+      "semantic_name": "text_q8_missed_topics",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 6016,
+      "null_pct": 73.26,
+      "unique_count": 2169,
+      "duplicate_count": 27,
+      "min_length": 1.0,
+      "max_length": 5906.0,
+      "mean_length": 223.46,
+      "sample_values": [
+        "Some families all of their children come in Canada, and their parents can not remain at their home country and live alone, so they have come to Canada",
+        "Honour of the Crown towards Indigenous peoples - honouring treaties, publicizing and respecting the duty to consult.  "
+      ],
+      "warnings": [
+        "HIGH missingness: 73.3%"
+      ]
+    },
+    {
+      "semantic_name": "q9_interest_reasons_prompt",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_new_curious",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6016,
+      "null_pct": 73.26,
+      "unique_count": 1,
+      "duplicate_count": 2195,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 73.3%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_learn_more",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5355,
+      "null_pct": 65.21,
+      "unique_count": 1,
+      "duplicate_count": 2856,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 65.2%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_web_apps_technical",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7695,
+      "null_pct": 93.7,
+      "unique_count": 1,
+      "duplicate_count": 516,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "3.0",
+        "3.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 93.7%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_sift_data_insights",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6152,
+      "null_pct": 74.91,
+      "unique_count": 1,
+      "duplicate_count": 2059,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "4.0",
+        "4.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 74.9%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_start_business",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7583,
+      "null_pct": 92.34,
+      "unique_count": 1,
+      "duplicate_count": 628,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "5.0",
+        "5.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 92.3%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_enhance_business",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7569,
+      "null_pct": 92.17,
+      "unique_count": 1,
+      "duplicate_count": 642,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "6.0",
+        "6.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 92.2%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_make_society_better",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4210,
+      "null_pct": 51.27,
+      "unique_count": 1,
+      "duplicate_count": 4001,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "7.0",
+        "7.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 51.3%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_democracy_stronger",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 3621,
+      "null_pct": 44.09,
+      "unique_count": 1,
+      "duplicate_count": 4590,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "8.0",
+        "8.0"
+      ],
+      "warnings": [
+        "MEDIUM missingness: 44.1%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_feedback_when_asked",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6675,
+      "null_pct": 81.28,
+      "unique_count": 1,
+      "duplicate_count": 1536,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "9.0",
+        "9.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 81.3%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_hold_gov_accountable",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5668,
+      "null_pct": 69.02,
+      "unique_count": 1,
+      "duplicate_count": 2543,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "10.0",
+        "10.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 69.0%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_build_data_collections",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7534,
+      "null_pct": 91.74,
+      "unique_count": 1,
+      "duplicate_count": 677,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "11.0",
+        "11.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 91.7%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_not_interested",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7904,
+      "null_pct": 96.25,
+      "unique_count": 1,
+      "duplicate_count": 307,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "12.0",
+        "12.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 96.2%"
+      ]
+    },
+    {
+      "semantic_name": "q9r_prefer_not_to_answer",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "text_q9r_other_interest",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7788,
+      "null_pct": 94.84,
+      "unique_count": 424,
+      "duplicate_count": 0,
+      "min_length": 1.0,
+      "max_length": 769.0,
+      "mean_length": 106.8,
+      "sample_values": [
+        "I study knowledge representation in the legal realm. Open Data would allow us to critique whether or not the government follows its own rules, automat",
+        "I am interested in the transformation of Canada's society and government into a model of governance adapted to the 21st century to deliver gender equa"
+      ],
+      "warnings": [
+        "HIGH missingness: 94.8%"
+      ]
+    },
+    {
+      "semantic_name": "q10_more_involvement",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 1,
+      "null_pct": 0.01,
+      "unique_count": 2,
+      "duplicate_count": 8209,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "q11_involvement_types_prompt",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "q11r_share_knowledge",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6081,
+      "null_pct": 74.05,
+      "unique_count": 1,
+      "duplicate_count": 2130,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 74.1%"
+      ]
+    },
+    {
+      "semantic_name": "q11r_feedback_drafts",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5233,
+      "null_pct": 63.72,
+      "unique_count": 3,
+      "duplicate_count": 2976,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 63.7%"
+      ]
+    },
+    {
+      "semantic_name": "q11r_organize_workshop",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6863,
+      "null_pct": 83.57,
+      "unique_count": 3,
+      "duplicate_count": 1346,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "3.0",
+        "3.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 83.6%"
+      ]
+    },
+    {
+      "semantic_name": "q11r_promote_events",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7100,
+      "null_pct": 86.46,
+      "unique_count": 3,
+      "duplicate_count": 1109,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "4.0",
+        "1.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 86.5%"
+      ]
+    },
+    {
+      "semantic_name": "q11r_attend_workshop",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5110,
+      "null_pct": 62.23,
+      "unique_count": 3,
+      "duplicate_count": 3099,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "5.0",
+        "5.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 62.2%"
+      ]
+    },
+    {
+      "semantic_name": "text_q11r_other_involvement_activity",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7988,
+      "null_pct": 97.27,
+      "unique_count": 224,
+      "duplicate_count": 0,
+      "min_length": 1.0,
+      "max_length": 3296.0,
+      "mean_length": 84.86,
+      "sample_values": [
+        "improve Health strategic plan As health expert ",
+        "I wold like to be alowed to live and work in Canada."
+      ],
+      "warnings": [
+        "HIGH missingness: 97.3%"
+      ]
+    },
+    {
+      "semantic_name": "q12_involvement_channels_prompt",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8212,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "duplicate_count": 0,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [],
+      "warnings": [
+        "HIGH missingness: 100.0%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_open_canada_ca",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6300,
+      "null_pct": 76.72,
+      "unique_count": 1,
+      "duplicate_count": 1911,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "1.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 76.7%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_facebook",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6633,
+      "null_pct": 80.77,
+      "unique_count": 1,
+      "duplicate_count": 1578,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 80.8%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_twitter",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7536,
+      "null_pct": 91.77,
+      "unique_count": 1,
+      "duplicate_count": 675,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "3.0",
+        "3.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 91.8%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_linkedin",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7210,
+      "null_pct": 87.8,
+      "unique_count": 1,
+      "duplicate_count": 1001,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "4.0",
+        "4.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 87.8%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_reddit",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7912,
+      "null_pct": 96.35,
+      "unique_count": 1,
+      "duplicate_count": 299,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "5.0",
+        "5.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 96.3%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_webinars",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6611,
+      "null_pct": 80.5,
+      "unique_count": 1,
+      "duplicate_count": 1600,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "6.0",
+        "6.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 80.5%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_github",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 8012,
+      "null_pct": 97.56,
+      "unique_count": 1,
+      "duplicate_count": 199,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "7.0",
+        "7.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 97.6%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_google_docs",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6910,
+      "null_pct": 84.15,
+      "unique_count": 1,
+      "duplicate_count": 1301,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "8.0",
+        "8.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 84.1%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_gccollab",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 7721,
+      "null_pct": 94.02,
+      "unique_count": 1,
+      "duplicate_count": 490,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "9.0",
+        "9.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 94.0%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_questionnaires",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 4972,
+      "null_pct": 60.55,
+      "unique_count": 1,
+      "duplicate_count": 3239,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "10.0",
+        "10.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 60.5%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_in_person_small",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 5512,
+      "null_pct": 67.12,
+      "unique_count": 1,
+      "duplicate_count": 2699,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "11.0",
+        "11.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 67.1%"
+      ]
+    },
+    {
+      "semantic_name": "q12r_in_person_large",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 6284,
+      "null_pct": 76.52,
+      "unique_count": 1,
+      "duplicate_count": 1927,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "12.0",
+        "12.0"
+      ],
+      "warnings": [
+        "HIGH missingness: 76.5%"
+      ]
+    },
+    {
+      "semantic_name": "text_q12r_other_involvement_channel",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7962,
+      "null_pct": 96.96,
+      "unique_count": 229,
+      "duplicate_count": 21,
+      "min_length": 1.0,
+      "max_length": 412.0,
+      "mean_length": 53.91,
+      "sample_values": [
+        "Invite me to explore how open government can contribute to gender equality and dignity of the person",
+        "Please don't rely too much on technology!"
+      ],
+      "warnings": [
+        "HIGH missingness: 97.0%"
+      ]
+    },
+    {
+      "semantic_name": "satisfaction_score",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 1,
+      "null_pct": 0.01,
+      "unique_count": 6,
+      "duplicate_count": 8205,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "1.0",
+        "3.0"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "text_q14_satisfaction_reason",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 5866,
+      "null_pct": 71.43,
+      "unique_count": 2309,
+      "duplicate_count": 37,
+      "min_length": 2.0,
+      "max_length": 1131.0,
+      "mean_length": 75.4,
+      "sample_values": [
+        " open government data and information services can motivate people participation in government planning from A to Z.",
+        "The medicine and doctor expenses are covered"
+      ],
+      "warnings": [
+        "HIGH missingness: 71.4%"
+      ]
+    },
+    {
+      "semantic_name": "country",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 106,
+      "null_pct": 1.29,
+      "unique_count": 129,
+      "duplicate_count": 7977,
+      "min_length": 3.0,
+      "max_length": 40.0,
+      "mean_length": 6.06,
+      "sample_values": [
+        "Canada",
+        "Canada"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "province",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 31,
+      "null_pct": 0.38,
+      "unique_count": 18,
+      "duplicate_count": 8163,
+      "min_length": 5.0,
+      "max_length": 22.0,
+      "mean_length": 9.15,
+      "sample_values": [
+        "Quebec",
+        "Ontario"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "city",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 589,
+      "null_pct": 7.17,
+      "unique_count": 1219,
+      "duplicate_count": 6404,
+      "min_length": 1.0,
+      "max_length": 59.0,
+      "mean_length": 8.06,
+      "sample_values": [
+        "Montreal",
+        "Toronto"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "text_q18_experience_topic",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7363,
+      "null_pct": 89.66,
+      "unique_count": 808,
+      "duplicate_count": 41,
+      "min_length": 1.0,
+      "max_length": 1760.0,
+      "mean_length": 92.84,
+      "sample_values": [
+        "Health strategic management is my professional experience .",
+        "Open source software and thinking -- there is a wealth of extremely good material that is ignored when managers abandon their role of managing by buyi"
+      ],
+      "warnings": [
+        "HIGH missingness: 89.7%"
+      ]
+    },
+    {
+      "semantic_name": "stakeholder_sector",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 13,
+      "duplicate_count": 8199,
+      "min_length": 13.0,
+      "max_length": 125.0,
+      "mean_length": 34.87,
+      "sample_values": [
+        "Academia / Milieu universitaire",
+        "Academia / Milieu universitaire"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "text_q19r_other_sector",
+      "dtype": "object",
+      "total_rows": 8212,
+      "null_count": 7824,
+      "null_pct": 95.28,
+      "unique_count": 358,
+      "duplicate_count": 30,
+      "min_length": 1.0,
+      "max_length": 317.0,
+      "mean_length": 30.62,
+      "sample_values": [
+        "Financially burdened taxpayer",
+        "Frustrated Canadian tired of golden words and inaction"
+      ],
+      "warnings": [
+        "HIGH missingness: 95.3%"
+      ]
+    },
+    {
+      "semantic_name": "on_behalf_of_org",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 111,
+      "null_pct": 1.35,
+      "unique_count": 3,
+      "duplicate_count": 8098,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "2.0",
+        "2.0"
+      ],
+      "warnings": []
+    },
+    {
+      "semantic_name": "administrative_newsletter_consent",
+      "dtype": "float64",
+      "total_rows": 8212,
+      "null_count": 1,
+      "null_pct": 0.01,
+      "unique_count": 2,
+      "duplicate_count": 8209,
+      "min_length": null,
+      "max_length": null,
+      "mean_length": null,
+      "sample_values": [
+        "0.0",
+        "0.0"
+      ],
+      "warnings": []
+    }
+  ],
+  "global_warnings": [
+    "4470 rows have no content in any text column."
+  ],
+  "global_errors": []
+}

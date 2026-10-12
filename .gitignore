@@ -1,0 +1,100 @@
+# ==============================================================================
+# PolicyLens — .gitignore
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# DATA FILES & DATASETS (NEVER COMMIT OR PUSH DATA)
+# ------------------------------------------------------------------------------
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.arrow
+*.dta
+*.sav
+*.sas7bdat
+*.jsonl
+*.sqlite3
+*.db
+
+# Data directories content
+data/raw/*.csv
+data/processed/*.csv
+data/interim/*
+!data/interim/.gitkeep
+data/annotated/*
+!data/annotated/.gitkeep
+data/synthetic/*
+!data/synthetic/.gitkeep
+data/external/*
+!data/external/.gitkeep
+
+# ------------------------------------------------------------------------------
+# ML MODELS, CHECKPOINTS & EMBEDDINGS
+# ------------------------------------------------------------------------------
+*.pt
+*.pth
+*.bin
+*.onnx
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.joblib
+ml/embeddings/*
+!ml/embeddings/.gitkeep
+ml/models/*
+!ml/models/.gitkeep
+models/*
+!models/.gitkeep
+
+# ------------------------------------------------------------------------------
+# EXPERIMENT OUTPUTS & LOGS
+# ------------------------------------------------------------------------------
+*.log
+experiments/logs/*
+!experiments/logs/.gitkeep
+
+# ------------------------------------------------------------------------------
+# PYTHON BYTECODE & CACHES
+# ------------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ------------------------------------------------------------------------------
+# ENVIRONMENT & VIRTUAL ENVS
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+venv/
+.venv/
+env/
+ENV/
+
+# ------------------------------------------------------------------------------
+# OS & SYSTEM ARTIFACTS
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ------------------------------------------------------------------------------
+# IDE & EDITORS
+# ------------------------------------------------------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
