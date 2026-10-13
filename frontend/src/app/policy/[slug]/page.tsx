@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, CheckCircle2, Building, Calendar, Tag, ShieldCheck, FileText } from "lucide-react";
 import { officialPolicies } from "@/features/feed/demo-data";
+import { PublicOpinionSection } from "@/features/opinions/public-opinion-section";
 
 export function generateStaticParams() {
   return officialPolicies.map((post) => ({ slug: post.slug }));
@@ -132,11 +133,14 @@ export default async function PolicyDetailPage({ params }: { params: Promise<{ s
           {/* Information Integrity Disclaimer */}
           <div className="pt-4 border-t border-[#f1f3f5] text-[11px] text-[#666666] leading-relaxed">
             <p>
-              <strong>Notice:</strong> This entry is an official public information record curated from Government of India public releases. In compliance with public information standards, this page does not host informal polls, fabricated popularity metrics, or unofficial commentary.
+              <strong>Notice:</strong> This entry is an official public information record curated from Government of India public releases. Official sources and public consultation feedback are presented below.
             </p>
           </div>
         </div>
       </article>
+
+      {/* 7. Public Opinion & AI-Powered Comments Analysis Section */}
+      <PublicOpinionSection policySlug={post.slug} policyTitle={post.title} />
     </main>
   );
 }
