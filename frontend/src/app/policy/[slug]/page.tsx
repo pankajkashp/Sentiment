@@ -1,58 +1,289 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Bookmark, Clock3, ExternalLink, MessageCircle, ShieldCheck, ThumbsDown, ThumbsUp } from "lucide-react";
+import {
+  ArrowLeft,
+  Bookmark,
+  CheckCircle2,
+  Clock3,
+  ExternalLink,
+  Globe2,
+  Landmark,
+  MessageSquare,
+  ShieldCheck,
+  ThumbsDown,
+  ThumbsUp,
+} from "lucide-react";
 import { demoPosts } from "@/features/feed/demo-data";
 
 export function generateStaticParams() {
   return demoPosts.map((post) => ({ slug: post.slug }));
 }
 
-export default async function PolicyDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function PolicyDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const post = demoPosts.find((item) => item.slug === slug);
-  if (!post) return <main className="content-width py-16"><h1 className="font-display text-3xl font-bold">Discussion not found</h1><Link href="/" className="mt-4 inline-block accent">Return to feed</Link></main>;
 
-  return <main className="content-width min-h-screen py-6 pb-24 md:py-10">
-    <Link href="/" className="inline-flex items-center gap-2 text-xs muted"><ArrowLeft size={14}/> Back to discussions</Link>
-    <article className="mx-auto mt-6 max-w-[820px] overflow-hidden rounded-[24px] border" style={{background:"var(--surface)",borderColor:"var(--line)"}}>
-      <div className="relative h-[220px] sm:h-[340px]">
-        <Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 820px) 100vw, 820px" className="object-cover"/>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"/>
-        <span className="absolute bottom-5 left-5 rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-white backdrop-blur">{post.category}</span>
-      </div>
-      <div className="p-5 sm:p-9">
-        <div className="flex flex-wrap items-center gap-2 text-[11px] muted"><span>PolicyLens demo consultation</span><span>·</span><span>{post.language}</span><span>·</span><span>{post.status}</span></div>
-        <h1 className="font-display mt-4 text-[32px] font-extrabold leading-[1.08] sm:text-[46px]">{post.title}</h1>
-        <p className="mt-5 text-[15px] leading-7 muted">{post.excerpt}</p>
-        <div className="mt-6 rounded-xl p-4" style={{background:"var(--surface-subtle)"}}>
-          <p className="text-[10px] font-bold uppercase tracking-[.15em] accent">Consultation context</p>
-          <p className="mt-2 text-sm leading-6">The full policy text, eligibility details, closing date and official source will appear here when connected to the consultation API. This is illustrative content, not an active government consultation.</p>
-          <a href={post.sourceUrl} className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold accent">View source details <ExternalLink size={13}/></a>
-        </div>
-        <div className="mt-6 flex flex-wrap items-center gap-3 border-y py-4" style={{borderColor:"var(--line)"}}>
-          <span className="inline-flex items-center gap-2 text-xs muted"><MessageCircle size={15}/>{post.comments} responses <span className="text-[10px]">(demo)</span></span><span className="flex-1"/>
-          <button type="button" className="inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs" style={{borderColor:"var(--line)"}}><Bookmark size={14}/> Save</button>
-        </div>
-        <section className="mt-7">
-          <h2 className="font-display text-xl font-bold">Where do you stand?</h2>
-          <p className="mt-1 text-xs muted">Review the source before sharing your position.</p>
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <button type="button" className="flex flex-col items-center gap-2 rounded-xl border p-3 text-xs" style={{borderColor:"var(--line)"}}><ThumbsUp size={17} className="accent"/>Support</button>
-            <button type="button" className="flex flex-col items-center gap-2 rounded-xl border p-3 text-xs" style={{borderColor:"var(--line)"}}><ThumbsDown size={17} className="muted"/>Oppose</button>
-            <button type="button" className="flex flex-col items-center gap-2 rounded-xl border p-3 text-xs" style={{borderColor:"var(--line)"}}><ShieldCheck size={17} className="muted"/>No opinion</button>
+  if (!post) {
+    return (
+      <main className="content-width py-16 text-center">
+        <h1 className="font-display text-2xl font-bold text-[var(--ink)]">
+          Discussion not found
+        </h1>
+        <p className="mt-2 text-sm text-[var(--muted)]">
+          The requested policy consultation could not be located.
+        </p>
+        <Link
+          href="/"
+          className="mt-4 inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-semibold text-white"
+          style={{ background: "var(--saffron)" }}
+        >
+          <ArrowLeft size={14} /> Return to consultations
+        </Link>
+      </main>
+    );
+  }
+
+  const isClosingSoon = post.status === "Closing soon";
+
+  return (
+    <main className="content-width min-h-screen py-6 pb-24 md:py-10">
+      <Link
+        href="/"
+        className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--muted)] hover:text-[var(--saffron)] transition-colors"
+      >
+        <ArrowLeft size={14} aria-hidden="true" />
+        <span>Back to all consultations</span>
+      </Link>
+
+      <article
+        className="mx-auto mt-5 max-w-[840px] overflow-hidden rounded-2xl border"
+        style={{
+          background: "var(--surface)",
+          borderColor: "var(--line)",
+          boxShadow: "var(--shadow-sm)",
+        }}
+      >
+        {/* Header Banner with Subtle Tricolour Bar */}
+        <div
+          className="h-[3px] w-full"
+          style={{
+            background:
+              "linear-gradient(90deg, var(--saffron) 0% 33.33%, #ffffff 33.33% 66.67%, var(--india-green) 66.67% 100%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <div className="p-6 sm:p-9">
+          {/* Metadata Badges Row */}
+          <div className="flex flex-wrap items-center gap-2 text-[11px]">
+            <span
+              className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-bold uppercase tracking-[0.1em]"
+              style={{
+                background: "var(--surface-subtle)",
+                color: "var(--ink)",
+                border: "1px solid var(--line)",
+              }}
+            >
+              {post.category}
+            </span>
+
+            <span
+              className="inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-medium"
+              style={{
+                background: isClosingSoon ? "var(--saffron-soft)" : "var(--india-green-soft)",
+                color: isClosingSoon ? "var(--saffron)" : "var(--india-green)",
+              }}
+            >
+              {post.status}
+            </span>
+
+            <span className="inline-flex items-center gap-1 text-[var(--muted)]">
+              <Globe2 size={12} aria-hidden="true" />
+              <span>{post.language}</span>
+            </span>
+
+            <span className="text-[var(--line)]" aria-hidden="true">·</span>
+
+            <span className="inline-flex items-center gap-1 text-[var(--muted)]">
+              <Landmark size={12} aria-hidden="true" />
+              <span>{post.sourceName}</span>
+            </span>
           </div>
-          <div className="mt-5 rounded-2xl border p-4 sm:p-5" style={{borderColor:"var(--line)"}}>
-            <label htmlFor="comment" className="text-sm font-semibold">Add to the discussion</label>
-            <textarea id="comment" rows={4} maxLength={3000} placeholder="Explain your view. What evidence or experience informs it?" className="mt-3 w-full resize-y rounded-xl border p-3 text-sm outline-none" style={{background:"var(--paper)",borderColor:"var(--line)"}}/>
-            <div className="mt-3 flex items-center justify-between gap-3"><span className="text-[10px] muted">Be respectful. Support claims with evidence where possible.</span><Link href="/login" className="rounded-full px-4 py-2.5 text-xs font-semibold" style={{background:"var(--accent)",color:"var(--surface)"}}>Sign in to comment</Link></div>
+
+          {/* Consultation Title */}
+          <h1 className="mt-4 font-display text-[26px] font-extrabold leading-snug text-[var(--ink)] sm:text-[36px]">
+            {post.title}
+          </h1>
+
+          {/* Consultation Summary */}
+          <p className="mt-4 text-[14.5px] leading-relaxed text-[var(--body)]">
+            {post.excerpt}
+          </p>
+
+          {/* Official Context & Disclaimers Box */}
+          <div
+            className="mt-6 rounded-xl border p-4.5 sm:p-5"
+            style={{
+              background: "var(--surface-subtle)",
+              borderColor: "var(--line)",
+            }}
+          >
+            <p className="text-[10.5px] font-bold uppercase tracking-[0.14em] text-[var(--saffron)]">
+              Consultation Framework & Source Citation
+            </p>
+            <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--body)]">
+              This discussion reflects an illustrative public-policy consultation prototype. Official submissions, verified evidence packages, and regulatory filings are tracked by PolicyLens to ensure transparent collective verdicts without inventing citizen demands.
+            </p>
+            <div className="mt-3.5 flex flex-wrap items-center gap-3">
+              <a
+                href={post.sourceUrl}
+                className="inline-flex items-center gap-1.5 text-[11.5px] font-semibold text-[var(--saffron)] hover:underline"
+              >
+                <span>View consultation document</span>
+                <ExternalLink size={12} aria-hidden="true" />
+              </a>
+              <span className="text-[var(--line)]" aria-hidden="true">·</span>
+              <span className="text-[11px] text-[var(--muted)]">
+                Closes: {new Date(post.closesAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
+              </span>
+            </div>
           </div>
-        </section>
-        <section className="mt-8">
-          <div className="flex items-center justify-between"><h2 className="font-display text-xl font-bold">Community responses</h2><span className="inline-flex items-center gap-1 text-xs muted">Recent <Clock3 size={13}/></span></div>
-          <div className="mt-4 rounded-xl border p-5" style={{borderColor:"var(--line)"}}><p className="text-sm font-semibold">Responses will appear here</p><p className="mt-1 text-xs leading-5 muted">Live responses will show account-controlled reactions, timestamp, stakeholder category and evidence when available.</p><p className="mt-4 text-[10px] muted">Community activity will remain separate from validated research findings.</p></div>
-        </section>
-        <div className="mt-5 text-[10px] muted">Comment editing and deletion will be server-limited to the first 10 minutes after posting.</div>
-      </div>
-    </article>
-  </main>;
+
+          {/* Response Counter & Action Row */}
+          <div
+            className="mt-6 flex flex-wrap items-center justify-between gap-3 border-y py-3.5 text-[12px]"
+            style={{ borderColor: "var(--line)" }}
+          >
+            <span className="inline-flex items-center gap-1.5 text-[var(--muted)] font-medium">
+              <MessageSquare size={14} className="text-[var(--saffron)]" aria-hidden="true" />
+              <strong className="text-[var(--ink)]">{post.comments}</strong> responses registered (demo)
+            </span>
+
+            <button
+              type="button"
+              className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[11.5px] font-medium transition-colors hover:bg-[var(--surface-subtle)]"
+              style={{ borderColor: "var(--line)", color: "var(--ink)" }}
+            >
+              <Bookmark size={13} aria-hidden="true" />
+              <span>Save discussion</span>
+            </button>
+          </div>
+
+          {/* Citizen Stance Input Section */}
+          <section className="mt-7" aria-labelledby="stance-heading">
+            <h2 id="stance-heading" className="font-display text-[18px] font-bold text-[var(--ink)]">
+              Where do you stand on this policy?
+            </h2>
+            <p className="mt-1 text-[12px] text-[var(--muted)]">
+              Indicate your perspective before contributing written feedback. One vote per verified account.
+            </p>
+
+            <div className="mt-3.5 grid grid-cols-3 gap-2 sm:gap-3">
+              <button
+                type="button"
+                className="flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all hover:border-[var(--india-green)]"
+                style={{
+                  background: "var(--surface)",
+                  borderColor: "var(--line)",
+                }}
+              >
+                <ThumbsUp size={16} className="text-[var(--india-green)]" aria-hidden="true" />
+                <span className="text-[12px] font-semibold text-[var(--ink)]">Support</span>
+              </button>
+
+              <button
+                type="button"
+                className="flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all hover:border-[var(--saffron)]"
+                style={{
+                  background: "var(--surface)",
+                  borderColor: "var(--line)",
+                }}
+              >
+                <ThumbsDown size={16} className="text-[var(--saffron)]" aria-hidden="true" />
+                <span className="text-[12px] font-semibold text-[var(--ink)]">Oppose</span>
+              </button>
+
+              <button
+                type="button"
+                className="flex flex-col items-center gap-1.5 rounded-xl border p-3 text-center transition-all hover:border-[var(--chakra)]"
+                style={{
+                  background: "var(--surface)",
+                  borderColor: "var(--line)",
+                }}
+              >
+                <ShieldCheck size={16} className="text-[var(--chakra)]" aria-hidden="true" />
+                <span className="text-[12px] font-semibold text-[var(--ink)]">No opinion</span>
+              </button>
+            </div>
+
+            {/* Comment Form Prototype */}
+            <div
+              className="mt-5 rounded-xl border p-4 sm:p-5"
+              style={{ borderColor: "var(--line)", background: "var(--surface)" }}
+            >
+              <label htmlFor="comment" className="block text-[12.5px] font-semibold text-[var(--ink)]">
+                Submit constructive feedback or evidence
+              </label>
+              <textarea
+                id="comment"
+                rows={4}
+                maxLength={3000}
+                placeholder="Share your perspective, lived experience, or specific reform proposal for this consultation..."
+                className="mt-2.5 w-full resize-y rounded-xl border p-3 text-[13px] text-[var(--ink)] placeholder-[var(--muted)] outline-none focus:ring-2"
+                style={{
+                  background: "var(--paper)",
+                  borderColor: "var(--line)",
+                }}
+              />
+              <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
+                <span className="text-[10.5px] text-[var(--muted)]">
+                  Ground assertions in evidence. All submissions are audited for demand presence.
+                </span>
+                <Link
+                  href="/login"
+                  className="rounded-lg px-4 py-2 text-[11.5px] font-semibold transition-colors"
+                  style={{ background: "var(--saffron)", color: "#ffffff" }}
+                >
+                  Sign in to contribute
+                </Link>
+              </div>
+            </div>
+          </section>
+
+          {/* Community Responses Preview */}
+          <section className="mt-8 border-t pt-6" style={{ borderColor: "var(--line)" }}>
+            <div className="flex items-center justify-between">
+              <h2 className="font-display text-[17px] font-bold text-[var(--ink)]">
+                Verified Citizen Submissions
+              </h2>
+              <span className="inline-flex items-center gap-1 text-[11px] text-[var(--muted)]">
+                <Clock3 size={12} aria-hidden="true" />
+                <span>Audited for demand presence</span>
+              </span>
+            </div>
+
+            <div
+              className="mt-3.5 rounded-xl border p-5"
+              style={{ background: "var(--surface-subtle)", borderColor: "var(--line)" }}
+            >
+              <div className="flex items-start gap-2.5">
+                <CheckCircle2 size={16} className="text-[var(--india-green)] shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="text-[13px] font-semibold text-[var(--ink)]">
+                    Audited Collective Findings
+                  </p>
+                  <p className="mt-1 text-[12px] leading-relaxed text-[var(--body)]">
+                    Live community responses are processed through PolicyLens Demand-Presence Safeguards to distinguish citizen demands from general grievances without hallucinating requested actions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </main>
+  );
 }

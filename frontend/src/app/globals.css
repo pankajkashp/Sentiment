@@ -1,75 +1,190 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Manrope:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
 :root {
+  /* Indian Public Policy Portal Theme Tokens */
   --paper: #f8f8f6;
-  --surface: rgba(255, 255, 255, .88);
-  --surface-subtle: #f1f1ef;
-  --ink: #171717;
-  --muted: #666a68;
-  --line: #e4e5e2;
-  --accent: #e87518;
-  --accent-soft: #fff0e3;
+  --surface: #ffffff;
+  --surface-subtle: #f1f2ef;
+  --surface-elevated: #ffffff;
+  
+  /* Typography Colors */
+  --ink: #171717;        /* Primary text & headings */
+  --body: #444444;       /* Body text */
+  --muted: #666666;      /* Secondary text & labels */
+  --muted-light: #888d8a;
+  
+  /* Borders & Dividers */
+  --line: #e3e4e0;
+  --line-subtle: #edebe7;
+  
+  /* National Tricolour Accents */
   --saffron: #e87518;
-  --white: #ffffff;
+  --saffron-hover: #d26410;
+  --saffron-soft: #fff3e8;
+  --saffron-border: #f8c9a3;
+  --accent: #e87518;
+  --accent-soft: #fff3e8;
+
   --india-green: #16834a;
+  --india-green-hover: #126e3d;
+  --india-green-soft: #ecf7f0;
+  --india-green-border: #a8dfbf;
+
   --chakra: #174a82;
-  --shadow-soft: 0 12px 34px rgba(20, 24, 22, .06);
-  --glass: rgba(255, 255, 255, .74);
+  --chakra-soft: #edf4fb;
+  --chakra-border: #b9d5f3;
+
+  --white: #ffffff;
+  
+  /* Shadows & Glassmorphism */
+  --shadow-sm: 0 1px 2px rgba(23, 23, 23, 0.04), 0 1px 3px rgba(23, 23, 23, 0.03);
+  --shadow-card: 0 4px 16px rgba(23, 23, 23, 0.06);
+  --glass: rgba(255, 255, 255, 0.86);
 }
+
 :root[data-theme="dark"] {
   --paper: #111312;
-  --surface: rgba(27, 30, 29, .9);
-  --surface-subtle: #242725;
+  --surface: #191c1a;
+  --surface-subtle: #222624;
+  --surface-elevated: #202422;
+  
+  /* Typography Colors */
   --ink: #f4f4f2;
-  --muted: #b0b4b1;
-  --line: #373b38;
-  --accent: #ff9b4a;
-  --accent-soft: #39281b;
-  --saffron: #ff9b4a;
-  --white: #f4f4f2;
-  --india-green: #54bd83;
-  --chakra: #79a9e0;
-  --shadow-soft: 0 12px 34px rgba(0, 0, 0, .2);
-  --glass: rgba(27, 30, 29, .78);
+  --body: #d2d5d3;
+  --muted: #949a96;
+  --muted-light: #707572;
+  
+  /* Borders & Dividers */
+  --line: #2e3430;
+  --line-subtle: #242926;
+  
+  /* National Tricolour Accents */
+  --saffron: #ff9138;
+  --saffron-hover: #ffa759;
+  --saffron-soft: #382414;
+  --saffron-border: #5a381e;
+  --accent: #ff9138;
+  --accent-soft: #382414;
+
+  --india-green: #2fb46b;
+  --india-green-hover: #46c47f;
+  --india-green-soft: #143322;
+  --india-green-border: #1d4d33;
+
+  --chakra: #4d89d4;
+  --chakra-soft: #16283d;
+  --chakra-border: #223f61;
+
+  --white: #191c1a;
+  
+  /* Shadows & Glassmorphism */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.35);
+  --glass: rgba(25, 28, 26, 0.88);
 }
+
 * { box-sizing: border-box; }
 html { min-height: 100%; scroll-behavior: smooth; }
+
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: "DM Sans", sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
 button, input, textarea, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
 a { color: inherit; text-decoration: none; }
-::selection { background: var(--accent-soft); color: var(--ink); }
-.font-display { font-family: "Manrope", sans-serif; letter-spacing: -.045em; }
-.surface { background: var(--surface); border: 1px solid var(--line); }
-.subtle { background: var(--surface-subtle); }
-.muted { color: var(--muted); }
-.accent { color: var(--india-green); }
-.rule { height: 1px; background: var(--line); border: 0; }
-.content-width { width: min(100% - 32px, 1180px); margin-inline: auto; }
-.editorial-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+::selection { background: var(--saffron-soft); color: var(--ink); }
+
+/* Typography */
+.font-display {
+  font-family: "Manrope", "DM Sans", sans-serif;
+  letter-spacing: -0.035em;
+}
+
+.text-ink { color: var(--ink); }
+.text-body { color: var(--body); }
+.text-muted { color: var(--muted); }
+.text-saffron { color: var(--saffron); }
+.text-green { color: var(--india-green); }
+.text-chakra { color: var(--chakra); }
+
+/* Surface Utilities */
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.surface-subtle {
+  background: var(--surface-subtle);
+}
+
+.glass-panel {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Indian Tricolour Styling Elements */
+.tricolour-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--saffron) 0% 33.33%, #ffffff 33.33% 66.67%, var(--india-green) 66.67% 100%);
+}
+
+.tricolour-bar-subtle {
+  height: 2px;
+  background: linear-gradient(90deg, var(--saffron) 0% 33.33%, var(--chakra) 33.33% 66.67%, var(--india-green) 66.67% 100%);
+}
+
+/* Layout Utilities */
+.content-width {
+  width: min(100% - 32px, 1200px);
+  margin-inline: auto;
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
 .desktop-only { display: none; }
 .mobile-nav { display: grid; }
-.photo-wash { position: relative; isolation: isolate; overflow: hidden; }
-.photo-wash::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(19,31,25,.68) 0%, rgba(19,31,25,.12) 80%); z-index: -1; }
-.fade-up { animation: fade-up .5s ease both; }
-.glass-panel { background: var(--glass); border: 1px solid var(--line); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: var(--shadow-soft); }
-.india-tricolour { height: 3px; background: linear-gradient(90deg, var(--saffron) 0 33.333%, #fff 33.333% 66.666%, var(--india-green) 66.666% 100%); }
-@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-@media (min-width: 760px) {
-  .content-width { width: min(100% - 56px, 1180px); }
-  .editorial-grid { grid-template-columns: minmax(0, 1fr) 300px; gap: 34px; }
+
+.fade-up {
+  animation: fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 768px) {
+  .content-width { width: min(100% - 48px, 1200px); }
+}
+
+@media (min-width: 992px) {
+  .portal-grid {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 32px;
+  }
   .desktop-only { display: block; }
   .mobile-nav { display: none; }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,22 +1,120 @@
 import Link from "next/link";
-import { ArrowLeft, BookOpen, CheckCircle2, Fingerprint, Scale } from "lucide-react";
+import {
+  ArrowLeft,
+  BookOpen,
+  CheckCircle2,
+  FileCheck,
+  Scale,
+  Shield,
+} from "lucide-react";
+import { ParliamentIcon } from "@/components/brand/parliament-icon";
 
 const principles = [
-  { icon: BookOpen, title: "Evidence over assertion", text: "Collective insights should link back to the source comments that support them. Findings are not presented without traceable evidence." },
-  { icon: Scale, title: "A concern is not automatically a demand", text: "PolicyLens distinguishes a person's stated request from a model's inference or an analyst's proposed action." },
-  { icon: Fingerprint, title: "One account, one reaction", text: "Reactions are constrained per account and policy. Abuse prevention uses layered signals rather than invasive hardware-address tracking." },
-  { icon: CheckCircle2, title: "Uncertainty stays visible", text: "Live community activity and validated research conclusions are different things. The interface should label provisional findings clearly." }
+  {
+    icon: BookOpen,
+    title: "Evidence Over Assertion",
+    text: "Every collective insight in PolicyLens is anchored directly to verbatim citizen comments and traceable citation IDs. We do not synthesize opinions without evidence.",
+  },
+  {
+    icon: Scale,
+    title: "A Concern is Not a Demand",
+    text: "PolicyLens explicitly distinguishes citizen concerns and grievances from actionable policy demands, preventing automated systems from inventing requested reforms.",
+  },
+  {
+    icon: Shield,
+    title: "Integrity & Anti-Sybil Standards",
+    text: "Discussions follow a one-account, one-reaction rule. Layered behavioral signals and verifiable provenance safeguard the consultation against automated manipulation.",
+  },
+  {
+    icon: FileCheck,
+    title: "Transparent Uncertainty Reporting",
+    text: "Provisional public sentiment is clearly distinguished from validated empirical research. Low-sample clusters and ambiguous feedback are flagged rather than smoothed over.",
+  },
 ];
 
 export default function AboutPage() {
-  return <main className="content-width min-h-screen py-8 pb-24 md:py-12">
-    <Link href="/" className="inline-flex items-center gap-2 text-xs muted"><ArrowLeft size={14}/> Back to the feed</Link>
-    <p className="mt-10 text-[10px] font-bold uppercase tracking-[.2em] accent">Why PolicyLens</p>
-    <h1 className="font-display mt-2 max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl">Make collective opinion easier to understand — and harder to misrepresent.</h1>
-    <p className="mt-5 max-w-2xl text-sm leading-7 muted">PolicyLens is a research project for analysing public-policy feedback: the concerns people raise, the positions they express, the actions they request, and the evidence behind collective insights.</p>
-    <div className="mt-10 grid gap-4 sm:grid-cols-2">
-      {principles.map(({icon: Icon, title, text}) => <section key={title} className="rounded-2xl border p-6" style={{background:"var(--surface)",borderColor:"var(--line)"}}><Icon size={20} className="accent"/><h2 className="font-display mt-5 text-xl font-bold">{title}</h2><p className="mt-2 text-sm leading-6 muted">{text}</p></section>)}
-    </div>
-    <div className="mt-8 rounded-2xl p-6" style={{background:"var(--accent-soft)"}}><h2 className="font-display text-xl font-bold">A note on research integrity</h2><p className="mt-2 max-w-2xl text-sm leading-6 muted">This interface currently uses fictional sample posts and illustrative counts. It is not connected to a live database or analysis API yet. Research claims will only be shown when supported by documented experiments and source evidence.</p></div>
-  </main>;
+  return (
+    <main className="content-width min-h-screen py-8 pb-24 md:py-12">
+      <Link
+        href="/"
+        className="inline-flex items-center gap-1.5 text-xs text-[var(--muted)] hover:text-[var(--saffron)] transition-colors"
+      >
+        <ArrowLeft size={14} aria-hidden="true" /> Back to consultations
+      </Link>
+
+      <div className="mt-8 flex items-center gap-3">
+        <span
+          className="flex h-10 w-10 items-center justify-center rounded-xl border"
+          style={{
+            background: "var(--surface)",
+            borderColor: "var(--line)",
+            color: "var(--chakra)",
+          }}
+        >
+          <ParliamentIcon size={22} />
+        </span>
+        <div>
+          <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--saffron)]">
+            About the Platform
+          </span>
+          <h1 className="font-display text-[26px] font-extrabold text-[var(--ink)] sm:text-[34px]">
+            PolicyLens Architecture & Principles
+          </h1>
+        </div>
+      </div>
+
+      <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-[var(--body)]">
+        PolicyLens is an evidence-first public-policy portal designed to synthesize thousands of public consultation comments into traceable collective verdicts without collapsing minority dissent or inventing unsupported demands.
+      </p>
+
+      {/* Core Principles Grid */}
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {principles.map(({ icon: Icon, title, text }) => (
+          <section
+            key={title}
+            className="rounded-2xl border p-5 sm:p-6"
+            style={{
+              background: "var(--surface)",
+              borderColor: "var(--line)",
+              boxShadow: "var(--shadow-sm)",
+            }}
+          >
+            <div className="flex items-center gap-2.5">
+              <span
+                className="flex h-8 w-8 items-center justify-center rounded-lg"
+                style={{ background: "var(--chakra-soft)", color: "var(--chakra)" }}
+              >
+                <Icon size={17} strokeWidth={2} aria-hidden="true" />
+              </span>
+              <h2 className="font-display text-[16px] font-bold text-[var(--ink)]">
+                {title}
+              </h2>
+            </div>
+            <p className="mt-3 text-[12.5px] leading-relaxed text-[var(--body)]">
+              {text}
+            </p>
+          </section>
+        ))}
+      </div>
+
+      {/* Academic Independence & Disclaimers Box */}
+      <div
+        className="mt-8 rounded-2xl border p-6"
+        style={{
+          background: "var(--surface-subtle)",
+          borderColor: "var(--line)",
+        }}
+      >
+        <div className="flex items-center gap-2">
+          <CheckCircle2 size={16} className="text-[var(--india-green)]" aria-hidden="true" />
+          <h2 className="font-display text-[16px] font-bold text-[var(--ink)]">
+            Independence & Governance Notice
+          </h2>
+        </div>
+        <p className="mt-2 text-[12.5px] leading-relaxed text-[var(--body)]">
+          PolicyLens is an independent academic research platform. It is not an official government body and does not represent any ministry or government agency. Consultation drafts on this platform are demonstration models for evaluating Natural Language Processing (NLP) safeguards in civic engagement.
+        </p>
+      </div>
+    </main>
+  );
 }

@@ -2,133 +2,383 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowDownUp, ArrowUpRight, Check, Globe2, Search, SlidersHorizontal } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  FileText,
+  Search,
+  ShieldCheck,
+  SlidersHorizontal,
+} from "lucide-react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Wordmark } from "@/components/brand/wordmark";
 import { PolicyCard } from "@/features/feed/policy-card";
+import {
+  FeedToolbar,
+  type SortOption,
+  type TimeRangeOption,
+} from "@/features/feed/feed-toolbar";
 import { demoPosts } from "@/features/feed/demo-data";
 
-type Filter = "Latest" | "Trending" | "24 hours";
-const categories = ["All topics", "Environment", "Public services", "Economy", "Health", "Digital government", "Education"];
-// Fixed clock for this explicitly fictional demo dataset; production uses server timestamps.
 const DEMO_REFERENCE_NOW = Date.parse("2026-10-13T18:00:00+05:30");
 
-function FeedContent() {
-  const [filter, setFilter] = useState<Filter>("Latest");
+export default function HomePage() {
+  const [sort, setSort] = useState<SortOption>("Latest");
+  const [timeRange, setTimeRange] = useState<TimeRangeOption>("All");
   const [category, setCategory] = useState("All topics");
-  const [query, setQuery] = useState("");
   const [language, setLanguage] = useState("All languages");
+  const [query, setQuery] = useState("");
+
+  const isFiltered =
+    sort !== "Latest" ||
+    timeRange !== "All" ||
+    category !== "All topics" ||
+    language !== "All languages" ||
+    query.trim() !== "";
+
+  const handleReset = () => {
+    setSort("Latest");
+    setTimeRange("All");
+    setCategory("All topics");
+    setLanguage("All languages");
+    setQuery("");
+  };
 
   const visiblePosts = useMemo(() => {
     const filtered = demoPosts.filter((post) => {
-      const withinFourDays = DEMO_REFERENCE_NOW - new Date(post.publishedAt).getTime() <= 4 * 86_400_000;
-      const withinDay = DEMO_REFERENCE_NOW - new Date(post.publishedAt).getTime() <= 86_400_000;
-      const matchesCategory = category === "All topics" || post.category === category;
-      const matchesLanguage = language === "All languages" || post.language === language;
-      const terms = `${post.title} ${post.excerpt} ${post.category}`.toLocaleLowerCase();
-      return withinFourDays && (filter !== "24 hours" || withinDay) && matchesCategory && matchesLanguage && terms.includes(query.toLocaleLowerCase());
+      const postTime = new Date(post.publishedAt).getTime();
+      const ageMs = DEMO_REFERENCE_NOW - postTime;
+
+      // Time range filter
+      if (timeRange === "24h" && ageMs > 86_400_000) return false;
+      if (timeRange === "7d" && ageMs > 7 * 86_400_000) return false;
+      if (timeRange === "30d" && ageMs > 30 * 86_400_000) return false;
+
+      // Category filter
+      if (category !== "All topics" && post.category !== category) return false;
+
+      // Language filter
+      if (language !== "All languages" && post.language !== language) return false;
+
+      // Search query filter
+      if (query.trim() !== "") {
+        const q = query.toLowerCase();
+        const haystack = `${post.title} ${post.excerpt} ${post.category} ${post.language} ${post.sourceName}`.toLowerCase();
+        if (!haystack.includes(q)) return false;
+      }
+
+      return true;
     });
-    if (filter === "Trending") return filtered.sort((a, b) => b.comments - a.comments);
-    return filtered.sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
-  }, [filter, category, query, language]);
+
+    if (sort === "Trending") {
+      return filtered.sort((a, b) => b.comments - a.comments);
+    }
+    return filtered.sort(
+      (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    );
+  }, [sort, timeRange, category, language, query]);
 
   return (
-    <main className="min-h-screen pb-24 md:pb-10">
-      <header className="sticky top-0 z-30 border-b backdrop-blur-xl" style={{ borderColor: "var(--line)", background: "color-mix(in srgb, var(--paper) 88%, transparent)" }}>
-        <div className="content-width flex h-[70px] items-center justify-between gap-3">
-          <Wordmark/>
-          <div className="hidden max-w-[360px] flex-1 items-center gap-2 rounded-full border px-4 py-2.5 md:flex" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
-            <Search size={16} className="muted"/>
-            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Find a policy discussion..." className="w-full bg-transparent text-[12px] outline-none " aria-label="Search discussions"/>
-            <kbd className="rounded border px-1.5 py-0.5 text-[9px] muted" style={{ borderColor: "var(--line)" }}>⌘ K</kbd>
+    <main className="min-h-screen pb-24 md:pb-12">
+      {/* Sticky Portal Navigation Header */}
+      <header
+        className="sticky top-0 z-30 border-b backdrop-blur-xl"
+        style={{
+          borderColor: "var(--line)",
+          background: "color-mix(in srgb, var(--paper) 90%, transparent)",
+        }}
+      >
+        <div className="content-width flex h-[66px] items-center justify-between gap-4">
+          <Wordmark />
+
+          {/* Compact Desktop Search */}
+          <div
+            className="hidden max-w-[340px] flex-1 items-center gap-2 rounded-xl border px-3 py-1.5 md:flex"
+            style={{ background: "var(--surface)", borderColor: "var(--line)" }}
+          >
+            <Search size={14} className="text-[var(--muted)] shrink-0" aria-hidden="true" />
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search policy issues..."
+              className="w-full bg-transparent text-[12px] text-[var(--ink)] placeholder-[var(--muted)] outline-none"
+              aria-label="Search policy issues"
+            />
+            <kbd
+              className="rounded border px-1 py-0.5 text-[9px] font-mono text-[var(--muted)]"
+              style={{ borderColor: "var(--line)" }}
+              aria-hidden="true"
+            >
+              ⌘K
+            </kbd>
           </div>
+
+          {/* Header Action Controls */}
           <div className="flex items-center gap-2">
-            <ThemeToggle/>
-            <Link href="/login" className="hidden rounded-full px-4 py-2.5 text-[12px] font-semibold sm:block" style={{ background: "var(--accent)", color: "var(--surface)" }}>Sign in</Link>
-            <Link href="/register" className="hidden rounded-full border px-4 py-2.5 text-[12px] font-semibold lg:block" style={{ borderColor: "var(--line)" }}>Join the discussion</Link>
+            <ThemeToggle />
+            <Link
+              href="/login"
+              className="hidden rounded-lg px-3.5 py-1.5 text-[12px] font-semibold transition-colors sm:block"
+              style={{
+                background: "var(--saffron)",
+                color: "#ffffff",
+              }}
+            >
+              Sign in
+            </Link>
+            <Link
+              href="/register"
+              className="hidden rounded-lg border px-3 py-1.5 text-[12px] font-medium transition-colors hover:bg-[var(--surface-subtle)] lg:block"
+              style={{ borderColor: "var(--line)", color: "var(--ink)" }}
+            >
+              Join discussion
+            </Link>
           </div>
         </div>
+
+        {/* Subtle Indian Tricolour Accent Line at base of header */}
+        <div
+          className="h-[2px] w-full"
+          style={{
+            background:
+              "linear-gradient(90deg, var(--saffron) 0% 33.33%, #ffffff 33.33% 66.67%, var(--india-green) 66.67% 100%)",
+          }}
+          aria-hidden="true"
+        />
       </header>
 
-      <div className="content-width editorial-grid py-6 md:py-9">
-        <section className="min-w-0">
-          <div className="mb-7 flex items-end justify-between gap-4">
+      {/* Main Content Area */}
+      <div className="content-width portal-grid py-5 sm:py-7">
+        {/* Left Column: Feed Content */}
+        <section className="min-w-0" aria-labelledby="feed-heading">
+          {/* Compact Page Header */}
+          <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
             <div>
-              
-              <h1 className="font-display text-[34px] font-extrabold leading-[1.02] sm:text-[44px]">Issues that matter.<br/><span style={{ color: "var(--muted)" }}>Voices that count.</span></h1>
-              <p className="mt-3 max-w-[560px] text-[13px] leading-6 muted">Explore public issues and the evidence behind them.</p>
+              <div className="flex items-center gap-2">
+                <span
+                  className="inline-block h-2 w-2 rounded-full"
+                  style={{ background: "var(--india-green)" }}
+                  aria-hidden="true"
+                />
+                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[var(--india-green)]">
+                  Public Consultation Forum
+                </span>
+              </div>
+              <h1
+                id="feed-heading"
+                className="mt-1 font-display text-[26px] font-extrabold leading-tight text-[var(--ink)] sm:text-[32px]"
+              >
+                Public Policy Consultations
+              </h1>
+              <p className="mt-1 max-w-[620px] text-[13px] leading-relaxed text-[var(--body)]">
+                Explore active discussions, verified citizen feedback, and collective insights across national policy areas.
+              </p>
             </div>
 
+            {/* Disclaimer pill */}
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10px] text-[var(--muted)]"
+              style={{ background: "var(--surface)", borderColor: "var(--line)" }}
+            >
+              <ShieldCheck size={12} className="text-[var(--india-green)]" aria-hidden="true" />
+              <span>Independent Public Portal</span>
+            </span>
           </div>
 
-          <div className="glass-panel mb-5 rounded-2xl p-3 sm:p-4">
-            <div className="mb-3 flex items-center gap-2 md:hidden">
-              <Search size={16} className="muted"/>
-              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search public issues..." className="w-full bg-transparent text-[13px] outline-none" aria-label="Search discussions"/>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {(["Latest", "Trending", "24 hours"] as Filter[]).map((item) => (
-                <button key={item} onClick={() => setFilter(item)} className="rounded-full px-4 py-2 text-[11px] font-semibold transition-colors"
-                  style={{ background: filter === item ? "var(--accent)" : "var(--surface-subtle)", color: filter === item ? "var(--surface)" : "var(--muted)" }}>
-                  {item === "24 hours" ? "Last 24 hours" : item}
+          {/* Compact Feed Toolbar */}
+          <FeedToolbar
+            sort={sort}
+            onSortChange={setSort}
+            timeRange={timeRange}
+            onTimeRangeChange={setTimeRange}
+            language={language}
+            onLanguageChange={setLanguage}
+            category={category}
+            onCategoryChange={setCategory}
+            query={query}
+            onQueryChange={setQuery}
+            onReset={handleReset}
+            isFiltered={isFiltered}
+          />
+
+          {/* Feed Status Summary */}
+          <div className="mb-3.5 flex items-center justify-between text-[11.5px] text-[var(--muted)]">
+            <p>
+              Showing <strong className="text-[var(--ink)]">{visiblePosts.length}</strong>{" "}
+              {visiblePosts.length === 1 ? "discussion" : "discussions"}
+              {category !== "All topics" && ` in ${category}`}
+              {language !== "All languages" && ` (${language})`}
+            </p>
+
+            {isFiltered && (
+              <button
+                type="button"
+                onClick={handleReset}
+                className="inline-flex items-center gap-1 font-medium text-[var(--saffron)] hover:underline"
+              >
+                <SlidersHorizontal size={12} aria-hidden="true" />
+                <span>Reset filters</span>
+              </button>
+            )}
+          </div>
+
+          {/* Discussion Cards Feed (Photo-free, High-contrast, Accessible) */}
+          <div className="space-y-4">
+            {visiblePosts.map((post, index) => (
+              <div
+                key={post.id}
+                className="fade-up"
+                style={{ animationDelay: `${index * 40}ms` }}
+              >
+                <PolicyCard post={post} />
+              </div>
+            ))}
+
+            {visiblePosts.length === 0 && (
+              <div
+                className="rounded-2xl border p-10 text-center"
+                style={{ background: "var(--surface)", borderColor: "var(--line)" }}
+              >
+                <Search size={22} className="mx-auto text-[var(--muted)]" aria-hidden="true" />
+                <h2 className="mt-3 font-display text-[17px] font-bold text-[var(--ink)]">
+                  No discussions found
+                </h2>
+                <p className="mt-1.5 text-[12.5px] text-[var(--muted)]">
+                  No policy issues match your current filter combination.
+                </p>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="mt-4 inline-flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-[11.5px] font-semibold"
+                  style={{ background: "var(--saffron)", color: "#ffffff" }}
+                >
+                  Clear all filters
                 </button>
-              ))}
-              <span className="flex-1"/>
-              <label className="flex items-center gap-2 rounded-full border px-3 py-2 text-[11px]" style={{ borderColor: "var(--line)" }}>
-                <Globe2 size={13} className="muted"/>
-                <select value={language} onChange={(e) => setLanguage(e.target.value)} className="max-w-[130px] bg-transparent outline-none" aria-label="Filter by language">
-                  <option>All languages</option><option>English</option><option>French</option><option>Hindi</option><option>Hinglish</option><option>Bengali</option><option>Tamil</option><option>Telugu</option><option>Marathi</option><option>Punjabi</option><option>Gujarati</option><option>Kannada</option><option>Malayalam</option><option>Urdu</option><option>Other</option>
-                </select>
-              </label>
-            </div>
-            <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-              {categories.map((item) => <button key={item} onClick={() => setCategory(item)} className="shrink-0 rounded-full border px-3 py-2 text-[10px] font-medium"
-                style={{ borderColor: category === item ? "var(--accent)" : "var(--line)", color: category === item ? "var(--accent)" : "var(--muted)", background: category === item ? "var(--accent-soft)" : "transparent" }}>{item}</button>)}
-            </div>
+              </div>
+            )}
           </div>
 
-          <div className="mb-4 flex items-center justify-between">
-            <p className="text-[11px] muted">{visiblePosts.length} discussions</p>
-            <button className="inline-flex items-center gap-1.5 text-[11px] muted" onClick={() => {setFilter("Latest"); setCategory("All topics"); setQuery(""); setLanguage("All languages");}}><SlidersHorizontal size={13} aria-hidden="true"/> Reset</button>
-          </div>
-
-          <div className="space-y-5">
-            {visiblePosts.map((post, index) => <div key={post.id} className="fade-up" style={{ animationDelay: `${index * 60}ms` }}><PolicyCard post={post} featured={index === 0 && filter === "Latest" && category === "All topics" && !query}/></div>)}
-            {visiblePosts.length === 0 && <div className="rounded-2xl border p-10 text-center" style={{ background: "var(--surface)", borderColor: "var(--line)" }}><Search size={22} className="mx-auto muted"/><h2 className="mt-3 font-display text-xl font-bold">No discussions found</h2><p className="mt-2 text-sm muted">Try another keyword, category or language.</p></div>}
-          </div>
-          <p className="mt-5 text-center text-[10px] leading-5 muted">Demo-only discussion content. Results and counts are illustrative and are not real public-opinion findings.</p>
+          {/* Demonstration Notice */}
+          <p className="mt-6 text-center text-[10.5px] text-[var(--muted)] leading-relaxed">
+            Demonstration consultation content for interface evaluation.
+            Perspectives, responses, and vote metrics are illustrative and not official government statistics.
+          </p>
         </section>
 
-        <aside className="desktop-only space-y-5">
-          <div className="glass-panel rounded-[22px] p-5">
-            
-            
-            <h2 className="font-display mt-2 text-[22px] font-bold leading-tight">Public issues, viewed clearly.</h2>
-            <p className="mt-3 text-[12px] leading-5 muted">Explore perspectives alongside their supporting evidence.</p>
-            <Link href="/about" className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold accent">How it works <ArrowUpRight size={14}/></Link>
+        {/* Right Column: Portal Information & Sidebar Context */}
+        <aside className="desktop-only space-y-4.5" aria-label="Portal overview">
+          {/* Evidence-First Principles Card */}
+          <div
+            className="rounded-2xl border p-5"
+            style={{
+              background: "var(--surface)",
+              borderColor: "var(--line)",
+              boxShadow: "var(--shadow-sm)",
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <span
+                className="flex h-7 w-7 items-center justify-center rounded-lg"
+                style={{ background: "var(--chakra-soft)", color: "var(--chakra)" }}
+              >
+                <FileText size={15} strokeWidth={2} aria-hidden="true" />
+              </span>
+              <h2 className="font-display text-[15px] font-bold text-[var(--ink)]">
+                Evidence-First Public Discourse
+              </h2>
+            </div>
+            <p className="mt-2.5 text-[12px] leading-relaxed text-[var(--body)]">
+              PolicyLens synthesizes citizen feedback while strictly separating stated concerns from proposed policy actions, keeping verified evidence linked to source comments.
+            </p>
+            <Link
+              href="/about"
+              className="mt-3.5 inline-flex items-center gap-1.5 text-[11.5px] font-semibold text-[var(--saffron)] hover:underline"
+            >
+              <span>How PolicyLens works</span>
+              <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
+            </Link>
           </div>
-          <div className="rounded-[22px] border p-5" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
-            <div className="flex items-center justify-between"><h2 className="font-display text-[17px] font-bold">Topics in focus</h2><ArrowDownUp size={15} className="muted"/></div>
-            <div className="mt-4 space-y-4">
-              {[["Environment","Climate, land and resources","01"],["Public services","Access, quality and fairness","02"],["Digital government","Access, privacy and trust","03"]].map(([name, detail, number]) => <button key={name} onClick={() => setCategory(name)} className="flex w-full items-start gap-3 text-left"><span className="pt-0.5 text-[10px] muted">{number}</span><span className="flex-1"><span className="block text-[12px] font-semibold">{name}</span><span className="mt-1 block text-[10px] muted">{detail}</span></span><ArrowUpRight size={13} className="muted"/></button>)}
+
+          {/* Active Policy Topics Card */}
+          <div
+            className="rounded-2xl border p-5"
+            style={{
+              background: "var(--surface)",
+              borderColor: "var(--line)",
+              boxShadow: "var(--shadow-sm)",
+            }}
+          >
+            <h2 className="font-display text-[14px] font-bold text-[var(--ink)]">
+              Policy Consultation Areas
+            </h2>
+            <div className="mt-3 space-y-2.5 text-[12px]">
+              {[
+                { name: "Digital government", count: 1, desc: "DPI, accessibility & privacy" },
+                { name: "Environment", count: 1, desc: "Clean air & urban telemetry" },
+                { name: "Health", count: 1, desc: "Telemedicine & rural healthcare" },
+                { name: "Economy", count: 1, desc: "Renewable energy & solar rooftop" },
+                { name: "Public services", count: 1, desc: "Public transport & urban mobility" },
+                { name: "Education", count: 1, desc: "Vocational skills & NEP reforms" },
+              ].map((item) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => setCategory(item.name)}
+                  className="flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-left transition-colors hover:bg-[var(--surface-subtle)]"
+                >
+                  <div className="min-w-0 pr-2">
+                    <p className="font-medium text-[var(--ink)]">{item.name}</p>
+                    <p className="text-[10.5px] text-[var(--muted)] truncate">{item.desc}</p>
+                  </div>
+                  <span
+                    className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold"
+                    style={{ background: "var(--surface-subtle)", color: "var(--muted)" }}
+                  >
+                    {item.count}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
-          <div className="rounded-[22px] border p-5" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
-            <h2 className="font-display text-[16px] font-bold">Built for trust</h2>
-            <div className="mt-4 space-y-3 text-[11px] muted">
-              <p className="flex gap-2"><Check size={14} className="accent shrink-0"/> One account, one reaction per issue</p>
-              <p className="flex gap-2"><Check size={14} className="accent shrink-0"/> Evidence linked to source comments</p>
-              <p className="flex gap-2"><Check size={14} className="accent shrink-0"/> Research findings separated from live votes</p>
+
+          {/* Integrity & Governance Standards Card */}
+          <div
+            className="rounded-2xl border p-5"
+            style={{
+              background: "var(--surface)",
+              borderColor: "var(--line)",
+              boxShadow: "var(--shadow-sm)",
+            }}
+          >
+            <h2 className="font-display text-[14px] font-bold text-[var(--ink)]">
+              Platform Integrity Standards
+            </h2>
+            <div className="mt-3 space-y-2.5 text-[11.5px] text-[var(--body)]">
+              <p className="flex items-start gap-2">
+                <CheckCircle2 size={14} className="text-[var(--india-green)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>One authenticated account, one reaction per consultation</span>
+              </p>
+              <p className="flex items-start gap-2">
+                <CheckCircle2 size={14} className="text-[var(--india-green)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Source comment citations preserved verbatim without hallucination</span>
+              </p>
+              <p className="flex items-start gap-2">
+                <CheckCircle2 size={14} className="text-[var(--india-green)] shrink-0 mt-0.5" aria-hidden="true" />
+                <span>Research models strictly decoupled from live community tallies</span>
+              </p>
             </div>
           </div>
-          <p className="px-2 text-[10px] muted">About · Guidelines · Privacy · Accessibility<br/>© 2026 PolicyLens Research</p>
+
+          {/* Portal Footer Notice */}
+          <div className="px-2 pt-2 text-[10.5px] text-[var(--muted)] leading-relaxed">
+            <p>PolicyLens — Indian Public Policy Information Portal</p>
+            <p className="mt-1">
+              Independent academic research platform. Not affiliated with or endorsed by any government agency.
+            </p>
+          </div>
         </aside>
       </div>
-      <footer className="content-width mt-10 hidden border-t py-5 text-[10px] muted md:block" style={{ borderColor: "var(--line)" }}>PolicyLens · Public policy deserves more than a like count.</footer>
     </main>
   );
-}
-
-export default function HomePage() {
-  return <FeedContent/>;
 }

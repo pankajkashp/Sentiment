@@ -1,63 +1,127 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Clock3, MessageCircle, MoveUpRight } from "lucide-react";
+import { ArrowUpRight, Clock3, Globe2, Landmark, MessageSquareText, ShieldAlert } from "lucide-react";
 import type { PolicyPost } from "./types";
 
-// Fixed reference time keeps the fictional demo consistent between server render and hydration.
 const DEMO_REFERENCE_NOW = Date.parse("2026-10-13T18:00:00+05:30");
 
-function timeAgo(value: string) {
-  const difference = Math.max(0, DEMO_REFERENCE_NOW - new Date(value).getTime());
+function formatRelativeTime(dateString: string): string {
+  const difference = Math.max(0, DEMO_REFERENCE_NOW - new Date(dateString).getTime());
   const hours = Math.floor(difference / 3_600_000);
   if (hours < 1) return "Just now";
   if (hours < 24) return `${hours}h ago`;
-  return `${Math.floor(hours / 24)}d ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
 }
 
-export function PolicyCard({ post, featured = false }: { post: PolicyPost; featured?: boolean }) {
+export function PolicyCard({ post }: { post: PolicyPost; featured?: boolean }) {
+  const isClosingSoon = post.status === "Closing soon";
+
   return (
-    <article className="group overflow-hidden rounded-[22px] surface transition-shadow hover:shadow-[var(--shadow-soft)]">
-      {featured ? (
-        <Link href={`/policy/${post.slug}`} className="photo-wash relative block h-[210px] sm:h-[260px]">
-          <Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 760px) 100vw, 780px" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#101913]/80 via-[#101913]/12 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
-            <div className="max-w-[600px]">
-              <span className="mb-3 inline-flex rounded-full border border-white/30 bg-black/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[.15em] text-white backdrop-blur-sm">{post.category}</span>
-              <h2 className="font-display max-w-2xl text-[25px] font-bold leading-[1.12] text-white sm:text-[32px]">{post.title}</h2>
-            </div>
-            <span className="mb-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur"><ArrowUpRight size={19}/></span>
-          </div>
+    <article
+      className="group relative rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-0.5 sm:p-6"
+      style={{
+        background: "var(--surface)",
+        borderColor: "var(--line)",
+        boxShadow: "var(--shadow-sm)",
+      }}
+    >
+      {/* Top Metadata Row: Topic, Status, Language, Relative Time */}
+      <div className="flex flex-wrap items-center justify-between gap-2.5">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Topic Badge */}
+          <span
+            className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em]"
+            style={{
+              background: "var(--surface-subtle)",
+              color: "var(--ink)",
+              border: "1px solid var(--line)",
+            }}
+          >
+            <span
+              className="h-1.5 w-1.5 rounded-full"
+              style={{ background: isClosingSoon ? "var(--saffron)" : "var(--india-green)" }}
+              aria-hidden="true"
+            />
+            {post.category}
+          </span>
+
+          {/* Consultation Status Badge */}
+          <span
+            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10.5px] font-medium"
+            style={{
+              background: isClosingSoon ? "var(--saffron-soft)" : "var(--india-green-soft)",
+              color: isClosingSoon ? "var(--saffron)" : "var(--india-green)",
+            }}
+          >
+            {isClosingSoon ? (
+              <>
+                <ShieldAlert size={12} strokeWidth={2} aria-hidden="true" />
+                <span>Closing soon</span>
+              </>
+            ) : (
+              <span>Open consultation</span>
+            )}
+          </span>
+        </div>
+
+        {/* Right side: Language and Relative Time */}
+        <div className="flex items-center gap-3 text-[11px] text-[var(--muted)]">
+          <span className="inline-flex items-center gap-1">
+            <Globe2 size={12} strokeWidth={1.75} aria-hidden="true" />
+            <span>{post.language}</span>
+          </span>
+          <span aria-hidden="true" className="text-[var(--line)]">·</span>
+          <span className="inline-flex items-center gap-1">
+            <Clock3 size={12} strokeWidth={1.75} aria-hidden="true" />
+            <time dateTime={post.publishedAt}>{formatRelativeTime(post.publishedAt)}</time>
+          </span>
+        </div>
+      </div>
+
+      {/* Main Discussion Title */}
+      <h2 className="mt-3.5 font-display text-[17px] font-bold leading-snug sm:text-[19px]">
+        <Link
+          href={`/policy/${post.slug}`}
+          className="text-[var(--ink)] transition-colors hover:text-[var(--saffron)] focus:outline-none focus:underline"
+        >
+          {post.title}
         </Link>
-      ) : (
-        <div className="flex min-w-0">
-          <Link href={`/policy/${post.slug}`} aria-label={`Read ${post.title}`} className="relative block w-[108px] shrink-0 overflow-hidden sm:w-[158px]">
-            <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width: 760px) 108px, 158px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-          </Link>
-          <div className="min-w-0 flex-1 p-4 sm:p-5">
-            <div className="mb-2 flex items-center justify-between gap-2">
-              <span className="text-[9px] font-bold uppercase tracking-[.14em] accent">{post.category}</span>
-              <span className="shrink-0 text-[10px] muted">{timeAgo(post.publishedAt)}</span>
-            </div>
-            <Link href={`/policy/${post.slug}`}><h2 className="font-display text-[17px] font-bold leading-[1.2] sm:text-[20px]">{post.title}</h2></Link>
-            <p className="mt-2 line-clamp-2 text-[12px] leading-5 muted">{post.excerpt}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-3 text-[10px] muted">
-              <span className="inline-flex items-center gap-1.5"><MessageCircle size={13}/>{post.comments} responses</span>
-              <span className="inline-flex items-center gap-1.5"><Clock3 size={13}/>{post.status === "Closing soon" ? "Closing soon" : "Open"}</span>
-              <Link className="ml-auto inline-flex items-center gap-1 font-semibold" style={{color:"var(--accent)"}} href={`/policy/${post.slug}`}>Read <MoveUpRight size={13}/></Link>
-            </div>
-          </div>
+      </h2>
+
+      {/* Excerpt / Summary */}
+      <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-[var(--body)]">
+        {post.excerpt}
+      </p>
+
+      {/* Bottom Engagement & Source Row */}
+      <div
+        className="mt-4.5 flex flex-wrap items-center justify-between gap-3 border-t pt-3.5 text-[11.5px]"
+        style={{ borderColor: "var(--line-subtle)" }}
+      >
+        <div className="flex flex-wrap items-center gap-4 text-[var(--muted)]">
+          <span className="inline-flex items-center gap-1.5 font-medium">
+            <MessageSquareText size={13.5} strokeWidth={1.75} className="text-[var(--saffron)]" aria-hidden="true" />
+            <strong className="font-semibold text-[var(--ink)]">{post.comments}</strong> responses
+          </span>
+
+          <span className="hidden items-center gap-1.5 sm:inline-flex text-[11px]">
+            <Landmark size={13} strokeWidth={1.75} aria-hidden="true" />
+            <span className="truncate max-w-[240px]">{post.sourceName}</span>
+          </span>
         </div>
-      )}
-      {featured && (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-3 p-5 text-[11px] muted sm:px-6">
-          <span className="inline-flex items-center gap-1.5"><MessageCircle size={14}/>{post.comments} responses <span className="text-[10px]">(demo)</span></span>
-          <span className="inline-flex items-center gap-1.5"><Clock3 size={14}/>{post.status === "Closing soon" ? "Closing soon" : "Recently opened"}</span>
-          <span className="ml-auto text-[10px]">Source: {post.sourceName}</span>
-        </div>
-      )}
+
+        <Link
+          href={`/policy/${post.slug}`}
+          className="inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11.5px] font-semibold transition-colors hover:bg-[var(--surface-subtle)]"
+          style={{ color: "var(--saffron)" }}
+          aria-label={`Read discussion and view evidence on ${post.title}`}
+        >
+          <span>View discussion</span>
+          <ArrowUpRight size={13.5} strokeWidth={2} aria-hidden="true" />
+        </Link>
+      </div>
     </article>
   );
 }

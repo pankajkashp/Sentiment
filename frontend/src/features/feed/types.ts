@@ -16,10 +16,24 @@ export type PolicyPost = {
   closesAt: string;
   comments: number;
   participation: string;
-  image: string;
-  imageAlt: string;
   status: "Open" | "Closing soon";
   sourceName: string;
   sourceUrl: string;
-  language: "English" | "French" | "Hindi" | "Hinglish" | "Bengali" | "Tamil" | "Telugu" | "Marathi" | "Punjabi" | "Gujarati" | "Kannada" | "Malayalam" | "Urdu" | "Other";
+  language:
+    | "English"
+    | "Hindi"
+    | "Hinglish"
+    | "Bengali"
+    | "Tamil"
+    | "Telugu"
+    | "Marathi"
+    | "Punjabi"
+    | "Gujarati"
+    | "Kannada"
+    | "Malayalam"
+    | "Urdu"
+    | "Other";
+  demandsCount?: number;
+  concernsCount?: number;
+  verifiedEvidenceCount?: number;
 };
