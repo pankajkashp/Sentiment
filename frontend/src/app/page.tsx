@@ -44,16 +44,15 @@ export default function HomePage() {
 
     // Sort time handling
     if (sortTime === "Trending") {
-      // Prioritize flagship nationwide schemes with most highlights
-      list.sort((a, b) => (b.keyHighlights?.length || 0) - (a.keyHighlights?.length || 0));
+      // With no verified engagement data, avoid presenting an invented trend ranking.
+      list.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
     } else if (sortTime === "Last 24 hours") {
-      // Show prioritized urgent and recent releases
-      list = list.filter(
-        (p) =>
-          p.id === "gov-pm-kisan" ||
-          p.id === "gov-viksit-bharat-rozgar" ||
-          p.id === "gov-pm-rahat"
-      );
+      // Filter by the actual publication date instead of a hard-coded priority list.
+      const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+      list = list.filter((p) => {
+        const publishedAt = new Date(p.publishedDate).getTime();
+        return Number.isFinite(publishedAt) && publishedAt >= cutoff;
+      });
     }
 
     return list;
