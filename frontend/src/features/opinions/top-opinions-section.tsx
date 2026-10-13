@@ -52,7 +52,7 @@ export function TopOpinionsSection({ comments }: { comments: CommentItem[] }) {
             Post-Deadline NLP Analysis
           </div>
           <h2 className="font-display text-[18px] sm:text-[20px] font-bold text-[#171717]">
-            Highlighted Analyzed Comments
+            Analyzed Public Opinions
           </h2>
           <p className="text-xs text-[#666666] mt-0.5">
             Key consultation submissions analyzed and ranked by policy demand clarity and viewpoint diversity.

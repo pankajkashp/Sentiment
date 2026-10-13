@@ -29,6 +29,7 @@ export type PolicyPost = {
   keyHighlights: string[];
   department?: string;
   schemeType?: string;
-  commentingDeadline?: string; // ISO 8601 format
+  openedAt?: string; // ISO 8601 opening timestamp for consultation
+  commentingDeadline?: string; // ISO 8601 format (openedAt + 4 days)
   consultationStatus?: ConsultationStatus;
 };

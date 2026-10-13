@@ -144,6 +144,7 @@ export default async function PolicyDetailPage({ params }: { params: Promise<{ s
         policySlug={post.slug}
         policyTitle={post.title}
         policyId={post.id}
+        openedAt={post.openedAt}
         commentingDeadline={post.commentingDeadline}
         initialConsultationStatus={post.consultationStatus}
       />

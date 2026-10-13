@@ -25,7 +25,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Department of Agriculture and Farmers Welfare",
     schemeType: "Central Sector Scheme",
-    commentingDeadline: "2026-11-15T18:00:00+05:30",
+    openedAt: "2026-10-12T00:00:00+05:30",
+    commentingDeadline: "2026-10-16T00:00:00+05:30",
     consultationStatus: "open",
     keyHighlights: [
       "Financial benefit of ₹6,000 per year paid in three 4-monthly installments of ₹2,000 each.",
@@ -49,7 +50,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Ministry of Labour & Employment",
     schemeType: "Union Cabinet Approved Incentive",
-    commentingDeadline: "2026-10-10T18:00:00+05:30",
+    openedAt: "2026-10-06T00:00:00+05:30",
+    commentingDeadline: "2026-10-10T00:00:00+05:30",
     consultationStatus: "closed_analysis_running",
     keyHighlights: [
       "Incentivizes formal sector recruitment across manufacturing and service sectors.",
@@ -73,8 +75,7 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Prime Minister's Office",
     schemeType: "National Relief & Welfare Support",
-    commentingDeadline: "2026-10-05T18:00:00+05:30",
-    consultationStatus: "closed_analysis_pending",
+    // Notice: openedAt and commentingDeadline intentionally omitted to test explicit missing timestamp handling
     keyHighlights: [
       "Disaster relief grants for families affected by floods, cyclones, earthquakes, and accidents.",
       "Financial assistance for specialized medical treatment including cardiac surgeries and cancer therapy.",
@@ -97,7 +98,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi / Regional",
     department: "National Health Authority",
     schemeType: "Centrally Sponsored Scheme",
-    commentingDeadline: "2026-12-01T18:00:00+05:30",
+    openedAt: "2026-10-11T00:00:00+05:30",
+    commentingDeadline: "2026-10-15T00:00:00+05:30",
     consultationStatus: "open",
     keyHighlights: [
       "Cashless and paperless access to healthcare services at all empaneled public and private hospitals.",
@@ -121,7 +123,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Central Pollution Control Board",
     schemeType: "National Environmental Mission",
-    commentingDeadline: "2026-10-12T18:00:00+05:30",
+    openedAt: "2026-10-08T00:00:00+05:30",
+    commentingDeadline: "2026-10-12T00:00:00+05:30",
     consultationStatus: "closed_analysis_failed",
     keyHighlights: [
       "Continuous Ambient Air Quality Monitoring Network across major urban hubs.",
@@ -145,7 +148,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi / Multilingual",
     department: "National e-Governance Division (NeGD)",
     schemeType: "Digital India Core Infrastructure",
-    commentingDeadline: "2026-09-30T18:00:00+05:30",
+    openedAt: "2026-09-26T00:00:00+05:30",
+    commentingDeadline: "2026-09-30T00:00:00+05:30",
     consultationStatus: "closed_analysis_completed",
     keyHighlights: [
       "Legally valid digital document issuance and storage through DigiLocker.",

@@ -25,20 +25,52 @@ export async function POST(
       );
     }
 
-    // Lookup policy & verify deadline
+    // Lookup policy & verify 4-day deadline
     const policy = officialPolicies.find((p) => p.slug === slug);
-    if (policy && policy.commentingDeadline) {
-      const deadline = new Date(policy.commentingDeadline);
-      if (Date.now() > deadline.getTime()) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: "DEADLINE_PASSED",
-            message: `The consultation period for this policy closed on ${deadline.toISOString()}. New submissions cannot be accepted.`
-          },
-          { status: 403 }
-        );
+    if (!policy) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "POLICY_NOT_FOUND",
+          message: "Policy not found."
+        },
+        { status: 404 }
+      );
+    }
+
+    let deadlineDate: Date | null = null;
+    if (policy.openedAt) {
+      const opened = new Date(policy.openedAt);
+      if (!isNaN(opened.getTime())) {
+        deadlineDate = new Date(opened.getTime() + 4 * 24 * 60 * 60 * 1000);
       }
+    } else if (policy.commentingDeadline) {
+      const parsed = new Date(policy.commentingDeadline);
+      if (!isNaN(parsed.getTime())) {
+        deadlineDate = parsed;
+      }
+    }
+
+    if (!deadlineDate) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "COMMENTING_NOT_CONFIGURED",
+          message: "Commenting opening timestamp is not configured for this policy."
+        },
+        { status: 403 }
+      );
+    }
+
+    if (Date.now() > deadlineDate.getTime()) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "DEADLINE_PASSED",
+          message: "Commenting is closed for this policy."
+        },
+        { status: 403 }
+      );
     }
 
     // Persist comment to data/submissions/<slug>.json
