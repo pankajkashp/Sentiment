@@ -6,12 +6,12 @@ on:
     paths:
       - "frontend/**"
       - ".github/workflows/frontend-checks.yml"
-  push:
-    branches:
-      - "feat/policylens-frontend-foundation"
-    paths:
-      - "frontend/**"
-      - ".github/workflows/frontend-checks.yml"
+      - ".gitignore"
+  workflow_dispatch:
+
+concurrency:
+  group: frontend-checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
