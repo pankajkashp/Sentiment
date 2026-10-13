@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ShareOpinionForm } from "./share-opinion-form";
 import { TopOpinionsSection } from "./top-opinions-section";
 import { AllCommentsList } from "./all-comments-list";
-import { analyzedConsultationComments } from "./comments-data";
 import type { ConsultationStatus } from "../feed/types";
 import type { CommentItem } from "./types";
 
@@ -22,82 +21,65 @@ export function PublicOpinionSection({
   policyTitle,
   policyId,
   openedAt,
-  commentingDeadline,
-  initialConsultationStatus
+  commentingDeadline
 }: PublicOpinionSectionProps) {
-  // Determine starting consultation & analysis status
-  const determineInitialStatus = (): ConsultationStatus => {
-    if (initialConsultationStatus) return initialConsultationStatus;
-    if (policySlug === "digital-public-infrastructure-india-stack") return "closed_analysis_completed";
-    if (policySlug === "test-consultation-lifecycle") return "closed_analysis_completed";
-    return "open";
-  };
+  // No sample comments or analysis are displayed for policies until a real API response
+  // explicitly supplies them. This keeps the existing research benchmark isolated.
+  const [sessionComments, setSessionComments] = useState<CommentItem[]>([]);
+  const [analysisComments, setAnalysisComments] = useState<CommentItem[]>([]);
+  const [analysisReady, setAnalysisReady] = useState(false);
+  const [analysisLoading, setAnalysisLoading] = useState(false);
 
-  const [status] = useState<ConsultationStatus>(determineInitialStatus);
-  const [allComments, setAllComments] = useState<CommentItem[]>(() => {
-    const s = determineInitialStatus();
-    return s === "closed_analysis_completed" ? analyzedConsultationComments : [];
-  });
-  const [topComments, setTopComments] = useState<CommentItem[]>(() => {
-    const s = determineInitialStatus();
-    return s === "closed_analysis_completed" ? analyzedConsultationComments.slice(0, 10) : [];
-  });
-
-  // Load real analysis outputs from persistent storage/API
-  useEffect(() => {
-    async function loadAnalysis() {
-      try {
-        const res = await fetch(`/api/policies/${policySlug}/analysis`);
-        if (res.ok) {
-          const json = await res.json();
-          if (json.data) {
-            const d = json.data;
-            if (d.all_comments && d.all_comments.length > 0) {
-              setAllComments(d.all_comments);
-              setTopComments(d.top_comments || d.all_comments.slice(0, 10));
-            }
-          }
-        }
-      } catch {
-        // Fallback to static comments data
-      }
-    }
-
-    if (status === "closed_analysis_completed") {
-      loadAnalysis();
-    }
-  }, [policySlug, status]);
-
-  // Handle newly submitted comment
   const handleNewComment = (newSub: { id: string; text: string; stakeholder: string }) => {
+    // Session-only items are clearly labelled as temporary and are never assigned an AI stance.
     const newCommentItem: CommentItem = {
       id: newSub.id,
       originalText: newSub.text,
-      stance: "NEUTRAL",
-      policyTopic: "CITIZEN_SUBMISSION",
-      mainArgument: newSub.text.slice(0, 120),
-      suggestedAction: "Pending post-deadline NLP extraction",
-      evidenceReasoning: "Raw citizen submission recorded before consultation deadline.",
-      whyItMatters: "Direct public input",
+      stance: "UNCLEAR",
+      policyTopic: "PENDING_ANALYSIS",
+      mainArgument: "",
+      suggestedAction: "",
+      evidenceReasoning: "",
+      whyItMatters: "",
       demandStatus: "UNCLEAR_OR_INSUFFICIENT",
       attributionTier: "NONE_UNSTATED",
       stakeholder: newSub.stakeholder,
-      sourceDocument: "Public Consultation Record",
-      sourceUrl: "https://example.gov.in",
+      sourceDocument: "Temporary browser session",
+      sourceUrl: "",
       timestamp: "Just now",
-      rankingScore: 0.5,
-      rank: allComments.length + 1,
+      rankingScore: 0,
+      rank: sessionComments.length + 1,
       isTopInformative: false
     };
 
-    setAllComments((prev) => [newCommentItem, ...prev]);
+    setSessionComments((prev) => [newCommentItem, ...prev]);
   };
 
-  const isAnalysisCompleted = status === "closed_analysis_completed";
+  const handleLoadAnalysis = async () => {
+    setAnalysisLoading(true);
+    setAnalysisReady(false);
+    try {
+      const res = await fetch(`/api/policies/${encodeURIComponent(policySlug)}/analysis`);
+      if (!res.ok) throw new Error("Analysis endpoint unavailable");
+      const json = await res.json();
+      const data = json?.data;
+      if (!data || !Array.isArray(data.all_comments) || !Array.isArray(data.top_comments)) {
+        throw new Error("No analysis result returned");
+      }
+      setAnalysisComments(data.all_comments);
+      setAnalysisReady(true);
+    } catch {
+      setAnalysisComments([]);
+      setAnalysisReady(false);
+    } finally {
+      setAnalysisLoading(false);
+    }
+  };
+
+  const comments = [...sessionComments, ...analysisComments];
 
   return (
     <section className="mt-8 space-y-6">
-      {/* 1. Share Your Opinion Form (Disabled after 4-day deadline) */}
       <ShareOpinionForm
         policySlug={policySlug}
         policyTitle={policyTitle}
@@ -107,16 +89,23 @@ export function PublicOpinionSection({
         onSubmissionSuccess={handleNewComment}
       />
 
-      {/* 2. Analyzed Public Opinions (Displayed ONLY after post-deadline analysis completes) */}
-      {isAnalysisCompleted && (
-        <TopOpinionsSection comments={topComments} />
+      {analysisReady && analysisComments.length > 0 && (
+        <TopOpinionsSection comments={analysisComments} />
       )}
 
-      {/* 3. Collapsible All Comments List */}
-      <AllCommentsList
-        comments={allComments}
-        isAnalysisReady={isAnalysisCompleted}
-      />
+      <AllCommentsList comments={comments} isAnalysisReady={analysisReady} />
+
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-[#e5e7eb] bg-white px-4 py-3 text-xs text-[#666666]">
+        <p>AI-highlighted opinions appear here only when actual analysis results are available.</p>
+        <button
+          type="button"
+          onClick={handleLoadAnalysis}
+          disabled={analysisLoading}
+          className="rounded-md border border-[#d1d5db] px-3 py-1.5 font-semibold text-[#143454] hover:bg-[#f8fafc] disabled:opacity-50"
+        >
+          {analysisLoading ? "Checking results…" : "Check analysis results"}
+        </button>
+      </div>
     </section>
   );
 }
