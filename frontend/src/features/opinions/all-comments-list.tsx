@@ -133,7 +133,7 @@ export function AllCommentsList({
         <>
           {comments.length === 0 ? (
             <div className="py-6 text-center text-xs text-[#666666]">
-              No comments have been recorded for this policy yet.
+              No preview comments have been added in this browser session yet.
             </div>
           ) : (
             <div className="divide-y divide-[#f1f3f5]">
