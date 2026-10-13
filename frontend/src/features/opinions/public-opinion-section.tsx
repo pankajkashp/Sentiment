@@ -34,8 +34,14 @@ export function PublicOpinionSection({
   };
 
   const [status] = useState<ConsultationStatus>(determineInitialStatus);
-  const [allComments, setAllComments] = useState<CommentItem[]>(analyzedConsultationComments);
-  const [topComments, setTopComments] = useState<CommentItem[]>(analyzedConsultationComments.slice(0, 10));
+  const [allComments, setAllComments] = useState<CommentItem[]>(() => {
+    const s = determineInitialStatus();
+    return s === "closed_analysis_completed" ? analyzedConsultationComments : [];
+  });
+  const [topComments, setTopComments] = useState<CommentItem[]>(() => {
+    const s = determineInitialStatus();
+    return s === "closed_analysis_completed" ? analyzedConsultationComments.slice(0, 10) : [];
+  });
 
   // Load real analysis outputs from persistent storage/API
   useEffect(() => {

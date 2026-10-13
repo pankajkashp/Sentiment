@@ -10,6 +10,134 @@ import type { PolicyPost } from "./types";
  */
 export const officialPolicies: PolicyPost[] = [
   {
+    id: "mha-new-criminal-laws",
+    slug: "new-criminal-laws",
+    title: "New Criminal Laws (Bharatiya Nyaya Sanhita, BNSS & BSA)",
+    summary:
+      "Nationwide legislative transition replacing colonial-era penal statutes (IPC, CrPC, and Evidence Act) with a citizen-centric, justice-oriented framework emphasizing victim protection, transparent digital processes, and community service sanctions.",
+    category: "Public services",
+    ministry: "Ministry of Home Affairs",
+    publishedDate: "02 Dec 2024 (PIB Release ID: 2079850)",
+    sourceName: "Press Information Bureau (PIB)",
+    sourceUrl: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2079850",
+    statusLabel: "Criminal Justice Reform",
+    verifiedOfficial: true,
+    language: "English / Hindi / Regional",
+    department: "Internal Security & Legal Division",
+    schemeType: "Union Legislative Enactment",
+    openedAt: "2026-10-12T00:00:00+05:30",
+    commentingDeadline: "2026-10-16T00:00:00+05:30",
+    consultationStatus: "open",
+    keyHighlights: [
+      "Transitions criminal justice from colonial penal administration to victim-centric, justice-oriented delivery.",
+      "Mandates audio-video recording for search and seizure operations and forensic evidence collection for serious offences.",
+      "Introduces community service as a penal sanction for first-time petty offenses and streamlines summary trial processes.",
+      "Prioritizes citizen-centric rights including Zero FIR, digital complaint registration, and 90-day progress updates for victims."
+    ]
+  },
+  {
+    id: "mha-support-poor-prisoners",
+    slug: "support-to-poor-prisoners-scheme",
+    title: "Support to Poor Prisoners Scheme",
+    summary:
+      "Central financial relief scheme providing monetary assistance to indigent and disadvantaged prisoners who remain incarcerated solely due to inability to pay court-imposed fines or furnish bail surety bonds.",
+    category: "Public services",
+    ministry: "Ministry of Home Affairs",
+    publishedDate: "26 Mar 2025 (PIB Release ID: 2115167)",
+    sourceName: "Press Information Bureau (PIB)",
+    sourceUrl: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2115167",
+    statusLabel: "Central Welfare Relief Scheme",
+    verifiedOfficial: true,
+    language: "English / Hindi",
+    department: "Women Safety and Prison Administration Division",
+    schemeType: "Central Sector Welfare Scheme",
+    openedAt: "2026-10-11T00:00:00+05:30",
+    commentingDeadline: "2026-10-15T00:00:00+05:30",
+    consultationStatus: "open",
+    keyHighlights: [
+      "Dedicated central allocation channeled through the Central Nodal Agency (CNA) mapped to NCRB.",
+      "District-Level Empowered Committees evaluate eligible indigent undertrials and convicts for bail and fine relief.",
+      "Close coordination with District Legal Services Authorities (DLSA) and Jail Visiting Lawyers to expedite case screening.",
+      "Direct financial disbursement to competent courts to mitigate overcrowding in correctional facilities."
+    ]
+  },
+  {
+    id: "mha-disaster-management-amendment",
+    slug: "disaster-management-amendment-act-2025",
+    title: "Disaster Management (Amendment) Act, 2025",
+    summary:
+      "Statutory reform modernizing the disaster governance framework, establishing Urban Disaster Management Authorities (UDMAs) for major municipal corporations, and mandating a unified National Disaster Database.",
+    category: "Public services",
+    ministry: "Ministry of Home Affairs",
+    publishedDate: "11 Feb 2026 (PIB Release ID: 2226438)",
+    sourceName: "Press Information Bureau (PIB)",
+    sourceUrl: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2226438",
+    statusLabel: "Statutory Governance Reform",
+    verifiedOfficial: true,
+    language: "English / Hindi",
+    department: "Disaster Management Division",
+    schemeType: "Union Legislative Enactment",
+    openedAt: "2026-10-06T00:00:00+05:30",
+    commentingDeadline: "2026-10-10T00:00:00+05:30",
+    consultationStatus: "closed_analysis_pending",
+    keyHighlights: [
+      "Section 41A enables States to constitute Urban Disaster Management Authorities (UDMAs) for capital and metropolitan cities.",
+      "Mandates creation of a centralized National Disaster Database capturing vulnerability assessments, hazard maps, and response data.",
+      "Accords formal statutory recognition to the National Crisis Management Committee (NCMC) and the High-Level Committee (HLC).",
+      "Strengthens operational convergence between NDMA, SDMAs, and local municipal emergency response forces."
+    ]
+  },
+  {
+    id: "mha-modernization-forensic-capacities",
+    slug: "modernization-of-forensic-capacities",
+    title: "Scheme for Modernization of Forensic Capacities",
+    summary:
+      "Central initiative to build high-grade forensic science capabilities across States and Union Territories, providing ₹420 crore for state laboratory modernization and nationwide Mobile Forensic Vans deployment.",
+    category: "Digital government",
+    ministry: "Ministry of Home Affairs",
+    publishedDate: "29 Jul 2026 (PIB Release ID: 2291050)",
+    sourceName: "Press Information Bureau (PIB)",
+    sourceUrl: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2291050",
+    statusLabel: "National Forensic Infrastructure Scheme",
+    verifiedOfficial: true,
+    language: "English / Hindi",
+    department: "Police Modernisation Division",
+    schemeType: "Central Sector Infrastructure Scheme",
+    openedAt: "2026-10-13T00:00:00+05:30",
+    commentingDeadline: "2026-10-17T00:00:00+05:30",
+    consultationStatus: "open",
+    keyHighlights: [
+      "Earmarks ₹420 crore specifically for the modernization and upgrading of State and UT Forensic Science Laboratories (FSLs).",
+      "Funds fully-equipped Mobile Forensic Vans across district headquarters for on-site scientific evidence preservation.",
+      "Expands specialized forensic divisions including DNA profiling, Cyber Forensics, Forensic Psychology, and NDPS testing.",
+      "Integrated with the National Forensic Sciences University (NFSU) for continuous forensic practitioner training."
+    ]
+  },
+  {
+    id: "mha-prison-reforms-correctional-services",
+    slug: "prison-reforms-and-correctional-services",
+    title: "Prison Reforms and Correctional Services (Model Act Framework)",
+    summary:
+      "Comprehensive model legislation prepared by the Ministry of Home Affairs to replace the colonial-era Prisons Act of 1894, orienting custodial administration toward prisoner reformation, vocational rehabilitation, and modern correctional security.",
+    category: "Public services",
+    ministry: "Ministry of Home Affairs",
+    publishedDate: "12 May 2023 (PIB Release ID: 1923682)",
+    sourceName: "Press Information Bureau (PIB)",
+    sourceUrl: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1923682",
+    statusLabel: "Model Legislative Framework",
+    verifiedOfficial: true,
+    language: "English / Hindi",
+    department: "Women Safety and Prison Administration Division",
+    schemeType: "Model State Legislative Framework",
+    consultationStatus: "open",
+    keyHighlights: [
+      "Replaces the 130-year-old Prisons Act of 1894 with a modern reformation and correctional rehabilitation approach.",
+      "Focuses on vocational training, skill certification, educational avenues, and social reintegration upon release.",
+      "Introduces high-security barracks, biometric monitoring, and video-conferencing with judicial courts.",
+      "Lays specific guidelines for the safety, health, and specialized welfare needs of female and transgender inmates."
+    ]
+  },
+  {
     id: "gov-pm-kisan",
     slug: "pm-kisan-samman-nidhi",
     title: "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",

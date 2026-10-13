@@ -82,13 +82,13 @@ export function PolicyCard({ post, featured = false }: PolicyCardProps) {
               <ExternalLink size={12} />
             </a>
 
-            {/* Read Detail Link */}
+            {/* View Policy Action */}
             <Link
               href={`/policy/${post.slug}`}
-              className="inline-flex items-center gap-1 font-semibold text-[#E87518] hover:text-[#c25e0e] text-[11px] transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[#143454] px-3 py-1.5 text-[11px] font-semibold text-white shadow-2xs hover:bg-[#0e2a47] transition-colors"
             >
-              <span>Details</span>
-              <ArrowRight size={12} />
+              <span>View Policy</span>
+              <ArrowRight size={12} className="text-[#E87518]" />
             </Link>
           </div>
         </div>
