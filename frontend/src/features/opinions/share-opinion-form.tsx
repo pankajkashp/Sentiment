@@ -1,14 +1,7 @@
 "use client";
 
 import React, { useState, useSyncExternalStore } from "react";
-import {
-  Send,
-  AlertTriangle,
-  CheckCircle2,
-  Lock,
-  MessageSquare,
-  HelpCircle
-} from "lucide-react";
+import { Send, AlertTriangle, CheckCircle2, Lock, MessageSquare, HelpCircle } from "lucide-react";
 
 function subscribeToClock(callback: () => void) {
   const timer = setInterval(callback, 30000);
@@ -44,42 +37,33 @@ export function ShareOpinionForm({
   const [commentText, setCommentText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<{
-    status: "idle" | "success" | "error";
+    status: "idle" | "success" | "error" | "local";
     message: string;
-    details?: string;
   }>({ status: "idle", message: "" });
 
   const currentClock = useSyncExternalStore(subscribeToClock, getClientNow, getServerNow);
 
-  // 4-day commenting period calculation
   let deadlineDate: Date | null = null;
   let isTimestampMissing = false;
-
   if (openedAt) {
     const opened = new Date(openedAt);
-    if (!isNaN(opened.getTime())) {
-      // 4 days from opening time
+    if (!Number.isNaN(opened.getTime())) {
       deadlineDate = new Date(opened.getTime() + 4 * 24 * 60 * 60 * 1000);
     } else {
       isTimestampMissing = true;
     }
   } else if (commentingDeadline) {
     const parsed = new Date(commentingDeadline);
-    if (!isNaN(parsed.getTime())) {
-      deadlineDate = parsed;
-    } else {
-      isTimestampMissing = true;
-    }
+    if (!Number.isNaN(parsed.getTime())) deadlineDate = parsed;
+    else isTimestampMissing = true;
   } else {
     isTimestampMissing = true;
   }
 
-  const isDeadlinePassed =
-    deadlineDate && currentClock > 0 ? currentClock > deadlineDate.getTime() : false;
+  const isDeadlinePassed = Boolean(deadlineDate && currentClock > 0 && currentClock >= deadlineDate.getTime());
   const isFormDisabled = isDeadlinePassed || isTimestampMissing;
-
   const formattedDeadline = deadlineDate
-    ? deadlineDate.toLocaleDateString("en-IN", {
+    ? deadlineDate.toLocaleString("en-IN", {
         day: "numeric",
         month: "short",
         year: "numeric",
@@ -91,94 +75,52 @@ export function ShareOpinionForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const trimmed = commentText.trim();
 
     if (isTimestampMissing) {
-      setSubmissionResult({
-        status: "error",
-        message: "PolicyLens portal opening timestamp is not configured for this policy."
-      });
+      setSubmissionResult({ status: "error", message: "Commenting is unavailable because this policy has no configured opening timestamp." });
       return;
     }
-
     if (isDeadlinePassed) {
-      setSubmissionResult({
-        status: "error",
-        message: "The PolicyLens 4-day commenting window has closed for this policy."
-      });
+      setSubmissionResult({ status: "error", message: "This PolicyLens four-day commenting window has closed." });
+      return;
+    }
+    if (trimmed.length < 10) {
+      setSubmissionResult({ status: "error", message: "Please write at least 10 characters." });
       return;
     }
 
-    if (commentText.trim().length < 10) {
-      setSubmissionResult({
-        status: "error",
-        message: "Please write at least 10 characters to express a clear perspective."
-      });
-      return;
-    }
-
+    // Frontend-only phase: never imply that the API or database accepted data.
     setIsSubmitting(true);
     setSubmissionResult({ status: "idle", message: "" });
-
     try {
-      const res = await fetch(`/api/policies/${policySlug}/comments`, {
+      const res = await fetch(`/api/policies/${encodeURIComponent(policySlug)}/comments`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           policyId: policyId || policySlug,
-          commentText: commentText.trim(),
+          commentText: trimmed,
           stakeholder
         })
       });
-
       const data = await res.json().catch(() => null);
-
       if (res.ok && data?.success) {
-        setSubmissionResult({
-          status: "success",
-          message: "Your opinion was recorded for this session. (Temporary frontend state: persistent database sync will occur during backend integration)."
-        });
-        const submittedText = commentText.trim();
+        const submitted = trimmed;
+        setSubmissionResult({ status: "success", message: "The server confirmed receipt of your comment." });
         setCommentText("");
-        if (onSubmissionSuccess) {
-          onSubmissionSuccess({
-            id: data.commentId || `c-${Date.now()}`,
-            text: submittedText,
-            stakeholder
-          });
-        }
+        onSubmissionSuccess?.({ id: String(data.commentId || `server-${Date.now()}`), text: submitted, stakeholder });
       } else {
-        // Fallback for frontend-only state when backend is disconnected
-        const tempId = `temp-${Date.now().toString(36)}`;
-        const submittedText = commentText.trim();
         setSubmissionResult({
-          status: "success",
-          message: "Your opinion was recorded in this frontend session. (Temporary UI state: comments are held locally and will synchronize when backend APIs are connected)."
+          status: "error",
+          message: "The comment was not confirmed by the server. It has not been shown as submitted; please try again when submissions are available."
         });
-        setCommentText("");
-        if (onSubmissionSuccess) {
-          onSubmissionSuccess({
-            id: tempId,
-            text: submittedText,
-            stakeholder
-          });
-        }
       }
     } catch {
-      // Disconnected backend fallback for temporary UI state
-      const tempId = `temp-${Date.now().toString(36)}`;
-      const submittedText = commentText.trim();
+      // Browser-only demo mode: keep entered text in the form, with no fabricated success state.
       setSubmissionResult({
-        status: "success",
-        message: "Your opinion was recorded in this frontend session. (Temporary UI state: comments are held locally and will synchronize when backend APIs are connected)."
+        status: "local",
+        message: "Frontend preview only — no backend is connected, so this comment has not been submitted or saved."
       });
-      setCommentText("");
-      if (onSubmissionSuccess) {
-        onSubmissionSuccess({
-          id: tempId,
-          text: submittedText,
-          stakeholder
-        });
-      }
     } finally {
       setIsSubmitting(false);
     }
@@ -186,7 +128,6 @@ export function ShareOpinionForm({
 
   return (
     <section className="rounded-xl border border-[#e5e7eb] bg-white p-5 sm:p-6 shadow-2xs space-y-4">
-      {/* Section Header with PolicyLens 4-Day Window Display */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-3 border-b border-[#f1f3f5]">
         <div>
           <h2 className="font-display text-[18px] sm:text-[20px] font-bold text-[#171717] flex items-center gap-2">
@@ -194,50 +135,42 @@ export function ShareOpinionForm({
             <span>Share Your Opinion</span>
           </h2>
           <p className="text-xs text-[#666666] mt-0.5">
-            Submit your feedback on &ldquo;{policyTitle}&rdquo;. A 4-day citizen feedback window is provided from PolicyLens portal publication.
+            Comment on &ldquo;{policyTitle}&rdquo;. The four-day PolicyLens window is calculated from its configured opening timestamp and is not a government deadline.
           </p>
         </div>
-
-        {formattedDeadline && !isTimestampMissing && (
+        {formattedDeadline && (
           <div className="flex flex-col sm:items-end gap-0.5 shrink-0">
             <span className="text-[11px] text-[#143454] bg-[#f0f4f8] px-2.5 py-1 rounded-md border border-[#d6e0ea] font-semibold">
-              PolicyLens 4-Day Window: Closes {formattedDeadline}
+              Comments close {formattedDeadline}
             </span>
-            <span className="text-[10px] text-[#718096]">
-              (Calculated from PolicyLens portal opening timestamp)
-            </span>
+            <span className="text-[10px] text-[#718096]">PolicyLens portal window</span>
           </div>
         )}
-
         {isTimestampMissing && (
           <span className="text-[11px] text-[#888888] bg-[#f8fafc] px-2.5 py-1 rounded-md border border-[#e5e7eb] font-medium shrink-0 flex items-center gap-1">
-            <HelpCircle size={12} />
-            <span>PolicyLens window not configured</span>
+            <HelpCircle size={12} /> Opening time not configured
           </span>
         )}
       </div>
 
-      {/* Brief message when closed or missing */}
       {isDeadlinePassed && (
         <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#555555] flex items-center gap-2">
           <Lock size={14} className="text-[#666666]" />
-          <span className="font-medium">PolicyLens 4-day commenting window has closed for this policy.</span>
+          <span className="font-medium">The PolicyLens four-day commenting window has closed.</span>
         </div>
       )}
 
       {isTimestampMissing && (
         <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#555555] flex items-center gap-2">
-          <HelpCircle size={14} className="text-[#666666]" />
-          <span>Commenting is not active because a PolicyLens portal opening timestamp has not been configured.</span>
+          <HelpCircle size={14} />
+          <span>Commenting is disabled until an opening timestamp is configured for this policy.</span>
         </div>
       )}
 
-      {/* Comment Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Stakeholder Category */}
         <div className="space-y-1.5">
           <label htmlFor="stakeholder-select" className="block text-xs font-semibold text-[#171717]">
-            Stakeholder / Community Perspective
+            Stakeholder / Community Perspective (optional context)
           </label>
           <select
             id="stakeholder-select"
@@ -255,15 +188,10 @@ export function ShareOpinionForm({
           </select>
         </div>
 
-        {/* Comment Text Area */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs">
-            <label htmlFor="comment-text" className="font-semibold text-[#171717]">
-              Your Comment
-            </label>
-            <span className="text-[11px] text-[#666666]">
-              {commentText.length} / 2,000 characters (min. 10)
-            </span>
+            <label htmlFor="comment-text" className="font-semibold text-[#171717]">Your Comment</label>
+            <span className="text-[11px] text-[#666666]">{commentText.length} / 2,000 characters (min. 10)</span>
           </div>
           <textarea
             id="comment-text"
@@ -272,54 +200,32 @@ export function ShareOpinionForm({
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
             disabled={isFormDisabled || isSubmitting}
-            placeholder={
-              isFormDisabled
-                ? "Commenting is closed for this policy."
-                : "Write your opinion, concern, or suggested improvement regarding this policy..."
-            }
+            placeholder={isFormDisabled ? "Commenting is closed for this policy." : "Write your opinion, concern, or suggested improvement…"}
             className="w-full rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#171717] outline-none focus:border-[#E87518] focus:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             required={!isFormDisabled}
           />
         </div>
 
-        {/* Validation & Error Alerts */}
-        {submissionResult.status === "error" && (
-          <div className="rounded-lg border border-[#fca5a5] bg-[#fef2f2] p-3 text-xs text-[#991b1b] space-y-1">
-            <div className="flex items-center gap-1.5 font-bold">
-              <AlertTriangle size={14} className="shrink-0 text-[#dc2626]" />
-              <span>{submissionResult.message}</span>
-            </div>
-            {submissionResult.details && (
-              <p className="text-[11px] text-[#7f1d1d] pl-5 leading-relaxed">
-                {submissionResult.details}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* Success Alert */}
-        {submissionResult.status === "success" && (
-          <div className="rounded-lg border border-[#86efac] bg-[#f0fdf4] p-3 text-xs text-[#166534] flex items-center gap-2">
-            <CheckCircle2 size={15} className="text-[#16a34a] shrink-0" />
+        {submissionResult.status !== "idle" && (
+          <div className={`rounded-lg border p-3 text-xs flex items-start gap-2 ${
+            submissionResult.status === "success"
+              ? "border-[#86efac] bg-[#f0fdf4] text-[#166534]"
+              : submissionResult.status === "local"
+                ? "border-[#e5e7eb] bg-[#f8fafc] text-[#475569]"
+                : "border-[#fca5a5] bg-[#fef2f2] text-[#991b1b]"
+          }`}>
+            {submissionResult.status === "success" ? <CheckCircle2 size={15} /> : <AlertTriangle size={15} />}
             <span>{submissionResult.message}</span>
           </div>
         )}
 
-        {/* Form Actions */}
         <div className="flex items-center justify-end pt-1">
           <button
             type="submit"
             disabled={isFormDisabled || isSubmitting || commentText.trim().length < 10}
             className="inline-flex items-center gap-1.5 rounded-lg bg-[#143454] px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-[#0e2a47] disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
           >
-            {isSubmitting ? (
-              <span>Submitting Comment...</span>
-            ) : (
-              <>
-                <Send size={13} />
-                <span>Submit Comment</span>
-              </>
-            )}
+            {isSubmitting ? "Submitting Comment…" : <><Send size={13} /><span>Submit Comment</span></>}
           </button>
         </div>
       </form>
