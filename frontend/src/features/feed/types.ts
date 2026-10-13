@@ -10,16 +10,16 @@ export type PolicyPost = {
   id: string;
   slug: string;
   title: string;
-  excerpt: string;
+  summary: string;
   category: PolicyCategory;
-  publishedAt: string;
-  closesAt: string;
-  comments: number;
-  participation: string;
-  image: string;
-  imageAlt: string;
-  status: "Open" | "Closing soon";
+  ministry: string;
+  publishedDate: string; // Verified release / launch date from official records
   sourceName: string;
   sourceUrl: string;
-  language: "English" | "French" | "Hindi" | "Hinglish" | "Bengali" | "Tamil" | "Telugu" | "Marathi" | "Punjabi" | "Gujarati" | "Kannada" | "Malayalam" | "Urdu" | "Other";
+  statusLabel: string;
+  verifiedOfficial: boolean;
+  language: string;
+  keyHighlights: string[];
+  department?: string;
+  schemeType?: string;
 };

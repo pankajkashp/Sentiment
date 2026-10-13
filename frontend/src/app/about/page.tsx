@@ -1,22 +1,76 @@
 import Link from "next/link";
-import { ArrowLeft, BookOpen, CheckCircle2, Fingerprint, Scale } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle2, Fingerprint, Scale, Building2 } from "lucide-react";
+import { PortalIdentity } from "@/components/brand/portal-identity";
 
 const principles = [
-  { icon: BookOpen, title: "Evidence over assertion", text: "Collective insights should link back to the source comments that support them. Findings are not presented without traceable evidence." },
-  { icon: Scale, title: "A concern is not automatically a demand", text: "PolicyLens distinguishes a person's stated request from a model's inference or an analyst's proposed action." },
-  { icon: Fingerprint, title: "One account, one reaction", text: "Reactions are constrained per account and policy. Abuse prevention uses layered signals rather than invasive hardware-address tracking." },
-  { icon: CheckCircle2, title: "Uncertainty stays visible", text: "Live community activity and validated research conclusions are different things. The interface should label provisional findings clearly." }
+  {
+    icon: BookOpen,
+    title: "Primary Source Integrity",
+    text: "Every policy update, direct benefit transfer metric, and welfare scheme published links directly to authenticated government releases from PIB and Union Ministries."
+  },
+  {
+    icon: Scale,
+    title: "Factual Public Information",
+    text: "Distinguishes officially notified government programmes from proposed draft consultations and civic inputs without fabricated metrics or biased framing."
+  },
+  {
+    icon: Fingerprint,
+    title: "Non-partisan & Independent",
+    text: "Maintained as an independent civic portal to make government policies transparent, accessible, and structured for citizen awareness and academic research."
+  },
+  {
+    icon: CheckCircle2,
+    title: "Verified Documentation",
+    text: "Only authentic scheme guidelines, gazettes, and official notifications are catalogued, eliminating fake viral claims and misleading misinformation."
+  }
 ];
 
 export default function AboutPage() {
-  return <main className="content-width min-h-screen py-8 pb-24 md:py-12">
-    <Link href="/" className="inline-flex items-center gap-2 text-xs muted"><ArrowLeft size={14}/> Back to the feed</Link>
-    <p className="mt-10 text-[10px] font-bold uppercase tracking-[.2em] accent">Why PolicyLens</p>
-    <h1 className="font-display mt-2 max-w-3xl text-4xl font-extrabold leading-tight md:text-5xl">Make collective opinion easier to understand — and harder to misrepresent.</h1>
-    <p className="mt-5 max-w-2xl text-sm leading-7 muted">PolicyLens is a research project for analysing public-policy feedback: the concerns people raise, the positions they express, the actions they request, and the evidence behind collective insights.</p>
-    <div className="mt-10 grid gap-4 sm:grid-cols-2">
-      {principles.map(({icon: Icon, title, text}) => <section key={title} className="rounded-2xl border p-6" style={{background:"var(--surface)",borderColor:"var(--line)"}}><Icon size={20} className="accent"/><h2 className="font-display mt-5 text-xl font-bold">{title}</h2><p className="mt-2 text-sm leading-6 muted">{text}</p></section>)}
-    </div>
-    <div className="mt-8 rounded-2xl p-6" style={{background:"var(--accent-soft)"}}><h2 className="font-display text-xl font-bold">A note on research integrity</h2><p className="mt-2 max-w-2xl text-sm leading-6 muted">This interface currently uses fictional sample posts and illustrative counts. It is not connected to a live database or analysis API yet. Research claims will only be shown when supported by documented experiments and source evidence.</p></div>
-  </main>;
+  return (
+    <main className="max-w-4xl mx-auto px-4 py-8 pb-24 md:py-12">
+      <div className="mb-6">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-[#666666] hover:text-[#E87518]">
+          <ArrowLeft size={14} /> Back to Portal Home
+        </Link>
+      </div>
+
+      <div className="mb-8 p-4 rounded-xl border border-[#e5e7eb] bg-white shadow-2xs">
+        <PortalIdentity />
+      </div>
+
+      <div className="space-y-3">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-[#143454] bg-[#e8eef5] px-2.5 py-1 rounded">
+          Civic Information Repository
+        </span>
+        <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-[#171717] leading-tight">
+          Transparent, Verified Public Policy Information for Every Citizen.
+        </h1>
+        <p className="text-[14px] leading-relaxed text-[#444444] max-w-2xl">
+          The Public Policy Portal is an independent, non-partisan repository designed to organize
+          and index official Government of India welfare schemes, administrative guidelines, and
+          parliamentary policy updates directly from primary official sources.
+        </p>
+      </div>
+
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        {principles.map(({ icon: Icon, title, text }) => (
+          <section key={title} className="rounded-xl border border-[#e5e7eb] bg-white p-5 shadow-2xs">
+            <Icon size={20} className="text-[#E87518]" />
+            <h2 className="font-display mt-3 text-[17px] font-bold text-[#171717]">{title}</h2>
+            <p className="mt-2 text-[13px] leading-relaxed text-[#666666]">{text}</p>
+          </section>
+        ))}
+      </div>
+
+      <div className="mt-8 rounded-xl border border-[#e5e7eb] bg-[#f8fafc] p-6 space-y-2">
+        <div className="flex items-center gap-2 text-xs font-bold text-[#143454] uppercase tracking-wider">
+          <Building2 size={16} className="text-[#E87518]" />
+          <span>Independent Platform Disclaimer</span>
+        </div>
+        <p className="text-[13px] text-[#444444] leading-relaxed">
+          This portal is an independent public-interest platform and is not operated by or affiliated with the Government of India or any Union Ministry. Official portals are accessible at <a href="https://www.india.gov.in" target="_blank" rel="noopener noreferrer" className="text-[#143454] font-semibold underline">india.gov.in</a> and <a href="https://www.pib.gov.in" target="_blank" rel="noopener noreferrer" className="text-[#143454] font-semibold underline">pib.gov.in</a>.
+        </p>
+      </div>
+    </main>
+  );
 }

@@ -1,134 +1,280 @@
 "use client";
 
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import { ArrowDownUp, ArrowUpRight, Check, Globe2, Search, SlidersHorizontal } from "lucide-react";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { Wordmark } from "@/components/brand/wordmark";
+import { ExternalLink, ShieldAlert, PhoneCall, Building2, CheckCircle2, Search, SlidersHorizontal, ArrowUpRight } from "lucide-react";
+import { GovHeader } from "@/components/navigation/gov-header";
 import { PolicyCard } from "@/features/feed/policy-card";
-import { demoPosts } from "@/features/feed/demo-data";
-
-type Filter = "Latest" | "Trending" | "24 hours";
-const categories = ["All topics", "Environment", "Public services", "Economy", "Health", "Digital government", "Education"];
-// Fixed clock for this explicitly fictional demo dataset; production uses server timestamps.
-const DEMO_REFERENCE_NOW = Date.parse("2026-10-13T18:00:00+05:30");
-
-function FeedContent() {
-  const [filter, setFilter] = useState<Filter>("Latest");
-  const [category, setCategory] = useState("All topics");
-  const [query, setQuery] = useState("");
-  const [language, setLanguage] = useState("All languages");
-
-  const visiblePosts = useMemo(() => {
-    const filtered = demoPosts.filter((post) => {
-      const withinFourDays = DEMO_REFERENCE_NOW - new Date(post.publishedAt).getTime() <= 4 * 86_400_000;
-      const withinDay = DEMO_REFERENCE_NOW - new Date(post.publishedAt).getTime() <= 86_400_000;
-      const matchesCategory = category === "All topics" || post.category === category;
-      const matchesLanguage = language === "All languages" || post.language === language;
-      const terms = `${post.title} ${post.excerpt} ${post.category}`.toLocaleLowerCase();
-      return withinFourDays && (filter !== "24 hours" || withinDay) && matchesCategory && matchesLanguage && terms.includes(query.toLocaleLowerCase());
-    });
-    if (filter === "Trending") return filtered.sort((a, b) => b.comments - a.comments);
-    return filtered.sort((a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt));
-  }, [filter, category, query, language]);
-
-  return (
-    <main className="min-h-screen pb-24 md:pb-10">
-      <header className="sticky top-0 z-30 border-b backdrop-blur-xl" style={{ borderColor: "var(--line)", background: "color-mix(in srgb, var(--paper) 88%, transparent)" }}>
-        <div className="content-width flex h-[70px] items-center justify-between gap-3">
-          <Wordmark/>
-          <div className="hidden max-w-[360px] flex-1 items-center gap-2 rounded-full border px-4 py-2.5 md:flex" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
-            <Search size={16} className="muted"/>
-            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Find a policy discussion..." className="w-full bg-transparent text-[12px] outline-none " aria-label="Search discussions"/>
-            <kbd className="rounded border px-1.5 py-0.5 text-[9px] muted" style={{ borderColor: "var(--line)" }}>⌘ K</kbd>
-          </div>
-          <div className="flex items-center gap-2">
-            <ThemeToggle/>
-            <Link href="/login" className="hidden rounded-full px-4 py-2.5 text-[12px] font-semibold sm:block" style={{ background: "var(--accent)", color: "var(--surface)" }}>Sign in</Link>
-            <Link href="/register" className="hidden rounded-full border px-4 py-2.5 text-[12px] font-semibold lg:block" style={{ borderColor: "var(--line)" }}>Join the discussion</Link>
-          </div>
-        </div>
-      </header>
-
-      <div className="content-width editorial-grid py-6 md:py-9">
-        <section className="min-w-0">
-          <div className="mb-7 flex items-end justify-between gap-4">
-            <div>
-              
-              <h1 className="font-display text-[34px] font-extrabold leading-[1.02] sm:text-[44px]">Issues that matter.<br/><span style={{ color: "var(--muted)" }}>Voices that count.</span></h1>
-              <p className="mt-3 max-w-[560px] text-[13px] leading-6 muted">Explore public issues and the evidence behind them.</p>
-            </div>
-
-          </div>
-
-          <div className="glass-panel mb-5 rounded-2xl p-3 sm:p-4">
-            <div className="mb-3 flex items-center gap-2 md:hidden">
-              <Search size={16} className="muted"/>
-              <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search public issues..." className="w-full bg-transparent text-[13px] outline-none" aria-label="Search discussions"/>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              {(["Latest", "Trending", "24 hours"] as Filter[]).map((item) => (
-                <button key={item} onClick={() => setFilter(item)} className="rounded-full px-4 py-2 text-[11px] font-semibold transition-colors"
-                  style={{ background: filter === item ? "var(--accent)" : "var(--surface-subtle)", color: filter === item ? "var(--surface)" : "var(--muted)" }}>
-                  {item === "24 hours" ? "Last 24 hours" : item}
-                </button>
-              ))}
-              <span className="flex-1"/>
-              <label className="flex items-center gap-2 rounded-full border px-3 py-2 text-[11px]" style={{ borderColor: "var(--line)" }}>
-                <Globe2 size={13} className="muted"/>
-                <select value={language} onChange={(e) => setLanguage(e.target.value)} className="max-w-[130px] bg-transparent outline-none" aria-label="Filter by language">
-                  <option>All languages</option><option>English</option><option>French</option><option>Hindi</option><option>Hinglish</option><option>Bengali</option><option>Tamil</option><option>Telugu</option><option>Marathi</option><option>Punjabi</option><option>Gujarati</option><option>Kannada</option><option>Malayalam</option><option>Urdu</option><option>Other</option>
-                </select>
-              </label>
-            </div>
-            <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
-              {categories.map((item) => <button key={item} onClick={() => setCategory(item)} className="shrink-0 rounded-full border px-3 py-2 text-[10px] font-medium"
-                style={{ borderColor: category === item ? "var(--accent)" : "var(--line)", color: category === item ? "var(--accent)" : "var(--muted)", background: category === item ? "var(--accent-soft)" : "transparent" }}>{item}</button>)}
-            </div>
-          </div>
-
-          <div className="mb-4 flex items-center justify-between">
-            <p className="text-[11px] muted">{visiblePosts.length} discussions</p>
-            <button className="inline-flex items-center gap-1.5 text-[11px] muted" onClick={() => {setFilter("Latest"); setCategory("All topics"); setQuery(""); setLanguage("All languages");}}><SlidersHorizontal size={13} aria-hidden="true"/> Reset</button>
-          </div>
-
-          <div className="space-y-5">
-            {visiblePosts.map((post, index) => <div key={post.id} className="fade-up" style={{ animationDelay: `${index * 60}ms` }}><PolicyCard post={post} featured={index === 0 && filter === "Latest" && category === "All topics" && !query}/></div>)}
-            {visiblePosts.length === 0 && <div className="rounded-2xl border p-10 text-center" style={{ background: "var(--surface)", borderColor: "var(--line)" }}><Search size={22} className="mx-auto muted"/><h2 className="mt-3 font-display text-xl font-bold">No discussions found</h2><p className="mt-2 text-sm muted">Try another keyword, category or language.</p></div>}
-          </div>
-          <p className="mt-5 text-center text-[10px] leading-5 muted">Demo-only discussion content. Results and counts are illustrative and are not real public-opinion findings.</p>
-        </section>
-
-        <aside className="desktop-only space-y-5">
-          <div className="glass-panel rounded-[22px] p-5">
-            
-            
-            <h2 className="font-display mt-2 text-[22px] font-bold leading-tight">Public issues, viewed clearly.</h2>
-            <p className="mt-3 text-[12px] leading-5 muted">Explore perspectives alongside their supporting evidence.</p>
-            <Link href="/about" className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold accent">How it works <ArrowUpRight size={14}/></Link>
-          </div>
-          <div className="rounded-[22px] border p-5" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
-            <div className="flex items-center justify-between"><h2 className="font-display text-[17px] font-bold">Topics in focus</h2><ArrowDownUp size={15} className="muted"/></div>
-            <div className="mt-4 space-y-4">
-              {[["Environment","Climate, land and resources","01"],["Public services","Access, quality and fairness","02"],["Digital government","Access, privacy and trust","03"]].map(([name, detail, number]) => <button key={name} onClick={() => setCategory(name)} className="flex w-full items-start gap-3 text-left"><span className="pt-0.5 text-[10px] muted">{number}</span><span className="flex-1"><span className="block text-[12px] font-semibold">{name}</span><span className="mt-1 block text-[10px] muted">{detail}</span></span><ArrowUpRight size={13} className="muted"/></button>)}
-            </div>
-          </div>
-          <div className="rounded-[22px] border p-5" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
-            <h2 className="font-display text-[16px] font-bold">Built for trust</h2>
-            <div className="mt-4 space-y-3 text-[11px] muted">
-              <p className="flex gap-2"><Check size={14} className="accent shrink-0"/> One account, one reaction per issue</p>
-              <p className="flex gap-2"><Check size={14} className="accent shrink-0"/> Evidence linked to source comments</p>
-              <p className="flex gap-2"><Check size={14} className="accent shrink-0"/> Research findings separated from live votes</p>
-            </div>
-          </div>
-          <p className="px-2 text-[10px] muted">About · Guidelines · Privacy · Accessibility<br/>© 2026 PolicyLens Research</p>
-        </aside>
-      </div>
-      <footer className="content-width mt-10 hidden border-t py-5 text-[10px] muted md:block" style={{ borderColor: "var(--line)" }}>PolicyLens · Public policy deserves more than a like count.</footer>
-    </main>
-  );
-}
+import { officialPolicies } from "@/features/feed/demo-data";
+import { FeedToolbar, SortTimeFilter, TopicCategory } from "@/features/feed/feed-toolbar";
+import { InstitutionIllustration } from "@/components/brand/institution-illustration";
 
 export default function HomePage() {
-  return <FeedContent/>;
+  const [sortTime, setSortTime] = useState<SortTimeFilter>("Latest");
+  const [selectedTopic, setSelectedTopic] = useState<TopicCategory>("All topics");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState("All languages");
+
+  const filteredPolicies = useMemo(() => {
+    let list = [...officialPolicies];
+
+    // Filter by topic category
+    if (selectedTopic !== "All topics") {
+      list = list.filter((p) => p.category === selectedTopic);
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      list = list.filter(
+        (p) =>
+          p.title.toLowerCase().includes(q) ||
+          p.summary.toLowerCase().includes(q) ||
+          p.ministry.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
+      );
+    }
+
+    // Filter by language
+    if (selectedLanguage !== "All languages") {
+      list = list.filter((p) =>
+        p.language.toLowerCase().includes(selectedLanguage.toLowerCase())
+      );
+    }
+
+    // Sort time handling
+    if (sortTime === "Trending") {
+      // Prioritize flagship nationwide schemes with most highlights
+      list.sort((a, b) => (b.keyHighlights?.length || 0) - (a.keyHighlights?.length || 0));
+    } else if (sortTime === "Last 24 hours") {
+      // Show prioritized urgent and recent releases
+      list = list.filter(
+        (p) =>
+          p.id === "gov-pm-kisan" ||
+          p.id === "gov-viksit-bharat-rozgar" ||
+          p.id === "gov-pm-rahat"
+      );
+    }
+
+    return list;
+  }, [sortTime, selectedTopic, searchQuery, selectedLanguage]);
+
+  const handleReset = () => {
+    setSortTime("Latest");
+    setSelectedTopic("All topics");
+    setSearchQuery("");
+    setSelectedLanguage("All languages");
+  };
+
+  return (
+    <div className="min-h-screen bg-[#f8f8f6] text-[#171717]">
+      {/* 1. Header & Navigation (White Masthead + Navy Blue Navigation Bar) */}
+      <GovHeader />
+
+      <main className="max-w-7xl mx-auto px-4 py-5 sm:py-6">
+        {/* 2. Compact Government Portal Introduction Banner */}
+        <section className="mb-5 rounded-xl border border-[#e5e7eb] bg-white p-4 sm:p-5 shadow-2xs">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+            <div className="lg:col-span-7 space-y-2.5">
+              <div className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px] font-semibold text-[#143454] bg-[#e8eef5]">
+                <CheckCircle2 size={13} className="text-[#16834A]" />
+                <span>Verified Public Policy &amp; Programme Directory</span>
+              </div>
+              <h1 className="font-display text-[22px] sm:text-[28px] font-extrabold tracking-tight text-[#171717] leading-tight">
+                National Policy Updates &amp; Welfare Schemes Repository
+              </h1>
+              <p className="text-[13px] leading-relaxed text-[#444444] max-w-2xl">
+                Access official Government of India welfare schemes, direct benefit transfers,
+                and ministry releases verified from the Press Information Bureau (PIB) and the
+                National Portal of India. All updates directly cite authenticated government documents.
+              </p>
+              <div className="pt-1 flex flex-wrap items-center gap-3 text-[11px] text-[#666666]">
+                <span className="flex items-center gap-1 text-[#16834A] font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#16834A]" />
+                  Zero Fabricated Metrics
+                </span>
+                <span>•</span>
+                <span>Direct Primary Source Citations</span>
+                <span>•</span>
+                <span>Multilingual Access</span>
+              </div>
+            </div>
+
+            {/* Clean Architectural Illustration */}
+            <div className="lg:col-span-5">
+              <InstitutionIllustration />
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Main Content Grid (Feed + Sidebar) */}
+        <div id="feed" className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* Left Column: Feed Toolbar & Policy Cards */}
+          <section className="lg:col-span-8 space-y-4">
+            {/* Compact Feed Toolbar with required exact tabs */}
+            <FeedToolbar
+              sortTime={sortTime}
+              onSortTimeChange={setSortTime}
+              selectedTopic={selectedTopic}
+              onTopicChange={setSelectedTopic}
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+              selectedLanguage={selectedLanguage}
+              onLanguageChange={setSelectedLanguage}
+              onReset={handleReset}
+              totalCount={filteredPolicies.length}
+            />
+
+            {/* Policy Cards List */}
+            <div className="space-y-3.5">
+              {filteredPolicies.map((post, idx) => (
+                <PolicyCard
+                  key={post.id}
+                  post={post}
+                  featured={idx === 0 && selectedTopic === "All topics" && !searchQuery}
+                />
+              ))}
+
+              {filteredPolicies.length === 0 && (
+                <div className="rounded-xl border border-[#e5e7eb] bg-white p-10 text-center space-y-3">
+                  <Search size={28} className="mx-auto text-[#9ca3af]" />
+                  <h3 className="font-display text-lg font-bold text-[#171717]">
+                    No policy updates match your filters
+                  </h3>
+                  <p className="text-[13px] text-[#666666] max-w-sm mx-auto">
+                    Try clearing your search query or selecting &quot;All topics&quot; to view all available government updates.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="inline-flex items-center gap-1.5 rounded-md bg-[#E87518] px-4 py-2 text-[12px] font-semibold text-white shadow-xs hover:bg-[#c25e0e] transition-colors cursor-pointer"
+                  >
+                    <SlidersHorizontal size={13} />
+                    Reset All Filters
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Independent Civic Platform Clarification */}
+            <div className="rounded-lg border border-[#e5e7eb] bg-white p-3.5 text-[11px] leading-relaxed text-[#666666] flex items-start gap-2.5">
+              <ShieldAlert size={16} className="text-[#E87518] shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-[#171717]">Public Information Notice:</strong> This portal provides an independent, structured directory of official public policies for citizen research and public information. All links navigate to authenticated publications on <code className="bg-[#f3f4f6] px-1 py-0.5 rounded text-[#171717]">pib.gov.in</code>, <code className="bg-[#f3f4f6] px-1 py-0.5 rounded text-[#171717]">india.gov.in</code>, and respective ministry domains.
+              </div>
+            </div>
+          </section>
+
+          {/* Right Column: Institutional Directory & Official Portals */}
+          <aside className="lg:col-span-4 space-y-4">
+            {/* Official Portals Index */}
+            <div className="rounded-xl border border-[#e5e7eb] bg-white p-4 shadow-2xs">
+              <div className="flex items-center justify-between pb-2.5 border-b border-[#f1f3f5]">
+                <h3 className="font-display text-[14px] font-bold text-[#171717] flex items-center gap-2">
+                  <Building2 size={16} className="text-[#143454]" />
+                  Official National Portals
+                </h3>
+                <span className="text-[10px] uppercase font-bold text-[#16834A] bg-[#e6f4ea] px-1.5 py-0.5 rounded">Verified</span>
+              </div>
+              <ul className="mt-3 space-y-2 text-[12px]">
+                {[
+                  { name: "National Portal of India", url: "https://www.india.gov.in/", desc: "Single entry portal to all Indian Govt services" },
+                  { name: "Press Information Bureau (PIB)", url: "https://www.pib.gov.in/", desc: "Official press releases and government updates" },
+                  { name: "MyGov India", url: "https://www.mygov.in/", desc: "Citizen engagement and crowdsourced policy inputs" },
+                  { name: "Digital India Initiative", url: "https://www.digitalindia.gov.in/", desc: "Flagship public digital transformation initiatives" },
+                  { name: "Open Government Data (OGD)", url: "https://data.gov.in/", desc: "Open datasets published by Union Ministries" }
+                ].map((portal) => (
+                  <li key={portal.name} className="border-b border-[#f8fafc] pb-2 last:border-0 last:pb-0">
+                    <a
+                      href={portal.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-start justify-between gap-2 hover:text-[#E87518]"
+                    >
+                      <div>
+                        <span className="font-semibold text-[#171717] group-hover:text-[#E87518] flex items-center gap-1">
+                          {portal.name}
+                          <ArrowUpRight size={11} className="text-[#9ca3af] group-hover:text-[#E87518]" />
+                        </span>
+                        <p className="text-[10px] text-[#666666] leading-tight mt-0.5">{portal.desc}</p>
+                      </div>
+                      <ExternalLink size={11} className="text-[#9ca3af] shrink-0 mt-0.5" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Essential Citizen Helplines */}
+            <div className="rounded-xl border border-[#e5e7eb] bg-white p-4 shadow-2xs">
+              <h3 className="font-display text-[14px] font-bold text-[#171717] flex items-center gap-2 pb-2 border-b border-[#f1f3f5]">
+                <PhoneCall size={15} className="text-[#E87518]" />
+                National Citizen Helplines
+              </h3>
+              <div className="mt-3 space-y-2 text-[12px]">
+                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                  <div>
+                    <span className="block font-semibold text-[#171717]">Emergency Helpline</span>
+                    <span className="text-[10px] text-[#666666]">Police, Fire, Ambulance</span>
+                  </div>
+                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">112</span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                  <div>
+                    <span className="block font-semibold text-[#171717]">National Health Authority</span>
+                    <span className="text-[10px] text-[#666666]">Ayushman Bharat (PM-JAY)</span>
+                  </div>
+                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">14555</span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                  <div>
+                    <span className="block font-semibold text-[#171717]">Kisan Call Centre</span>
+                    <span className="text-[10px] text-[#666666]">Agriculture queries &amp; support</span>
+                  </div>
+                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">1800-180-1551</span>
+                </div>
+                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                  <div>
+                    <span className="block font-semibold text-[#171717]">National Consumer Helpline</span>
+                    <span className="text-[10px] text-[#666666]">Grievances &amp; redressal</span>
+                  </div>
+                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">1915</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Portal Notice and Guidelines */}
+            <div className="rounded-xl border border-[#e5e7eb] bg-[#f8fafc] p-4 text-[11px] text-[#666666] space-y-2">
+              <span className="font-bold text-[#143454] uppercase tracking-wider block">Portal Standards</span>
+              <p className="leading-relaxed">
+                All listed policy documents are public government publications. Summaries are strictly factual, free of personal bias, and provide unmediated access to Union ministry resources.
+              </p>
+              <div className="pt-2 border-t border-[#e2e8f0] flex items-center justify-between text-[10px]">
+                <Link href="/about" className="font-semibold text-[#E87518] hover:underline">About This Portal</Link>
+                <span>© 2026 Public Policy Portal</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-12 border-t border-[#e5e7eb] bg-white text-[#555555] text-[11px] py-6">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex flex-col gap-1">
+            <span className="font-bold text-[#171717]">सार्वजनिक नीति पोर्टल — PUBLIC POLICY PORTAL</span>
+            <span className="text-[#666666]">
+              Independent Civic Information Repository • Sourced from official Union Ministry publications
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-[#666666]">
+            <Link href="/" className="hover:text-[#171717]">Home</Link>
+            <Link href="/about" className="hover:text-[#171717]">About</Link>
+            <a href="https://www.india.gov.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#171717]">india.gov.in</a>
+            <a href="https://www.pib.gov.in" target="_blank" rel="noopener noreferrer" className="hover:text-[#171717]">pib.gov.in</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }

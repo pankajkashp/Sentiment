@@ -1,63 +1,98 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Clock3, MessageCircle, MoveUpRight } from "lucide-react";
+import { ExternalLink, CheckCircle2, Building, Calendar, ArrowRight, Tag } from "lucide-react";
 import type { PolicyPost } from "./types";
 
-// Fixed reference time keeps the fictional demo consistent between server render and hydration.
-const DEMO_REFERENCE_NOW = Date.parse("2026-10-13T18:00:00+05:30");
-
-function timeAgo(value: string) {
-  const difference = Math.max(0, DEMO_REFERENCE_NOW - new Date(value).getTime());
-  const hours = Math.floor(difference / 3_600_000);
-  if (hours < 1) return "Just now";
-  if (hours < 24) return `${hours}h ago`;
-  return `${Math.floor(hours / 24)}d ago`;
+interface PolicyCardProps {
+  post: PolicyPost;
+  featured?: boolean;
 }
 
-export function PolicyCard({ post, featured = false }: { post: PolicyPost; featured?: boolean }) {
+export function PolicyCard({ post, featured = false }: PolicyCardProps) {
   return (
-    <article className="group overflow-hidden rounded-[22px] surface transition-shadow hover:shadow-[var(--shadow-soft)]">
-      {featured ? (
-        <Link href={`/policy/${post.slug}`} className="photo-wash relative block h-[210px] sm:h-[260px]">
-          <Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 760px) 100vw, 780px" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#101913]/80 via-[#101913]/12 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
-            <div className="max-w-[600px]">
-              <span className="mb-3 inline-flex rounded-full border border-white/30 bg-black/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[.15em] text-white backdrop-blur-sm">{post.category}</span>
-              <h2 className="font-display max-w-2xl text-[25px] font-bold leading-[1.12] text-white sm:text-[32px]">{post.title}</h2>
-            </div>
-            <span className="mb-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur"><ArrowUpRight size={19}/></span>
+    <article
+      className={`rounded-xl border bg-white transition-all duration-200 hover:shadow-md ${
+        featured ? "border-[#143454]/30 shadow-xs" : "border-[#e5e7eb]"
+      }`}
+    >
+      {/* Top Metadata Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#f1f3f5] px-4 py-2.5 sm:px-5 text-[11px] bg-[#fafbfc]">
+        <div className="flex items-center gap-2">
+          <span className="inline-flex items-center gap-1 rounded-md px-2 py-0.5 font-semibold text-[#143454] bg-[#e8eef5] text-[10px] uppercase tracking-wider">
+            <Tag size={10} className="text-[#E87518]" />
+            {post.category}
+          </span>
+          <span className="inline-flex items-center gap-1 font-medium text-[#16834A] text-[11px]">
+            <CheckCircle2 size={12} />
+            {post.statusLabel}
+          </span>
+        </div>
+        <div className="flex items-center gap-1.5 text-[#666666] text-[11px]">
+          <Calendar size={12} className="text-[#9ca3af]" />
+          <span>{post.publishedDate}</span>
+        </div>
+      </div>
+
+      {/* Main Content Area */}
+      <div className="p-4 sm:p-5">
+        {/* Title */}
+        <h2 className="font-display text-[17px] sm:text-[19px] font-bold leading-snug text-[#171717] hover:text-[#143454]">
+          <Link href={`/policy/${post.slug}`}>{post.title}</Link>
+        </h2>
+
+        {/* Factual Summary */}
+        <p className="mt-2 text-[13px] leading-relaxed text-[#444444]">
+          {post.summary}
+        </p>
+
+        {/* Key Highlights list if featured */}
+        {featured && post.keyHighlights && post.keyHighlights.length > 0 && (
+          <div className="mt-3.5 rounded-lg border border-[#e5e7eb] bg-[#f8fafc] p-3 text-[12px] text-[#334155]">
+            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#143454] mb-1.5">
+              Key Programme Highlights:
+            </span>
+            <ul className="space-y-1 list-disc list-inside text-[#475569]">
+              {post.keyHighlights.map((highlight, idx) => (
+                <li key={idx} className="leading-relaxed">
+                  {highlight}
+                </li>
+              ))}
+            </ul>
           </div>
-        </Link>
-      ) : (
-        <div className="flex min-w-0">
-          <Link href={`/policy/${post.slug}`} aria-label={`Read ${post.title}`} className="relative block w-[108px] shrink-0 overflow-hidden sm:w-[158px]">
-            <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width: 760px) 108px, 158px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-          </Link>
-          <div className="min-w-0 flex-1 p-4 sm:p-5">
-            <div className="mb-2 flex items-center justify-between gap-2">
-              <span className="text-[9px] font-bold uppercase tracking-[.14em] accent">{post.category}</span>
-              <span className="shrink-0 text-[10px] muted">{timeAgo(post.publishedAt)}</span>
-            </div>
-            <Link href={`/policy/${post.slug}`}><h2 className="font-display text-[17px] font-bold leading-[1.2] sm:text-[20px]">{post.title}</h2></Link>
-            <p className="mt-2 line-clamp-2 text-[12px] leading-5 muted">{post.excerpt}</p>
-            <div className="mt-4 flex flex-wrap items-center gap-3 text-[10px] muted">
-              <span className="inline-flex items-center gap-1.5"><MessageCircle size={13}/>{post.comments} responses</span>
-              <span className="inline-flex items-center gap-1.5"><Clock3 size={13}/>{post.status === "Closing soon" ? "Closing soon" : "Open"}</span>
-              <Link className="ml-auto inline-flex items-center gap-1 font-semibold" style={{color:"var(--accent)"}} href={`/policy/${post.slug}`}>Read <MoveUpRight size={13}/></Link>
-            </div>
+        )}
+
+        {/* Footer Actions & Ministry Citation */}
+        <div className="mt-4 pt-3.5 border-t border-[#f1f3f5] flex flex-wrap items-center justify-between gap-3 text-[12px]">
+          <div className="flex items-center gap-1.5 text-[#555555] font-medium">
+            <Building size={13} className="text-[#143454] shrink-0" />
+            <span className="text-[11px] sm:text-[12px]">{post.ministry}</span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            {/* Direct Official Publication Link */}
+            <a
+              href={post.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-semibold text-[#143454] hover:text-[#E87518] text-[11px] transition-colors py-1 px-2 rounded hover:bg-[#f1f5f9]"
+              title="Open verified official government publication in a new tab"
+            >
+              <span>Official source</span>
+              <ExternalLink size={12} />
+            </a>
+
+            {/* Read Detail Link */}
+            <Link
+              href={`/policy/${post.slug}`}
+              className="inline-flex items-center gap-1 font-semibold text-[#E87518] hover:text-[#c25e0e] text-[11px] transition-colors"
+            >
+              <span>Details</span>
+              <ArrowRight size={12} />
+            </Link>
           </div>
         </div>
-      )}
-      {featured && (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-3 p-5 text-[11px] muted sm:px-6">
-          <span className="inline-flex items-center gap-1.5"><MessageCircle size={14}/>{post.comments} responses <span className="text-[10px]">(demo)</span></span>
-          <span className="inline-flex items-center gap-1.5"><Clock3 size={14}/>{post.status === "Closing soon" ? "Closing soon" : "Recently opened"}</span>
-          <span className="ml-auto text-[10px]">Source: {post.sourceName}</span>
-        </div>
-      )}
+      </div>
     </article>
   );
 }

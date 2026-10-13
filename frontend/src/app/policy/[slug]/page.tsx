@@ -1,58 +1,142 @@
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Bookmark, Clock3, ExternalLink, MessageCircle, ShieldCheck, ThumbsDown, ThumbsUp } from "lucide-react";
-import { demoPosts } from "@/features/feed/demo-data";
+import { ArrowLeft, ExternalLink, CheckCircle2, Building, Calendar, Tag, ShieldCheck, FileText } from "lucide-react";
+import { officialPolicies } from "@/features/feed/demo-data";
 
 export function generateStaticParams() {
-  return demoPosts.map((post) => ({ slug: post.slug }));
+  return officialPolicies.map((post) => ({ slug: post.slug }));
 }
 
 export default async function PolicyDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = demoPosts.find((item) => item.slug === slug);
-  if (!post) return <main className="content-width py-16"><h1 className="font-display text-3xl font-bold">Discussion not found</h1><Link href="/" className="mt-4 inline-block accent">Return to feed</Link></main>;
+  const post = officialPolicies.find((item) => item.slug === slug);
 
-  return <main className="content-width min-h-screen py-6 pb-24 md:py-10">
-    <Link href="/" className="inline-flex items-center gap-2 text-xs muted"><ArrowLeft size={14}/> Back to discussions</Link>
-    <article className="mx-auto mt-6 max-w-[820px] overflow-hidden rounded-[24px] border" style={{background:"var(--surface)",borderColor:"var(--line)"}}>
-      <div className="relative h-[220px] sm:h-[340px]">
-        <Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 820px) 100vw, 820px" className="object-cover"/>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"/>
-        <span className="absolute bottom-5 left-5 rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-white backdrop-blur">{post.category}</span>
+  if (!post) {
+    return (
+      <main className="max-w-4xl mx-auto px-4 py-16 text-center">
+        <h1 className="font-display text-3xl font-bold text-[#171717]">Programme Not Found</h1>
+        <p className="mt-2 text-sm text-[#666666]">The requested government policy or scheme could not be located.</p>
+        <Link
+          href="/"
+          className="mt-5 inline-flex items-center gap-2 rounded-md bg-[#143454] px-4 py-2 text-sm font-semibold text-white shadow-xs"
+        >
+          <ArrowLeft size={16} /> Return to Public Policy Portal
+        </Link>
+      </main>
+    );
+  }
+
+  return (
+    <main className="max-w-4xl mx-auto px-4 py-6 sm:py-10">
+      {/* Breadcrumb Navigation */}
+      <div className="mb-5 flex items-center gap-2 text-xs text-[#666666]">
+        <Link href="/" className="hover:text-[#E87518] flex items-center gap-1 font-medium">
+          <ArrowLeft size={13} /> Public Policy Portal
+        </Link>
+        <span>/</span>
+        <span className="text-[#143454] font-semibold">{post.category}</span>
+        <span>/</span>
+        <span className="truncate max-w-xs text-[#9ca3af]">{post.title}</span>
       </div>
-      <div className="p-5 sm:p-9">
-        <div className="flex flex-wrap items-center gap-2 text-[11px] muted"><span>PolicyLens demo consultation</span><span>·</span><span>{post.language}</span><span>·</span><span>{post.status}</span></div>
-        <h1 className="font-display mt-4 text-[32px] font-extrabold leading-[1.08] sm:text-[46px]">{post.title}</h1>
-        <p className="mt-5 text-[15px] leading-7 muted">{post.excerpt}</p>
-        <div className="mt-6 rounded-xl p-4" style={{background:"var(--surface-subtle)"}}>
-          <p className="text-[10px] font-bold uppercase tracking-[.15em] accent">Consultation context</p>
-          <p className="mt-2 text-sm leading-6">The full policy text, eligibility details, closing date and official source will appear here when connected to the consultation API. This is illustrative content, not an active government consultation.</p>
-          <a href={post.sourceUrl} className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold accent">View source details <ExternalLink size={13}/></a>
-        </div>
-        <div className="mt-6 flex flex-wrap items-center gap-3 border-y py-4" style={{borderColor:"var(--line)"}}>
-          <span className="inline-flex items-center gap-2 text-xs muted"><MessageCircle size={15}/>{post.comments} responses <span className="text-[10px]">(demo)</span></span><span className="flex-1"/>
-          <button type="button" className="inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs" style={{borderColor:"var(--line)"}}><Bookmark size={14}/> Save</button>
-        </div>
-        <section className="mt-7">
-          <h2 className="font-display text-xl font-bold">Where do you stand?</h2>
-          <p className="mt-1 text-xs muted">Review the source before sharing your position.</p>
-          <div className="mt-4 grid grid-cols-3 gap-2">
-            <button type="button" className="flex flex-col items-center gap-2 rounded-xl border p-3 text-xs" style={{borderColor:"var(--line)"}}><ThumbsUp size={17} className="accent"/>Support</button>
-            <button type="button" className="flex flex-col items-center gap-2 rounded-xl border p-3 text-xs" style={{borderColor:"var(--line)"}}><ThumbsDown size={17} className="muted"/>Oppose</button>
-            <button type="button" className="flex flex-col items-center gap-2 rounded-xl border p-3 text-xs" style={{borderColor:"var(--line)"}}><ShieldCheck size={17} className="muted"/>No opinion</button>
+
+      <article className="rounded-xl border border-[#e5e7eb] bg-white shadow-xs overflow-hidden">
+        {/* Top Official Banner */}
+        <div className="border-b border-[#e5e7eb] bg-[#f8fafc] px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-[11px] font-bold text-[#143454] bg-[#e8eef5] uppercase tracking-wider">
+              <Tag size={11} className="text-[#E87518]" />
+              {post.category}
+            </span>
+            <span className="inline-flex items-center gap-1 font-semibold text-[#16834A] text-xs">
+              <CheckCircle2 size={13} />
+              {post.statusLabel}
+            </span>
           </div>
-          <div className="mt-5 rounded-2xl border p-4 sm:p-5" style={{borderColor:"var(--line)"}}>
-            <label htmlFor="comment" className="text-sm font-semibold">Add to the discussion</label>
-            <textarea id="comment" rows={4} maxLength={3000} placeholder="Explain your view. What evidence or experience informs it?" className="mt-3 w-full resize-y rounded-xl border p-3 text-sm outline-none" style={{background:"var(--paper)",borderColor:"var(--line)"}}/>
-            <div className="mt-3 flex items-center justify-between gap-3"><span className="text-[10px] muted">Be respectful. Support claims with evidence where possible.</span><Link href="/login" className="rounded-full px-4 py-2.5 text-xs font-semibold" style={{background:"var(--accent)",color:"var(--surface)"}}>Sign in to comment</Link></div>
+
+          <div className="flex items-center gap-2 text-xs text-[#666666]">
+            <Calendar size={13} className="text-[#9ca3af]" />
+            <span>{post.publishedDate}</span>
           </div>
-        </section>
-        <section className="mt-8">
-          <div className="flex items-center justify-between"><h2 className="font-display text-xl font-bold">Community responses</h2><span className="inline-flex items-center gap-1 text-xs muted">Recent <Clock3 size={13}/></span></div>
-          <div className="mt-4 rounded-xl border p-5" style={{borderColor:"var(--line)"}}><p className="text-sm font-semibold">Responses will appear here</p><p className="mt-1 text-xs leading-5 muted">Live responses will show account-controlled reactions, timestamp, stakeholder category and evidence when available.</p><p className="mt-4 text-[10px] muted">Community activity will remain separate from validated research findings.</p></div>
-        </section>
-        <div className="mt-5 text-[10px] muted">Comment editing and deletion will be server-limited to the first 10 minutes after posting.</div>
-      </div>
-    </article>
-  </main>;
+        </div>
+
+        {/* Content Body */}
+        <div className="p-6 sm:p-8 space-y-6">
+          {/* Ministry / Authority Header */}
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#143454]">
+            <Building size={16} className="text-[#E87518]" />
+            <span>{post.ministry}</span>
+            {post.department && (
+              <>
+                <span className="text-[#d1d5db]">•</span>
+                <span className="text-[#666666]">{post.department}</span>
+              </>
+            )}
+          </div>
+
+          {/* Policy Title */}
+          <h1 className="font-display text-[24px] sm:text-[32px] font-extrabold text-[#171717] leading-tight">
+            {post.title}
+          </h1>
+
+          {/* Factual Summary */}
+          <div className="rounded-lg border-l-4 border-[#143454] bg-[#f8fafc] p-4 text-[14px] leading-relaxed text-[#334155]">
+            <strong className="block text-[11px] uppercase tracking-wider text-[#143454] mb-1">
+              Official Executive Summary
+            </strong>
+            {post.summary}
+          </div>
+
+          {/* Key Programme Highlights */}
+          {post.keyHighlights && post.keyHighlights.length > 0 && (
+            <div className="space-y-3">
+              <h2 className="font-display text-[16px] font-bold text-[#171717] flex items-center gap-2">
+                <FileText size={16} className="text-[#143454]" />
+                Key Programme Provisions &amp; Implementation Details
+              </h2>
+              <div className="rounded-xl border border-[#e5e7eb] bg-white p-4">
+                <ul className="space-y-2.5 text-[13px] text-[#444444]">
+                  {post.keyHighlights.map((highlight, index) => (
+                    <li key={index} className="flex items-start gap-2.5">
+                      <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#e8eef5] text-[10px] font-bold text-[#143454]">
+                        {index + 1}
+                      </span>
+                      <span className="leading-relaxed">{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Verified Source Action Box */}
+          <div className="rounded-xl border border-[#dbeafe] bg-[#eff6ff] p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#1d4ed8] flex items-center gap-1.5">
+                <ShieldCheck size={14} />
+                Verified Primary Source Publication
+              </span>
+              <p className="text-xs text-[#3b82f6] leading-relaxed">
+                Published by {post.sourceName}. View complete gazette notifications, press releases, and circulars.
+              </p>
+            </div>
+            <a
+              href={post.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#143454] px-4 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-[#0e2a47] transition-colors shrink-0"
+            >
+              <span>View Official Source</span>
+              <ExternalLink size={13} />
+            </a>
+          </div>
+
+          {/* Information Integrity Disclaimer */}
+          <div className="pt-4 border-t border-[#f1f3f5] text-[11px] text-[#666666] leading-relaxed">
+            <p>
+              <strong>Notice:</strong> This entry is an official public information record curated from Government of India public releases. In compliance with public information standards, this page does not host informal polls, fabricated popularity metrics, or unofficial commentary.
+            </p>
+          </div>
+        </div>
+      </article>
+    </main>
+  );
 }
