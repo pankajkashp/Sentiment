@@ -5,8 +5,11 @@ import Link from "next/link";
 import { ArrowUpRight, Clock3, MessageCircle, MoveUpRight } from "lucide-react";
 import type { PolicyPost } from "./types";
 
+// Fixed reference time keeps the fictional demo consistent between server render and hydration.
+const DEMO_REFERENCE_NOW = Date.parse("2026-10-13T18:00:00+05:30");
+
 function timeAgo(value: string) {
-  const difference = Math.max(0, Date.now() - new Date(value).getTime());
+  const difference = Math.max(0, DEMO_REFERENCE_NOW - new Date(value).getTime());
   const hours = Math.floor(difference / 3_600_000);
   if (hours < 1) return "Just now";
   if (hours < 24) return `${hours}h ago`;
