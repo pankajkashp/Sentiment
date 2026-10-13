@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ExternalLink, ShieldAlert, PhoneCall, Building2, CheckCircle2, Search, SlidersHorizontal, ArrowUpRight } from "lucide-react";
 import { GovHeader } from "@/components/navigation/gov-header";
@@ -14,6 +14,11 @@ export default function HomePage() {
   const [selectedTopic, setSelectedTopic] = useState<TopicCategory>("All topics");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedLanguage, setSelectedLanguage] = useState("All languages");
+  const [currentTime, setCurrentTime] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentTime(Date.now());
+  }, []);
 
   const filteredPolicies = useMemo(() => {
     let list = [...officialPolicies];
@@ -48,7 +53,7 @@ export default function HomePage() {
       list.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
     } else if (sortTime === "Last 24 hours") {
       // Filter by the actual publication date instead of a hard-coded priority list.
-      const cutoff = Date.now() - 24 * 60 * 60 * 1000;
+      const cutoff = currentTime === null ? Number.POSITIVE_INFINITY : currentTime - 24 * 60 * 60 * 1000;
       list = list.filter((p) => {
         const publishedAt = new Date(p.publishedDate).getTime();
         return Number.isFinite(publishedAt) && publishedAt >= cutoff;
@@ -56,7 +61,7 @@ export default function HomePage() {
     }
 
     return list;
-  }, [sortTime, selectedTopic, searchQuery, selectedLanguage]);
+  }, [sortTime, selectedTopic, searchQuery, selectedLanguage, currentTime]);
 
   const handleReset = () => {
     setSortTime("Latest");
