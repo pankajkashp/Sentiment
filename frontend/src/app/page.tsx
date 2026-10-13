@@ -83,19 +83,19 @@ export default function HomePage() {
         <section className="mb-5 rounded-xl border border-[#e5e7eb] bg-white p-4 sm:p-5 shadow-2xs">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
             <div className="lg:col-span-7 space-y-2.5">
-              <div className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[11px] font-semibold text-[#143454] bg-[#e8eef5]">
-                <CheckCircle2 size={13} className="text-[#16834A]" />
+              <div className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold text-[#143454] bg-[#e8eef5]">
+                <CheckCircle2 size={14} className="text-[#16834A]" />
                 <span>Verified Public Policy &amp; Programme Directory</span>
               </div>
-              <h1 className="font-display text-[22px] sm:text-[28px] font-extrabold tracking-tight text-[#171717] leading-tight">
+              <h1 className="font-display text-[24px] sm:text-[30px] font-extrabold tracking-tight text-[#171717] leading-tight">
                 National Policy Updates &amp; Welfare Schemes Repository
               </h1>
-              <p className="text-[13px] leading-relaxed text-[#444444] max-w-2xl">
+              <p className="text-[14px] sm:text-[15px] leading-relaxed text-[#374151] max-w-2xl">
                 Access official Government of India welfare schemes, direct benefit transfers,
                 and ministry releases verified from the Press Information Bureau (PIB) and the
                 National Portal of India. All updates directly cite authenticated government documents.
               </p>
-              <div className="pt-1 flex flex-wrap items-center gap-3 text-[11px] text-[#666666]">
+              <div className="pt-1 flex flex-wrap items-center gap-3 text-[12px] text-[#666666]">
                 <span className="flex items-center gap-1 text-[#16834A] font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#16834A]" />
                   Zero Fabricated Metrics

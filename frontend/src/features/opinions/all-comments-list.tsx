@@ -132,7 +132,7 @@ export function AllCommentsList({
       {!isCollapsed && (
         <>
           {comments.length === 0 ? (
-            <div className="py-6 text-center text-xs text-[#666666]">
+            <div className="py-6 text-center text-[13px] sm:text-[14px] text-[#666666]">
               No preview comments have been added in this browser session yet.
             </div>
           ) : (
@@ -145,72 +145,72 @@ export function AllCommentsList({
 
                 return (
                   <div key={item.id} className="py-4 first:pt-0 last:pb-0 space-y-2.5">
-                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-full bg-[#e8eef5] flex items-center justify-center text-[#143454] shrink-0 font-bold text-xs">
-                          <User size={14} />
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-[13px]">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-full bg-[#e8eef5] flex items-center justify-center text-[#143454] shrink-0 font-bold text-[13px]">
+                          <User size={15} />
                         </div>
                         <div>
-                          <span className="font-semibold text-[#171717] block leading-tight">{item.stakeholder}</span>
-                          <span className="text-[10px] text-[#9ca3af]">ID: {item.id} • {item.timestamp}</span>
+                          <span className="font-semibold text-[#171717] block leading-tight text-[13px] sm:text-[14px]">{item.stakeholder}</span>
+                          <span className="text-[11px] text-[#9ca3af]">ID: {item.id} • {item.timestamp}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         {isAnalysisReady && getStanceBadge(item.stance)}
                         {isSessionPreview && (
-                          <span className="text-[10px] text-[#475569] bg-[#f1f5f9] px-2 py-0.5 rounded">
+                          <span className="text-[11px] text-[#475569] bg-[#f1f5f9] px-2 py-0.5 rounded">
                             Session preview · not saved
                           </span>
                         )}
                         {item.policyTopic && isAnalysisReady && (
-                          <span className="text-[10px] text-[#666666] bg-[#f8fafc] px-2 py-0.5 rounded border border-[#e5e7eb]">
+                          <span className="text-[11px] text-[#666666] bg-[#f8fafc] px-2 py-0.5 rounded border border-[#e5e7eb]">
                             {item.policyTopic.replace("_", " ")}
                           </span>
                         )}
                       </div>
                     </div>
 
-                    <div className="text-[13px] leading-relaxed text-[#334155] pl-9">
+                    <div className="text-[14px] sm:text-[15px] leading-relaxed text-[#334155] pl-10.5">
                       <p>{isTextLong && !isTextExpanded ? `${item.originalText.slice(0, 200)}...` : item.originalText}</p>
                       {isTextLong && (
-                        <button type="button" onClick={() => toggleText(item.id)} className="mt-1 text-xs font-semibold text-[#143454] hover:text-[#E87518] cursor-pointer">
+                        <button type="button" onClick={() => toggleText(item.id)} className="mt-1 text-[13px] font-semibold text-[#143454] hover:text-[#E87518] cursor-pointer">
                           {isTextExpanded ? "Show less" : "Read more"}
                         </button>
                       )}
                     </div>
 
-                    <div className="pl-9 flex items-center gap-4 text-xs pt-1">
+                    <div className="pl-10.5 flex items-center gap-4 text-[13px] pt-1">
                       {isAnalysisReady && (
                         <button type="button" onClick={() => toggleAnalysis(item.id)} className="inline-flex items-center gap-1 font-semibold text-[#143454] hover:text-[#E87518] transition-colors cursor-pointer">
-                          <Bot size={13} className="text-[#E87518]" />
+                          <Bot size={14} className="text-[#E87518]" />
                           <span>{isAnalysisExpanded ? "Hide AI Analysis" : "View AI Analysis"}</span>
-                          {isAnalysisExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                          {isAnalysisExpanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
                         </button>
                       )}
                       {item.sourceUrl ? (
-                        <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[#9ca3af] hover:text-[#666666] inline-flex items-center gap-1 text-[11px]">
-                          <span>Source Record</span><ExternalLink size={9} />
+                        <a href={item.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-[#9ca3af] hover:text-[#666666] inline-flex items-center gap-1 text-[12px]">
+                          <span>Source Record</span><ExternalLink size={10} />
                         </a>
                       ) : (
-                        <span className="text-[11px] text-[#9ca3af]">No external source · frontend preview</span>
+                        <span className="text-[12px] text-[#9ca3af]">No external source · frontend preview</span>
                       )}
                     </div>
 
                     {isAnalysisReady && isAnalysisExpanded && (
-                      <div className="ml-9 mt-2 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] p-3.5 text-xs space-y-2.5 animate-fadeIn">
-                        <div className="flex items-center justify-between text-[11px] font-semibold text-[#143454] border-b border-[#e2e8f0] pb-1.5">
-                          <span className="flex items-center gap-1.5"><Bot size={13} className="text-[#E87518]" />Model Analysis &amp; Attribution Breakdown</span>
+                      <div className="ml-10.5 mt-2 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] p-3.5 text-[13px] space-y-2.5 animate-fadeIn">
+                        <div className="flex items-center justify-between text-[12px] font-semibold text-[#143454] border-b border-[#e2e8f0] pb-1.5">
+                          <span className="flex items-center gap-1.5"><Bot size={14} className="text-[#E87518]" />Model Analysis &amp; Attribution Breakdown</span>
                           {item.confidenceScore && (
                             <span className="text-[#16834A] bg-[#e6f4ea] px-1.5 py-0.5 rounded">
                               Confidence: {Math.round(item.confidenceScore * 100)}%
                             </span>
                           )}
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                          <div><strong className="text-[10px] uppercase text-[#666666] block">Main Grievance / Concern:</strong><p className="text-[#171717]">{item.mainArgument}</p></div>
-                          <div><strong className="text-[10px] uppercase text-[#666666] block">Action Requested:</strong><p className="text-[#171717]">{item.suggestedAction || "None specified"}</p></div>
-                          <div className="sm:col-span-2"><strong className="text-[10px] uppercase text-[#666666] block">Attribution &amp; Safeguard Decision:</strong><span className="inline-block mt-0.5 text-[11px] font-mono bg-white px-2 py-0.5 rounded border border-[#e2e8f0] text-[#143454]">{item.demandStatus} • {item.attributionTier}</span></div>
-                          <div className="sm:col-span-2"><strong className="text-[10px] uppercase text-[#666666] block">Evidence &amp; Reasoning:</strong><p className="text-[#555555]">{item.evidenceReasoning}</p></div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[13px]">
+                          <div><strong className="text-[11px] uppercase text-[#666666] block">Main Grievance / Concern:</strong><p className="text-[#171717]">{item.mainArgument}</p></div>
+                          <div><strong className="text-[11px] uppercase text-[#666666] block">Action Requested:</strong><p className="text-[#171717]">{item.suggestedAction || "None specified"}</p></div>
+                          <div className="sm:col-span-2"><strong className="text-[11px] uppercase text-[#666666] block">Attribution &amp; Safeguard Decision:</strong><span className="inline-block mt-0.5 text-[12px] font-mono bg-white px-2 py-0.5 rounded border border-[#e2e8f0] text-[#143454]">{item.demandStatus} • {item.attributionTier}</span></div>
+                          <div className="sm:col-span-2"><strong className="text-[11px] uppercase text-[#666666] block">Evidence &amp; Reasoning:</strong><p className="text-[#555555]">{item.evidenceReasoning}</p></div>
                         </div>
                       </div>
                     )}
@@ -222,7 +222,7 @@ export function AllCommentsList({
 
           {visibleCount < comments.length && (
             <div className="pt-4 border-t border-[#f1f3f5] text-center">
-              <button type="button" onClick={() => setVisibleCount((prev) => Math.min(prev + 10, comments.length))} className="inline-flex items-center gap-2 rounded-lg bg-[#143454] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-[#0e2a47] transition-colors cursor-pointer">
+              <button type="button" onClick={() => setVisibleCount((prev) => Math.min(prev + 10, comments.length))} className="inline-flex items-center gap-2 rounded-lg bg-[#143454] px-5 py-2.5 text-[13px] font-semibold text-white shadow-xs hover:bg-[#0e2a47] transition-colors cursor-pointer">
                 <span>Load More Comments ({comments.length - visibleCount} remaining)</span><ChevronDown size={14} />
               </button>
             </div>

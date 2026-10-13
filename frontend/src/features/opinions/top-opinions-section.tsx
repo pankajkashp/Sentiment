@@ -47,20 +47,20 @@ export function TopOpinionsSection({ comments }: { comments: CommentItem[] }) {
       {/* Title & View Mode Toggle */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#f1f3f5]">
         <div>
-          <div className="inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#143454] bg-[#e8eef5] mb-1">
+          <div className="inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-[#143454] bg-[#e8eef5] mb-1">
             <Sparkles size={12} className="text-[#E87518]" />
             Post-Deadline NLP Analysis
           </div>
-          <h2 className="font-display text-[18px] sm:text-[20px] font-bold text-[#171717]">
+          <h2 className="font-display text-[19px] sm:text-[21px] font-bold text-[#171717]">
             Analyzed Public Opinions
           </h2>
-          <p className="text-xs text-[#666666] mt-0.5">
+          <p className="text-[13px] text-[#4b5563] mt-0.5">
             Key consultation submissions analyzed and ranked by policy demand clarity and viewpoint diversity.
           </p>
         </div>
 
         {/* Top 10 vs Top 1 Toggle */}
-        <div className="inline-flex rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-1 text-xs self-start sm:self-center">
+        <div className="inline-flex rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-1 text-[13px] self-start sm:self-center">
           <button
             type="button"
             onClick={() => setViewMode("top10")}

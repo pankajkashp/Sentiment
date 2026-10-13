@@ -103,50 +103,50 @@ export function ShareOpinionForm({
     <section className="rounded-xl border border-[#e5e7eb] bg-white p-5 sm:p-6 shadow-2xs space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 pb-3 border-b border-[#f1f3f5]">
         <div>
-          <h2 className="font-display text-[18px] sm:text-[20px] font-bold text-[#171717] flex items-center gap-2">
-            <MessageSquare size={18} className="text-[#143454]" />
+          <h2 className="font-display text-[19px] sm:text-[21px] font-bold text-[#171717] flex items-center gap-2">
+            <MessageSquare size={19} className="text-[#143454]" />
             <span>Share Your Opinion</span>
           </h2>
-          <p className="text-xs text-[#666666] mt-0.5">
+          <p className="text-[13px] sm:text-[14px] text-[#4b5563] mt-0.5">
             Comment on &ldquo;{policyTitle}&rdquo;. The four-day PolicyLens window is calculated from its configured opening timestamp and is not a government deadline.
           </p>
         </div>
         {formattedDeadline && (
           <div className="flex flex-col sm:items-end gap-0.5 shrink-0">
-            <span className="text-[11px] text-[#143454] bg-[#f0f4f8] px-2.5 py-1 rounded-md border border-[#d6e0ea] font-semibold">
+            <span className="text-[12px] text-[#143454] bg-[#f0f4f8] px-2.5 py-1 rounded-md border border-[#d6e0ea] font-semibold">
               Comments close {formattedDeadline}
             </span>
-            <span className="text-[10px] text-[#718096]">PolicyLens portal window</span>
+            <span className="text-[11px] text-[#64748b]">PolicyLens portal window</span>
           </div>
         )}
         {isTimestampMissing && (
-          <span className="text-[11px] text-[#888888] bg-[#f8fafc] px-2.5 py-1 rounded-md border border-[#e5e7eb] font-medium shrink-0 flex items-center gap-1">
-            <HelpCircle size={12} /> Opening time not configured
+          <span className="text-[12px] text-[#6b7280] bg-[#f8fafc] px-2.5 py-1 rounded-md border border-[#e5e7eb] font-medium shrink-0 flex items-center gap-1">
+            <HelpCircle size={13} /> Opening time not configured
           </span>
         )}
       </div>
 
-      <p className="text-[11px] leading-relaxed text-[#666666]">
+      <p className="text-[12px] leading-relaxed text-[#666666]">
         PolicyLens is an independent frontend preview. Comments are not official Government feedback, are not sent to MHA, and are not saved.
       </p>
 
       {isDeadlinePassed && (
-        <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#555555] flex items-center gap-2">
-          <Lock size={14} className="text-[#666666]" />
+        <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3.5 text-[13px] text-[#4b5563] flex items-center gap-2">
+          <Lock size={15} className="text-[#6b7280]" />
           <span className="font-medium">The PolicyLens four-day commenting window has closed.</span>
         </div>
       )}
 
       {isTimestampMissing && (
-        <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#555555] flex items-center gap-2">
-          <HelpCircle size={14} />
+        <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3.5 text-[13px] text-[#4b5563] flex items-center gap-2">
+          <HelpCircle size={15} className="text-[#6b7280]" />
           <span>Commenting is disabled until an opening timestamp is configured for this policy.</span>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-1.5">
-          <label htmlFor="stakeholder-select" className="block text-xs font-semibold text-[#171717]">
+          <label htmlFor="stakeholder-select" className="block text-[13px] sm:text-[14px] font-semibold text-[#171717]">
             Stakeholder / Community Perspective (optional context)
           </label>
           <select
@@ -154,7 +154,7 @@ export function ShareOpinionForm({
             value={stakeholder}
             onChange={(e) => setStakeholder(e.target.value)}
             disabled={isFormDisabled}
-            className="w-full rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-2.5 text-xs text-[#171717] outline-none focus:border-[#143454] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-2.5 text-[13px] text-[#171717] outline-none focus:border-[#143454] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option>Citizen / Community Member</option>
             <option>Small Business / MSME Representative</option>
@@ -166,9 +166,9 @@ export function ShareOpinionForm({
         </div>
 
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center justify-between text-[13px]">
             <label htmlFor="comment-text" className="font-semibold text-[#171717]">Your Comment</label>
-            <span className="text-[11px] text-[#666666]">{commentText.length} / 2,000 characters (min. 10)</span>
+            <span className="text-[12px] text-[#6b7280]">{commentText.length} / 2,000 characters (min. 10)</span>
           </div>
           <textarea
             id="comment-text"
@@ -178,13 +178,13 @@ export function ShareOpinionForm({
             onChange={(e) => setCommentText(e.target.value)}
             disabled={isFormDisabled}
             placeholder={isFormDisabled ? "Commenting is closed for this policy." : "Write your opinion, concern, or suggested improvement…"}
-            className="w-full rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#171717] outline-none focus:border-[#E87518] focus:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-[13px] sm:text-[14px] text-[#171717] outline-none focus:border-[#E87518] focus:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed leading-relaxed"
             required={!isFormDisabled}
           />
         </div>
 
         {submissionResult.status !== "idle" && (
-          <div className={`rounded-lg border p-3 text-xs flex items-start gap-2 ${
+          <div className={`rounded-lg border p-3.5 text-[13px] flex items-start gap-2 ${
             submissionResult.status === "local"
               ? "border-[#e5e7eb] bg-[#f8fafc] text-[#475569]"
               : "border-[#fca5a5] bg-[#fef2f2] text-[#991b1b]"
@@ -198,9 +198,9 @@ export function ShareOpinionForm({
           <button
             type="submit"
             disabled={isFormDisabled || commentText.trim().length < 10}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-[#143454] px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-[#0e2a47] disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-[#143454] px-4 py-2.5 text-[13px] font-bold text-white shadow-xs hover:bg-[#0e2a47] disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
           >
-            <Send size={13} /><span>Add Preview Comment</span>
+            <Send size={14} /><span>Add Preview Comment</span>
           </button>
         </div>
       </form>

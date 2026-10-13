@@ -69,7 +69,7 @@ export function FeedToolbar({
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => onSortTimeChange(tab)}
-                className={`shrink-0 rounded-md px-3.5 py-1.5 text-[12px] font-semibold transition-all cursor-pointer ${
+                className={`shrink-0 rounded-md px-3.5 py-1.5 text-[13px] font-semibold transition-all cursor-pointer ${
                   isSelected
                     ? "bg-[#E87518] text-white shadow-xs"
                     : "bg-[#f3f4f6] text-[#444444] hover:bg-[#e5e7eb] hover:text-[#171717]"
@@ -91,7 +91,7 @@ export function FeedToolbar({
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Search policies..."
-              className="w-full rounded-md border border-[#e5e7eb] bg-[#f9fafb] py-1.5 pl-8 pr-7 text-[12px] text-[#171717] outline-none transition-colors focus:border-[#E87518] focus:bg-white"
+              className="w-full rounded-md border border-[#e5e7eb] bg-[#f9fafb] py-1.5 pl-8 pr-7 text-[13px] text-[#171717] outline-none transition-colors focus:border-[#E87518] focus:bg-white"
               aria-label="Search policy updates"
             />
             {searchQuery && (
@@ -101,18 +101,18 @@ export function FeedToolbar({
                 className="absolute right-2 text-[#9ca3af] hover:text-[#171717]"
                 aria-label="Clear search"
               >
-                <X size={12} />
+                <X size={13} />
               </button>
             )}
           </div>
 
           {/* Small Language Icon & Selector */}
-          <div className="relative inline-flex items-center rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-2 py-1.5 text-[11px] text-[#444444] hover:border-[#d1d5db]">
-            <Globe size={13} className="mr-1.5 text-[#666666] shrink-0" aria-hidden="true" />
+          <div className="relative inline-flex items-center rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-2 py-1.5 text-[12px] text-[#444444] hover:border-[#d1d5db]">
+            <Globe size={14} className="mr-1.5 text-[#666666] shrink-0" aria-hidden="true" />
             <select
               value={selectedLanguage}
               onChange={(e) => onLanguageChange(e.target.value)}
-              className="bg-transparent text-[11px] font-medium text-[#171717] outline-none cursor-pointer pr-1"
+              className="bg-transparent text-[12px] font-medium text-[#171717] outline-none cursor-pointer pr-1"
               aria-label="Select portal language"
             >
               {LANGUAGES.map((lang) => (
@@ -144,7 +144,7 @@ export function FeedToolbar({
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => onTopicChange(cat)}
-                  className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-medium transition-colors cursor-pointer border ${
+                  className={`shrink-0 rounded-full px-3 py-1 text-[12px] font-medium transition-colors cursor-pointer border ${
                     isSelected
                       ? "border-[#E87518] bg-[#fff5eb] text-[#E87518] font-bold"
                       : "border-[#e5e7eb] bg-white text-[#555555] hover:border-[#d1d5db] hover:text-[#171717]"
@@ -161,10 +161,10 @@ export function FeedToolbar({
             <button
               type="button"
               onClick={onReset}
-              className="shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold text-[#666666] hover:text-[#E87518] px-2 py-1 transition-colors"
+              className="shrink-0 inline-flex items-center gap-1 text-[12px] font-semibold text-[#666666] hover:text-[#E87518] px-2 py-1 transition-colors"
               title="Reset all filters"
             >
-              <SlidersHorizontal size={11} />
+              <SlidersHorizontal size={12} />
               <span>Reset</span>
             </button>
           )}
@@ -172,7 +172,7 @@ export function FeedToolbar({
       </div>
 
       {/* Results Count Banner */}
-      <div className="flex items-center justify-between pt-1 text-[11px] text-[#666666]">
+      <div className="flex items-center justify-between pt-1 text-[12px] text-[#666666]">
         <span>
           Showing <strong className="text-[#171717]">{totalCount}</strong> verified government programme updates
         </span>
