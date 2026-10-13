@@ -14,7 +14,7 @@ This is a visual and interaction prototype using fictional local demo posts. It 
 - CSS design tokens and light/dark themes
 
 ## Run locally
-Requires Node.js 20.19+ or 22.12+.
+Requires Node.js 20.19+, 22.13+, or 24+.
 
 ```bash
 cd frontend
