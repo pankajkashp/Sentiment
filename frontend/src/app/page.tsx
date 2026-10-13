@@ -74,7 +74,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f8f6] text-[#171717]">
+    <div className="min-h-screen text-[#171717]">
       {/* 1. Header & Navigation (White Masthead + Navy Blue Navigation Bar) */}
       <GovHeader />
 
