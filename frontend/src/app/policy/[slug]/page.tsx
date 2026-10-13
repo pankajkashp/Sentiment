@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Bookmark, Clock3, ExternalLink, MessageCircle, ShieldCheck, ThumbsDown, ThumbsUp } from "lucide-react";
 import { demoPosts } from "@/features/feed/demo-data";
@@ -15,7 +16,7 @@ export default async function PolicyDetailPage({ params }: { params: Promise<{ s
     <Link href="/" className="inline-flex items-center gap-2 text-xs muted"><ArrowLeft size={14}/> Back to discussions</Link>
     <article className="mx-auto mt-6 max-w-[820px] overflow-hidden rounded-[24px] border" style={{background:"var(--surface)",borderColor:"var(--line)"}}>
       <div className="relative h-[220px] sm:h-[340px]">
-        <img src={post.image} alt={post.imageAlt} className="h-full w-full object-cover"/>
+        <Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 820px) 100vw, 820px" className="object-cover"/>
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"/>
         <span className="absolute bottom-5 left-5 rounded-full bg-white/15 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-white backdrop-blur">{post.category}</span>
       </div>
