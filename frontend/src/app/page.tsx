@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowDownUp, ArrowUpRight, Check, Globe2, Search, ShieldCheck, SlidersHorizontal, Sparkles } from "lucide-react";
+import { ArrowDownUp, ArrowUpRight, Check, Globe2, Search, SlidersHorizontal } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Wordmark } from "@/components/brand/wordmark";
 import { PolicyCard } from "@/features/feed/policy-card";
@@ -54,14 +54,14 @@ function FeedContent() {
         <section className="min-w-0">
           <div className="mb-7 flex items-end justify-between gap-4">
             <div>
-              <p className="mb-2 text-[10px] font-bold uppercase tracking-[.2em] accent">A better-informed public square</p>
-              <h1 className="font-display text-[34px] font-extrabold leading-[1.02] sm:text-[44px]">Issues that matter.<br/><span className="muted">Voices that count.</span></h1>
-              <p className="mt-3 max-w-[560px] text-[13px] leading-6 muted">Explore public discussions, understand where people stand, and follow the evidence behind every collective insight.</p>
+              
+              <h1 className="font-display text-[34px] font-extrabold leading-[1.02] sm:text-[44px]">Issues that matter.<br/><span style={{ color: "var(--muted)" }}>Voices that count.</span></h1>
+              <p className="mt-3 max-w-[560px] text-[13px] leading-6 muted">Explore public issues and the evidence behind them.</p>
             </div>
-            <div className="hidden shrink-0 items-center gap-1.5 pb-1 text-[10px] muted sm:flex"><ShieldCheck size={14}/> Evidence-first by design</div>
+
           </div>
 
-          <div className="mb-5 rounded-2xl border p-3 sm:p-4" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
+          <div className="glass-panel mb-5 rounded-2xl p-3 sm:p-4">
             <div className="mb-3 flex items-center gap-2 md:hidden">
               <Search size={16} className="muted"/>
               <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search public issues..." className="w-full bg-transparent text-[13px] outline-none" aria-label="Search discussions"/>
@@ -88,8 +88,8 @@ function FeedContent() {
           </div>
 
           <div className="mb-4 flex items-center justify-between">
-            <p className="text-[11px] muted">{visiblePosts.length} discussions · Posts expire from feed after 4 days</p>
-            <button className="inline-flex items-center gap-1.5 text-[11px] muted" onClick={() => {setFilter("Latest"); setCategory("All topics"); setQuery(""); setLanguage("All languages");}}><SlidersHorizontal size={13}/> Reset</button>
+            <p className="text-[11px] muted">{visiblePosts.length} discussions</p>
+            <button className="inline-flex items-center gap-1.5 text-[11px] muted" onClick={() => {setFilter("Latest"); setCategory("All topics"); setQuery(""); setLanguage("All languages");}}><SlidersHorizontal size={13} aria-hidden="true"/> Reset</button>
           </div>
 
           <div className="space-y-5">
@@ -100,12 +100,12 @@ function FeedContent() {
         </section>
 
         <aside className="desktop-only space-y-5">
-          <div className="rounded-[22px] p-5" style={{ background: "var(--accent)", color: "#F7F7F2" }}>
-            <Sparkles size={17} strokeWidth={1.6}/>
-            <p className="mt-5 text-[10px] font-semibold uppercase tracking-[.18em] opacity-70">The PolicyLens promise</p>
-            <h2 className="font-display mt-2 text-[24px] font-bold leading-tight">A louder voice is not always the whole story.</h2>
-            <p className="mt-3 text-[12px] leading-5 opacity-80">We keep source evidence close, distinguish concerns from requests, and make uncertainty visible.</p>
-            <Link href="/about" className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold">How it works <ArrowUpRight size={14}/></Link>
+          <div className="glass-panel rounded-[22px] p-5">
+            
+            
+            <h2 className="font-display mt-2 text-[22px] font-bold leading-tight">Public issues, viewed clearly.</h2>
+            <p className="mt-3 text-[12px] leading-5 muted">Explore perspectives alongside their supporting evidence.</p>
+            <Link href="/about" className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold accent">How it works <ArrowUpRight size={14}/></Link>
           </div>
           <div className="rounded-[22px] border p-5" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
             <div className="flex items-center justify-between"><h2 className="font-display text-[17px] font-bold">Topics in focus</h2><ArrowDownUp size={15} className="muted"/></div>
