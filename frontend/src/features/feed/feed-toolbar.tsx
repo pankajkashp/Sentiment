@@ -75,7 +75,7 @@ export function FeedToolbar({
                     : "bg-[#f3f4f6] text-[#444444] hover:bg-[#e5e7eb] hover:text-[#171717]"
                 }`}
               >
-                {tab}
+                {tab === "Latest" ? "All items" : tab === "Trending" ? "Most recent" : tab}
               </button>
             );
           })}
