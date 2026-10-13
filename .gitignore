@@ -98,3 +98,14 @@ Thumbs.db
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# ------------------------------------------------------------------------------
+# FRONTEND BUILD OUTPUTS
+# ------------------------------------------------------------------------------
+node_modules/
+.next/
+out/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
