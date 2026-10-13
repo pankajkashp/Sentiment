@@ -25,6 +25,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Department of Agriculture and Farmers Welfare",
     schemeType: "Central Sector Scheme",
+    commentingDeadline: "2026-11-15T18:00:00+05:30",
+    consultationStatus: "open",
     keyHighlights: [
       "Financial benefit of ₹6,000 per year paid in three 4-monthly installments of ₹2,000 each.",
       "Aadhaar-seeded direct payment through Public Financial Management System (PFMS).",
@@ -47,6 +49,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Ministry of Labour & Employment",
     schemeType: "Union Cabinet Approved Incentive",
+    commentingDeadline: "2026-10-10T18:00:00+05:30",
+    consultationStatus: "closed_analysis_running",
     keyHighlights: [
       "Incentivizes formal sector recruitment across manufacturing and service sectors.",
       "Direct benefit transfer of one-month wage (up to ₹15,000) for first-time employees in 3 installments.",
@@ -69,6 +73,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Prime Minister's Office",
     schemeType: "National Relief & Welfare Support",
+    commentingDeadline: "2026-10-05T18:00:00+05:30",
+    consultationStatus: "closed_analysis_pending",
     keyHighlights: [
       "Disaster relief grants for families affected by floods, cyclones, earthquakes, and accidents.",
       "Financial assistance for specialized medical treatment including cardiac surgeries and cancer therapy.",
@@ -91,6 +97,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi / Regional",
     department: "National Health Authority",
     schemeType: "Centrally Sponsored Scheme",
+    commentingDeadline: "2026-12-01T18:00:00+05:30",
+    consultationStatus: "open",
     keyHighlights: [
       "Cashless and paperless access to healthcare services at all empaneled public and private hospitals.",
       "Covers pre-existing conditions from day one with no family size restrictions.",
@@ -113,6 +121,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Central Pollution Control Board",
     schemeType: "National Environmental Mission",
+    commentingDeadline: "2026-10-12T18:00:00+05:30",
+    consultationStatus: "closed_analysis_failed",
     keyHighlights: [
       "Continuous Ambient Air Quality Monitoring Network across major urban hubs.",
       "Promotion of e-mobility, dust suppression systems, and clean industrial fuels.",
@@ -135,6 +145,8 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi / Multilingual",
     department: "National e-Governance Division (NeGD)",
     schemeType: "Digital India Core Infrastructure",
+    commentingDeadline: "2026-09-30T18:00:00+05:30",
+    consultationStatus: "closed_analysis_completed",
     keyHighlights: [
       "Legally valid digital document issuance and storage through DigiLocker.",
       "Open financial rail enabling instant real-time retail payments across banks.",
@@ -157,10 +169,36 @@ export const officialPolicies: PolicyPost[] = [
     language: "English / Hindi",
     department: "Department of School Education & Literacy",
     schemeType: "Centrally Sponsored Scheme",
+    commentingDeadline: "2026-11-30T18:00:00+05:30",
+    consultationStatus: "open",
     keyHighlights: [
       "Modern experiential, inquiry-driven pedagogy aligned with NEP 2020.",
       "Green school architecture with solar energy, water harvesting, and waste management.",
       "Sector skill council partnerships for vocational education and digital learning labs."
+    ]
+  },
+  {
+    id: "test-policy-lifecycle",
+    slug: "test-consultation-lifecycle",
+    title: "Controlled Sandbox: Consultation Lifecycle Verification",
+    summary:
+      "Explicit testing sandbox policy designed to verify the full scheduled consultation lifecycle: active commenting, post-deadline submission rejections, background analysis execution, idempotent result persistence, and retries.",
+    category: "Digital government",
+    ministry: "PolicyLens Verification Framework",
+    publishedDate: "13 Oct 2026 (QA Protocol)",
+    sourceName: "PolicyLens Verification Environment",
+    sourceUrl: "https://example.gov.in/test-consultation-lifecycle",
+    statusLabel: "QA Verification Scheme",
+    verifiedOfficial: false,
+    language: "English",
+    department: "ML Reproducibility Team",
+    schemeType: "Test Scheme",
+    commentingDeadline: "2026-10-13T23:59:59+05:30",
+    consultationStatus: "closed_analysis_completed",
+    keyHighlights: [
+      "Used to test submission acceptance while commenting is open and rejection after deadline.",
+      "Executes the real PolicyLens research pipeline (TF-IDF + Linear SVM + DemandPresenceDetector).",
+      "Synthetic test comments are explicitly marked with [SYNTHETIC_TEST_DATA]."
     ]
   }
 ];

@@ -6,6 +6,13 @@ export type PolicyCategory =
   | "Digital government"
   | "Education";
 
+export type ConsultationStatus =
+  | "open"
+  | "closed_analysis_pending"
+  | "closed_analysis_running"
+  | "closed_analysis_completed"
+  | "closed_analysis_failed";
+
 export type PolicyPost = {
   id: string;
   slug: string;
@@ -22,4 +29,6 @@ export type PolicyPost = {
   keyHighlights: string[];
   department?: string;
   schemeType?: string;
+  commentingDeadline?: string; // ISO 8601 format
+  consultationStatus?: ConsultationStatus;
 };

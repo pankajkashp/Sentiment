@@ -30,6 +30,12 @@ data/synthetic/*
 !data/synthetic/.gitkeep
 data/external/*
 !data/external/.gitkeep
+data/submissions/*
+!data/submissions/.gitkeep
+data/jobs/*
+!data/jobs/.gitkeep
+data/analysis/*
+!data/analysis/.gitkeep
 
 # ------------------------------------------------------------------------------
 # ML MODELS, CHECKPOINTS & EMBEDDINGS
