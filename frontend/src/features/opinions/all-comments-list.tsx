@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { MessageSquare, ArrowUpDown, ChevronDown, ChevronUp, Bot, ExternalLink, User, CheckCircle2, AlertCircle, HelpCircle } from "lucide-react";
+import {
+  MessageSquare,
+  ArrowUpDown,
+  ChevronDown,
+  ChevronUp,
+  Bot,
+  ExternalLink,
+  User,
+  CheckCircle2,
+  AlertCircle,
+  HelpCircle
+} from "lucide-react";
 import type { CommentItem, StanceType } from "./types";
 
 function getStanceBadge(stance: StanceType) {
@@ -35,11 +46,12 @@ function getStanceBadge(stance: StanceType) {
 
 export function AllCommentsList({
   comments,
-  isAnalysisReady = true
+  isAnalysisReady = false
 }: {
   comments: CommentItem[];
   isAnalysisReady?: boolean;
 }) {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [sortOrder, setSortOrder] = useState<"top" | "newest" | "oldest">("top");
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [expandedAnalysisIds, setExpandedAnalysisIds] = useState<Record<string, boolean>>({});
@@ -69,200 +81,216 @@ export function AllCommentsList({
 
   return (
     <section className="rounded-xl border border-[#e5e7eb] bg-white p-5 sm:p-6 shadow-2xs space-y-4">
-      {/* Top Header with Sort Controls */}
+      {/* Header with Collapsible Chevron Toggle */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#f1f3f5]">
-        <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="flex items-center gap-2 group text-left cursor-pointer"
+          aria-expanded={!isCollapsed}
+          aria-label="Toggle All Comments"
+        >
           <MessageSquare size={18} className="text-[#143454]" />
-          <h2 className="font-display text-[18px] sm:text-[20px] font-bold text-[#171717]">
+          <h2 className="font-display text-[18px] sm:text-[20px] font-bold text-[#171717] group-hover:text-[#143454] transition-colors">
             All Comments ({comments.length})
           </h2>
-        </div>
+          <span className="p-1 rounded-md text-[#666666] group-hover:text-[#143454] group-hover:bg-[#f1f3f5] transition-colors">
+            {isCollapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+          </span>
+        </button>
 
-        {/* YouTube-Style Sort By Dropdown / Buttons */}
-        <div className="flex items-center gap-2 text-xs">
-          <ArrowUpDown size={13} className="text-[#666666]" />
-          <span className="text-[#666666] font-medium">Sort by:</span>
-          <div className="inline-flex rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-0.5">
-            <button
-              type="button"
-              onClick={() => setSortOrder("top")}
-              className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
-                sortOrder === "top"
-                  ? "bg-[#143454] text-white shadow-xs"
-                  : "text-[#666666] hover:text-[#171717]"
-              }`}
-            >
-              Top comments
-            </button>
-            <button
-              type="button"
-              onClick={() => setSortOrder("newest")}
-              className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
-                sortOrder === "newest"
-                  ? "bg-[#143454] text-white shadow-xs"
-                  : "text-[#666666] hover:text-[#171717]"
-              }`}
-            >
-              Newest first
-            </button>
-            <button
-              type="button"
-              onClick={() => setSortOrder("oldest")}
-              className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
-                sortOrder === "oldest"
-                  ? "bg-[#143454] text-white shadow-xs"
-                  : "text-[#666666] hover:text-[#171717]"
-              }`}
-            >
-              Oldest first
-            </button>
+        {/* Sort Controls (Visible when not collapsed) */}
+        {!isCollapsed && comments.length > 0 && (
+          <div className="flex items-center gap-2 text-xs">
+            <ArrowUpDown size={13} className="text-[#666666]" />
+            <span className="text-[#666666] font-medium">Sort by:</span>
+            <div className="inline-flex rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-0.5">
+              <button
+                type="button"
+                onClick={() => setSortOrder("top")}
+                className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
+                  sortOrder === "top"
+                    ? "bg-[#143454] text-white shadow-xs"
+                    : "text-[#666666] hover:text-[#171717]"
+                }`}
+              >
+                Top comments
+              </button>
+              <button
+                type="button"
+                onClick={() => setSortOrder("newest")}
+                className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
+                  sortOrder === "newest"
+                    ? "bg-[#143454] text-white shadow-xs"
+                    : "text-[#666666] hover:text-[#171717]"
+                }`}
+              >
+                Newest first
+              </button>
+              <button
+                type="button"
+                onClick={() => setSortOrder("oldest")}
+                className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
+                  sortOrder === "oldest"
+                    ? "bg-[#143454] text-white shadow-xs"
+                    : "text-[#666666] hover:text-[#171717]"
+                }`}
+              >
+                Oldest first
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Comment List Items */}
-      <div className="divide-y divide-[#f1f3f5]">
-        {displayedList.map((item) => {
-          const isTextLong = item.originalText.length > 200;
-          const isTextExpanded = expandedTextIds[item.id];
-          const isAnalysisExpanded = expandedAnalysisIds[item.id];
+      {/* Collapsible Content */}
+      {!isCollapsed && (
+        <>
+          {comments.length === 0 ? (
+            <div className="py-6 text-center text-xs text-[#666666]">
+              No comments have been recorded for this policy yet.
+            </div>
+          ) : (
+            <div className="divide-y divide-[#f1f3f5]">
+              {displayedList.map((item) => {
+                const isTextLong = item.originalText.length > 200;
+                const isTextExpanded = expandedTextIds[item.id];
+                const isAnalysisExpanded = expandedAnalysisIds[item.id];
 
-          return (
-            <div key={item.id} className="py-4 first:pt-0 last:pb-0 space-y-2.5">
-              {/* Comment Header: Avatar, Stakeholder, Stance, ID */}
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-full bg-[#e8eef5] flex items-center justify-center text-[#143454] shrink-0 font-bold text-xs">
-                    <User size={14} />
-                  </div>
-                  <div>
-                    <span className="font-semibold text-[#171717] block leading-tight">
-                      {item.stakeholder}
-                    </span>
-                    <span className="text-[10px] text-[#9ca3af]">
-                      ID: {item.id} • {item.timestamp}
-                    </span>
-                  </div>
-                </div>
+                return (
+                  <div key={item.id} className="py-4 first:pt-0 last:pb-0 space-y-2.5">
+                    {/* Comment Header: Avatar, Stakeholder, Stance (if analysis ready), ID/Date */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+                      <div className="flex items-center gap-2">
+                        <div className="w-7 h-7 rounded-full bg-[#e8eef5] flex items-center justify-center text-[#143454] shrink-0 font-bold text-xs">
+                          <User size={14} />
+                        </div>
+                        <div>
+                          <span className="font-semibold text-[#171717] block leading-tight">
+                            {item.stakeholder}
+                          </span>
+                          <span className="text-[10px] text-[#9ca3af]">
+                            ID: {item.id} • {item.timestamp}
+                          </span>
+                        </div>
+                      </div>
 
-                <div className="flex items-center gap-2">
-                  {getStanceBadge(item.stance)}
-                  <span className="text-[10px] text-[#666666] bg-[#f8fafc] px-2 py-0.5 rounded border border-[#e5e7eb]">
-                    {item.policyTopic.replace("_", " ")}
-                  </span>
-                </div>
-              </div>
+                      <div className="flex items-center gap-2">
+                        {/* Only display AI-assigned stance badge after analysis completes */}
+                        {isAnalysisReady && getStanceBadge(item.stance)}
+                        {item.policyTopic && (
+                          <span className="text-[10px] text-[#666666] bg-[#f8fafc] px-2 py-0.5 rounded border border-[#e5e7eb]">
+                            {item.policyTopic.replace("_", " ")}
+                          </span>
+                        )}
+                      </div>
+                    </div>
 
-              {/* Comment Body */}
-              <div className="text-[13px] leading-relaxed text-[#334155] pl-9">
-                <p>
-                  {isTextLong && !isTextExpanded
-                    ? `${item.originalText.slice(0, 200)}...`
-                    : item.originalText}
-                </p>
+                    {/* Original Comment Text */}
+                    <div className="text-[13px] leading-relaxed text-[#334155] pl-9">
+                      <p>
+                        {isTextLong && !isTextExpanded
+                          ? `${item.originalText.slice(0, 200)}...`
+                          : item.originalText}
+                      </p>
 
-                {isTextLong && (
-                  <button
-                    type="button"
-                    onClick={() => toggleText(item.id)}
-                    className="mt-1 text-xs font-semibold text-[#143454] hover:text-[#E87518] cursor-pointer"
-                  >
-                    {isTextExpanded ? "Show less" : "Read more"}
-                  </button>
-                )}
-              </div>
+                      {isTextLong && (
+                        <button
+                          type="button"
+                          onClick={() => toggleText(item.id)}
+                          className="mt-1 text-xs font-semibold text-[#143454] hover:text-[#E87518] cursor-pointer"
+                        >
+                          {isTextExpanded ? "Show less" : "Read more"}
+                        </button>
+                      )}
+                    </div>
 
-              {/* Action Toolbar: View AI Analysis toggle */}
-              <div className="pl-9 flex items-center gap-4 text-xs pt-1">
-                <button
-                  type="button"
-                  onClick={() => toggleAnalysis(item.id)}
-                  className="inline-flex items-center gap-1 font-semibold text-[#143454] hover:text-[#E87518] transition-colors cursor-pointer"
-                >
-                  <Bot size={13} className="text-[#E87518]" />
-                  <span>{isAnalysisExpanded ? "Hide AI Analysis" : "View AI Analysis"}</span>
-                  {isAnalysisExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-                </button>
+                    {/* Action Toolbar */}
+                    <div className="pl-9 flex items-center gap-4 text-xs pt-1">
+                      {/* AI Analysis toggle button is shown ONLY after analysis completes */}
+                      {isAnalysisReady && (
+                        <button
+                          type="button"
+                          onClick={() => toggleAnalysis(item.id)}
+                          className="inline-flex items-center gap-1 font-semibold text-[#143454] hover:text-[#E87518] transition-colors cursor-pointer"
+                        >
+                          <Bot size={13} className="text-[#E87518]" />
+                          <span>{isAnalysisExpanded ? "Hide AI Analysis" : "View AI Analysis"}</span>
+                          {isAnalysisExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                        </button>
+                      )}
 
-                <a
-                  href={item.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#9ca3af] hover:text-[#666666] inline-flex items-center gap-1 text-[11px]"
-                >
-                  <span>Source Record</span>
-                  <ExternalLink size={9} />
-                </a>
-              </div>
+                      <a
+                        href={item.sourceUrl || "https://example.gov.in"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#9ca3af] hover:text-[#666666] inline-flex items-center gap-1 text-[11px]"
+                      >
+                        <span>Source Record</span>
+                        <ExternalLink size={9} />
+                      </a>
+                    </div>
 
-              {/* Collapsible Detailed AI Analysis Panel */}
-              {isAnalysisExpanded && (
-                <div className="ml-9 mt-2 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] p-3.5 text-xs space-y-2.5 animate-fadeIn">
-                  <div className="flex items-center justify-between text-[11px] font-semibold text-[#143454] border-b border-[#e2e8f0] pb-1.5">
-                    <span className="flex items-center gap-1.5">
-                      <Bot size={13} className="text-[#E87518]" />
-                      Model Analysis &amp; Attribution Breakdown
-                    </span>
-                    {isAnalysisReady && item.confidenceScore && (
-                      <span className="text-[#16834A] bg-[#e6f4ea] px-1.5 py-0.5 rounded">
-                        Confidence: {Math.round(item.confidenceScore * 100)}%
-                      </span>
+                    {/* Collapsible Detailed AI Analysis Panel (post-deadline analysis only) */}
+                    {isAnalysisReady && isAnalysisExpanded && (
+                      <div className="ml-9 mt-2 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] p-3.5 text-xs space-y-2.5 animate-fadeIn">
+                        <div className="flex items-center justify-between text-[11px] font-semibold text-[#143454] border-b border-[#e2e8f0] pb-1.5">
+                          <span className="flex items-center gap-1.5">
+                            <Bot size={13} className="text-[#E87518]" />
+                            Model Analysis &amp; Attribution Breakdown
+                          </span>
+                          {item.confidenceScore && (
+                            <span className="text-[#16834A] bg-[#e6f4ea] px-1.5 py-0.5 rounded">
+                              Confidence: {Math.round(item.confidenceScore * 100)}%
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                          <div>
+                            <strong className="text-[10px] uppercase text-[#666666] block">Main Grievance / Concern:</strong>
+                            <p className="text-[#171717]">{item.mainArgument}</p>
+                          </div>
+
+                          <div>
+                            <strong className="text-[10px] uppercase text-[#666666] block">Action Requested:</strong>
+                            <p className="text-[#171717]">{item.suggestedAction || "None specified"}</p>
+                          </div>
+
+                          <div className="sm:col-span-2">
+                            <strong className="text-[10px] uppercase text-[#666666] block">Attribution &amp; Safeguard Decision:</strong>
+                            <span className="inline-block mt-0.5 text-[11px] font-mono bg-white px-2 py-0.5 rounded border border-[#e2e8f0] text-[#143454]">
+                              {item.demandStatus} • {item.attributionTier}
+                            </span>
+                          </div>
+
+                          <div className="sm:col-span-2">
+                            <strong className="text-[10px] uppercase text-[#666666] block">Evidence &amp; Reasoning:</strong>
+                            <p className="text-[#555555]">{item.evidenceReasoning}</p>
+                          </div>
+                        </div>
+                      </div>
                     )}
                   </div>
-
-                  {!isAnalysisReady ? (
-                    <div className="p-2 text-xs text-[#666666] bg-white rounded border border-[#e2e8f0]">
-                      <p className="font-semibold text-[#143454] mb-0.5">
-                        Analysis Pending or In Progress
-                      </p>
-                      <p className="text-[11px] leading-relaxed">
-                        The machine learning pipeline has not completed sentiment and demand extraction for this submission. The original citizen text and provenance metadata are preserved as primary source records.
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                      <div>
-                        <strong className="text-[10px] uppercase text-[#666666] block">Main Grievance / Concern:</strong>
-                        <p className="text-[#171717]">{item.mainArgument}</p>
-                      </div>
-
-                      <div>
-                        <strong className="text-[10px] uppercase text-[#666666] block">Action Requested:</strong>
-                        <p className="text-[#171717]">{item.suggestedAction || "None specified"}</p>
-                      </div>
-
-                      <div className="sm:col-span-2">
-                        <strong className="text-[10px] uppercase text-[#666666] block">Attribution &amp; Safeguard Decision:</strong>
-                        <span className="inline-block mt-0.5 text-[11px] font-mono bg-white px-2 py-0.5 rounded border border-[#e2e8f0] text-[#143454]">
-                          {item.demandStatus} • {item.attributionTier}
-                        </span>
-                      </div>
-
-                      <div className="sm:col-span-2">
-                        <strong className="text-[10px] uppercase text-[#666666] block">Evidence &amp; Reasoning:</strong>
-                        <p className="text-[#555555]">{item.evidenceReasoning}</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
+          )}
 
-      {/* Pagination / Load More Comments */}
-      {visibleCount < comments.length && (
-        <div className="pt-4 border-t border-[#f1f3f5] text-center">
-          <button
-            type="button"
-            onClick={() => setVisibleCount((prev) => Math.min(prev + 10, comments.length))}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#143454] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-[#0e2a47] transition-colors cursor-pointer"
-          >
-            <span>Load More Comments ({comments.length - visibleCount} remaining)</span>
-            <ChevronDown size={14} />
-          </button>
-        </div>
+          {/* Pagination / Load More */}
+          {visibleCount < comments.length && (
+            <div className="pt-4 border-t border-[#f1f3f5] text-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((prev) => Math.min(prev + 10, comments.length))}
+                className="inline-flex items-center gap-2 rounded-lg bg-[#143454] px-5 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-[#0e2a47] transition-colors cursor-pointer"
+              >
+                <span>Load More Comments ({comments.length - visibleCount} remaining)</span>
+                <ChevronDown size={14} />
+              </button>
+            </div>
+          )}
+        </>
       )}
     </section>
   );

@@ -36,7 +36,10 @@ function getStanceBadge(stance: StanceType) {
 export function TopOpinionsSection({ comments }: { comments: CommentItem[] }) {
   const [viewMode, setViewMode] = useState<"top10" | "top1">("top10");
 
-  const top10Comments = comments.filter((c) => c.isTopInformative);
+  const top10Comments =
+    comments.filter((c) => c.isTopInformative).length > 0
+      ? comments.filter((c) => c.isTopInformative)
+      : comments.slice(0, 10);
   const displayedComments = viewMode === "top1" ? top10Comments.slice(0, 1) : top10Comments;
 
   return (
@@ -46,13 +49,13 @@ export function TopOpinionsSection({ comments }: { comments: CommentItem[] }) {
         <div>
           <div className="inline-flex items-center gap-1.5 rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#143454] bg-[#e8eef5] mb-1">
             <Sparkles size={12} className="text-[#E87518]" />
-            Most Informative Comments
+            Post-Deadline NLP Analysis
           </div>
           <h2 className="font-display text-[18px] sm:text-[20px] font-bold text-[#171717]">
-            Top Public Opinions
+            Highlighted Analyzed Comments
           </h2>
           <p className="text-xs text-[#666666] mt-0.5">
-            Ranked by clarity, specificity, actionable policy demand, and viewpoint diversity.
+            Key consultation submissions analyzed and ranked by policy demand clarity and viewpoint diversity.
           </p>
         </div>
 
