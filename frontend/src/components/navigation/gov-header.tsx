@@ -3,17 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { House, Menu, X, ExternalLink, FileText, Building2, Landmark, BookOpen, Info, ShieldCheck } from "lucide-react";
+import { House, History, Bookmark, Compass, UserRound, Menu, X, ExternalLink, ShieldCheck } from "lucide-react";
 import { PortalIdentity } from "@/components/brand/portal-identity";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/", icon: House },
-  { label: "Policy Updates", href: "/#feed", icon: FileText },
-  { label: "Government Schemes", href: "/#schemes", icon: Landmark },
-  { label: "Ministries", href: "/#ministries", icon: Building2 },
-  { label: "Documents", href: "/#documents", icon: BookOpen },
-  { label: "About", href: "/about", icon: Info },
+  { label: "History", href: "/history", icon: History },
+  { label: "Saved", href: "/saved", icon: Bookmark },
+  { label: "Explore", href: "/discover", icon: Compass },
+  { label: "Profile", href: "/profile", icon: UserRound },
 ];
 
 export function GovHeader() {
@@ -64,15 +63,14 @@ export function GovHeader() {
 
       {/* Main White Masthead */}
       <div className="max-w-7xl mx-auto px-4 py-2.5 sm:py-3.5 flex items-center justify-between gap-4">
-        {/* Left: Identity Block (Stambh Icon + Bilingual Title) */}
+        {/* Left: Identity Block with Provided Logo */}
         <PortalIdentity />
 
-        {/* Right: Institutional Badges (Swachh Bharat spectacles & Digital India inspired badge) */}
+        {/* Right: Institutional Badges (Swachh Bharat & Digital India) */}
         <div className="hidden lg:flex items-center gap-5">
           {/* Swachh Bharat Clean Line Art Badge */}
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#e5e7eb] bg-[#f9fafb]">
             <svg width="42" height="20" viewBox="0 0 60 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Swachh Bharat Mission">
-              {/* Glasses frames */}
               <circle cx="16" cy="13" r="10" stroke="#171717" strokeWidth="2.2" />
               <circle cx="44" cy="13" r="10" stroke="#171717" strokeWidth="2.2" />
               <path d="M26 13H34" stroke="#171717" strokeWidth="2.2" />
@@ -85,7 +83,7 @@ export function GovHeader() {
             </div>
           </div>
 
-          {/* Digital India / Civic Initiative Badge */}
+          {/* Digital India Initiative Badge */}
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#e5e7eb] bg-[#f9fafb]">
             <div className="w-6 h-6 rounded-full bg-[#143454] flex items-center justify-center text-white">
               <ShieldCheck size={14} className="text-[#E87518]" />
@@ -101,19 +99,19 @@ export function GovHeader() {
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg text-[#171717] hover:bg-[#f3f4f6] focus:outline-none focus:ring-2 focus:ring-[#143454]"
+          className="md:hidden p-2 rounded-lg text-[#171717] hover:bg-[#f3f4f6] focus:outline-none focus:ring-2 focus:ring-[#143454]"
           aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={mobileMenuOpen}
         >
-          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {/* Full-width Dark Navy Blue Navigation Bar */}
       <nav className="w-full bg-[#143454] text-white" aria-label="Primary Portal Navigation">
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 flex items-center justify-between">
-          {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex items-center gap-0.5 text-[13px] font-semibold tracking-wide">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+          {/* Desktop Nav Links with 16–18px font size and comfortable spacing */}
+          <ul className="hidden md:flex items-center gap-2 sm:gap-4 md:gap-6 text-[16px] sm:text-[17px] font-semibold tracking-normal">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -122,13 +120,13 @@ export function GovHeader() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className={`inline-flex items-center gap-2 px-4 py-3 transition-colors border-b-3 ${
+                    className={`inline-flex items-center gap-2.5 px-4 py-3.5 transition-colors border-b-4 ${
                       isActive
                         ? "bg-[#0e2a47] text-white border-[#E87518]"
-                        : "text-[#e2e8f0] hover:bg-[#1a4168] hover:text-white border-transparent"
+                        : "text-[#f1f5f9] hover:bg-[#1a4168] hover:text-white border-transparent"
                     }`}
                   >
-                    <Icon size={15} className={isActive ? "text-[#E87518]" : "text-[#94a3b8]"} />
+                    <Icon size={18} className={isActive ? "text-[#E87518]" : "text-[#cbd5e1]"} strokeWidth={isActive ? 2.2 : 1.8} />
                     <span>{item.label}</span>
                   </Link>
                 </li>
@@ -137,26 +135,26 @@ export function GovHeader() {
           </ul>
 
           {/* Quick External Portals Link on right */}
-          <div className="hidden lg:flex items-center gap-2 py-2 text-[11px] text-[#cbd5e1]">
-            <span className="bg-[#1a4168] px-2.5 py-1 rounded text-white font-medium flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E87518]" />
-              Official Government Data
+          <div className="hidden md:flex items-center gap-2 py-2 text-[12px] text-[#cbd5e1]">
+            <span className="bg-[#1a4168] px-3 py-1.5 rounded text-white font-medium flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#E87518]" />
+              Official Government Portal
             </span>
           </div>
 
           {/* Mobile bar summary */}
-          <div className="flex lg:hidden items-center justify-between w-full py-2.5 px-2 text-[12px] font-medium text-[#e2e8f0]">
+          <div className="flex md:hidden items-center justify-between w-full py-3 text-[15px] font-semibold text-white">
             <span className="flex items-center gap-2">
-              <House size={14} className="text-[#E87518]" />
-              Public Policy Navigation
+              <House size={18} className="text-[#E87518]" />
+              Portal Navigation
             </span>
-            <span className="text-[11px] text-[#94a3b8]">Menu {mobileMenuOpen ? "▲" : "▼"}</span>
+            <span className="text-[12px] font-normal text-[#94a3b8]">{mobileMenuOpen ? "Close ▲" : "Menu ▼"}</span>
           </div>
         </div>
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-[#1e4770] bg-[#0e2a47] px-4 py-3 space-y-1">
+          <div className="md:hidden border-t border-[#1e4770] bg-[#0e2a47] px-4 py-3 space-y-1">
             {NAV_ITEMS.map((item) => {
               const Icon = item.icon;
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -166,25 +164,25 @@ export function GovHeader() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-[13px] font-medium transition-colors ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-[16px] font-medium transition-colors ${
                     isActive
-                      ? "bg-[#143454] text-white border-l-3 border-[#E87518]"
+                      ? "bg-[#143454] text-white border-l-4 border-[#E87518]"
                       : "text-[#cbd5e1] hover:bg-[#1a4168] hover:text-white"
                   }`}
                 >
-                  <Icon size={16} className={isActive ? "text-[#E87518]" : "text-[#94a3b8]"} />
+                  <Icon size={20} className={isActive ? "text-[#E87518]" : "text-[#cbd5e1]"} strokeWidth={isActive ? 2.2 : 1.8} />
                   <span>{item.label}</span>
                 </Link>
               );
             })}
-            <div className="pt-2 border-t border-[#1a4168] flex items-center justify-between text-[11px] text-[#94a3b8]">
+            <div className="pt-3 mt-2 border-t border-[#1a4168] flex items-center justify-between text-[12px] text-[#94a3b8]">
               <a
                 href="https://www.india.gov.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white inline-flex items-center gap-1"
               >
-                india.gov.in <ExternalLink size={10} />
+                india.gov.in <ExternalLink size={11} />
               </a>
               <a
                 href="https://www.pib.gov.in"
@@ -192,7 +190,7 @@ export function GovHeader() {
                 rel="noopener noreferrer"
                 className="hover:text-white inline-flex items-center gap-1"
               >
-                pib.gov.in <ExternalLink size={10} />
+                pib.gov.in <ExternalLink size={11} />
               </a>
             </div>
           </div>

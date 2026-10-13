@@ -1,5 +1,16 @@
 import { Bookmark } from "lucide-react";
 import { FeaturePlaceholder } from "@/components/feature-placeholder";
+
 export default function SavedPage() {
-  return <FeaturePlaceholder eyebrow="Your library" title="Keep the issues you care about close." description="Save consultations you want to revisit and follow their discussion over time." icon={Bookmark} detail="Saved items will be associated with your verified account on the server. This prototype does not store user content." />;
+  return (
+    <FeaturePlaceholder
+      eyebrow="Saved Schemes & Notices"
+      title="Keep Key Welfare Programmes Close."
+      description="Bookmark critical policy announcements, eligibility criteria, and application guidelines to revisit them anytime."
+      icon={Bookmark}
+      detail="Saved schemes are linked to your verified account. Real-time notifications on scheme amendments will be available with the notification service."
+      cta="Back to Portal Home"
+      href="/"
+    />
+  );
 }

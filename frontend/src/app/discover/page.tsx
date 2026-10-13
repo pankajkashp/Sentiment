@@ -1,28 +1,54 @@
 import Link from "next/link";
-import { ArrowUpRight, Compass } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Compass } from "lucide-react";
 
 const topics = [
-  ["Environment", "Land, climate, conservation and resilience", "01"],
-  ["Public services", "Access, reliability and service standards", "02"],
-  ["Economy", "Work, taxes, business and cost of living", "03"],
-  ["Health", "Care, prevention and public health", "04"],
-  ["Digital government", "Access, privacy and digital rights", "05"],
-  ["Education", "Schools, skills and lifelong learning", "06"]
+  ["Environment", "Air quality, sustainability, forest conservation, and climate action", "01"],
+  ["Public services", "Direct citizen support, disaster relief, and infrastructure delivery", "02"],
+  ["Economy", "Employment schemes, farmer income support, and manufacturing incentives", "03"],
+  ["Health", "National health insurance, hospitalization coverage, and healthcare access", "04"],
+  ["Digital government", "Digital Public Infrastructure, paperless credentials, and open data rails", "05"],
+  ["Education", "Exemplary smart schools, NEP 2020 pedagogy, and skill development", "06"]
 ];
 
 export default function DiscoverPage() {
-  return <main className="content-width min-h-screen py-8 pb-24 md:py-12">
-    <Link href="/" className="text-xs muted">← Back to the feed</Link>
-    <p className="mt-8 text-[10px] font-bold uppercase tracking-[.2em] accent">Explore</p>
-    <h1 className="font-display mt-2 text-4xl font-extrabold">Find your point of view.</h1>
-    <p className="mt-3 max-w-xl text-sm leading-6 muted">Explore themes across open consultations. Topics are navigation categories, not claims about what the public thinks.</p>
-    <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {topics.map(([name, description, index]) => <Link key={name} href={`/?category=${encodeURIComponent(name)}`} className="group rounded-2xl border p-5 transition-all hover:-translate-y-0.5" style={{ background: "var(--surface)", borderColor: "var(--line)" }}>
-        <div className="flex items-center justify-between"><span className="text-[10px] muted">{index} / 06</span><Compass size={18} className="accent"/></div>
-        <h2 className="font-display mt-8 text-xl font-bold">{name}</h2>
-        <p className="mt-2 text-xs leading-5 muted">{description}</p>
-        <span className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold accent">Explore topic <ArrowUpRight size={14}/></span>
-      </Link>)}
-    </div>
-  </main>;
+  return (
+    <main className="max-w-5xl mx-auto px-4 py-8 pb-24 md:py-12">
+      <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-[#666666] hover:text-[#E87518]">
+        <ArrowLeft size={14} /> Back to Portal Home
+      </Link>
+      <div className="mt-6 space-y-2">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-[#143454] bg-[#e8eef5] px-2.5 py-1 rounded inline-block">
+          Explore Policy Sectors
+        </span>
+        <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-[#171717] leading-tight">
+          Browse Government Policies by Topic
+        </h1>
+        <p className="max-w-2xl text-[14px] leading-relaxed text-[#444444]">
+          Explore verified Union Ministry schemes and public policy updates categorized by administrative domain.
+        </p>
+      </div>
+
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {topics.map(([name, description, index]) => (
+          <Link
+            key={name}
+            href={`/?category=${encodeURIComponent(name)}#feed`}
+            className="group rounded-xl border border-[#e5e7eb] bg-white p-5 shadow-2xs transition-all hover:border-[#143454] hover:shadow-md"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[11px] font-mono font-semibold text-[#9ca3af]">{index} / 06</span>
+              <Compass size={18} className="text-[#E87518]" />
+            </div>
+            <h2 className="font-display mt-6 text-lg font-bold text-[#171717] group-hover:text-[#143454]">
+              {name}
+            </h2>
+            <p className="mt-2 text-xs leading-relaxed text-[#666666]">{description}</p>
+            <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-[#143454] group-hover:text-[#E87518]">
+              View Schemes <ArrowUpRight size={13} />
+            </span>
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
 }

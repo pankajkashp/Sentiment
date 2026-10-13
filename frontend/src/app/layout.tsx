@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   description:
     "Official Indian public policy and welfare schemes repository. Verified information from Government of India ministries, the Press Information Bureau, and national portals.",
   applicationName: "Public Policy Portal",
+  icons: {
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png" }
+    ],
+    shortcut: "/logo.png",
+    apple: "/logo.png"
+  },
   robots: { index: false, follow: false }
 };
 

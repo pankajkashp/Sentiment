@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { House, FileText, Landmark, BookOpen, Info } from "lucide-react";
+import { House, History, Bookmark, Compass, UserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Home", icon: House },
-  { href: "/#feed", label: "Updates", icon: FileText },
-  { href: "/#schemes", label: "Schemes", icon: Landmark },
-  { href: "/#documents", label: "Documents", icon: BookOpen },
-  { href: "/about", label: "About", icon: Info }
+  { href: "/history", label: "History", icon: History },
+  { href: "/saved", label: "Saved", icon: Bookmark },
+  { href: "/discover", label: "Explore", icon: Compass },
+  { href: "/profile", label: "Profile", icon: UserRound }
 ];
 
 export function SiteNav() {
@@ -28,11 +28,11 @@ export function SiteNav() {
             key={href}
             href={href}
             aria-label={label}
-            className="flex min-h-11 flex-col items-center justify-center gap-1 text-[10px]"
+            className="flex min-h-11 flex-col items-center justify-center gap-1 text-[11px]"
             style={{ color: active ? "var(--accent)" : "var(--muted)" }}
           >
             <Icon size={19} strokeWidth={active ? 2.2 : 1.7} />
-            <span className={active ? "font-semibold" : ""}>{label}</span>
+            <span className={active ? "font-bold text-[#E87518]" : "font-medium"}>{label}</span>
           </Link>
         );
       })}
