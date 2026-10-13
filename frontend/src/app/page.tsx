@@ -22,7 +22,7 @@ function FeedContent() {
   const visiblePosts = useMemo(() => {
     const filtered = demoPosts.filter((post) => {
       const withinFourDays = DEMO_REFERENCE_NOW - new Date(post.publishedAt).getTime() <= 4 * 86_400_000;
-      const withinDay = now - new Date(post.publishedAt).getTime() <= 86_400_000;
+      const withinDay = DEMO_REFERENCE_NOW - new Date(post.publishedAt).getTime() <= 86_400_000;
       const matchesCategory = category === "All topics" || post.category === category;
       const matchesLanguage = language === "All languages" || post.language === language;
       const terms = `${post.title} ${post.excerpt} ${post.category}`.toLocaleLowerCase();
