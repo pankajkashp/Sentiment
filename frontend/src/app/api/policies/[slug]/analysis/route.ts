@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
-import path from "path";
 import {
   consultationOpinionSummary,
   policyImprovementSuggestions,
   analyzedConsultationComments
 } from "@/features/opinions/comments-data";
+import {
+  isValidSlugFormat,
+  isKnownPolicySlug,
+  resolveSafeDataFilePath,
+  SecurityError,
+  BENCHMARK_PILOT_SLUG
+} from "@/lib/security";
 
 export async function GET(
   _request: NextRequest,
@@ -13,12 +19,41 @@ export async function GET(
 ) {
   const { slug } = await params;
 
-  const projectRoot = path.resolve(process.cwd(), "..");
-  const baseDataDir = fs.existsSync(path.join(process.cwd(), "data"))
-    ? path.join(process.cwd(), "data")
-    : path.join(projectRoot, "data");
+  // 1. Validate slug format (reject path traversal, special characters)
+  if (!isValidSlugFormat(slug)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "INVALID_SLUG",
+        message: "Policy identifier contains invalid characters or format."
+      },
+      { status: 400 }
+    );
+  }
 
-  const analysisFile = path.join(baseDataDir, "analysis", `${slug}.json`);
+  // 2. Validate known policy existence
+  if (!isKnownPolicySlug(slug)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "POLICY_NOT_FOUND",
+        message: "Policy not found."
+      },
+      { status: 404 }
+    );
+  }
+
+  // 3. Resolve safe path inside analysis storage directory
+  let analysisFile: string;
+  try {
+    analysisFile = resolveSafeDataFilePath("analysis", slug);
+  } catch (secErr) {
+    const msg = secErr instanceof SecurityError ? secErr.message : "Access denied";
+    return NextResponse.json(
+      { success: false, error: "SECURITY_VIOLATION", message: msg },
+      { status: 400 }
+    );
+  }
 
   if (fs.existsSync(analysisFile)) {
     try {
@@ -30,12 +65,12 @@ export async function GET(
         data
       });
     } catch {
-      // ignore
+      // ignore JSON parse errors and continue to fallbacks
     }
   }
 
-  // Fallback for Digital Public Infrastructure (authentic 50 pilot benchmark records)
-  if (slug === "digital-public-infrastructure-india-stack") {
+  // 4. Pilot benchmark record for Digital Public Infrastructure
+  if (slug === BENCHMARK_PILOT_SLUG) {
     return NextResponse.json({
       success: true,
       persisted: true,

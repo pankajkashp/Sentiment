@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 import { officialPolicies } from "@/features/feed/demo-data";
+import {
+  isValidSlugFormat,
+  isKnownPolicySlug,
+  resolveSafeDataFilePath,
+  SecurityError
+} from "@/lib/security";
 
 export async function POST(
   request: NextRequest,
@@ -9,44 +15,73 @@ export async function POST(
 ) {
   const { slug } = await params;
 
-  try {
-    const body = await request.json();
-    const { commentText, stakeholder, policyId } = body;
+  // 1. Validate slug format (reject path traversal, special characters)
+  if (!isValidSlugFormat(slug)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "INVALID_SLUG",
+        message: "Policy identifier contains invalid characters or format."
+      },
+      { status: 400 }
+    );
+  }
 
-    // Validate comment text
-    if (!commentText || typeof commentText !== "string" || commentText.trim().length < 10) {
+  // 2. Validate known policy existence
+  const policy = officialPolicies.find((p) => p.slug === slug);
+  if (!policy) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "POLICY_NOT_FOUND",
+        message: "Policy not found."
+      },
+      { status: 404 }
+    );
+  }
+
+  try {
+    const body = await request.json().catch(() => null);
+    if (!body || typeof body !== "object") {
       return NextResponse.json(
         {
           success: false,
-          error: "VALIDATION_ERROR",
-          message: "Comment must contain at least 10 characters."
+          error: "INVALID_BODY",
+          message: "Request body must be a valid JSON object."
         },
         { status: 400 }
       );
     }
 
-    // Lookup policy & verify 4-day deadline
-    const policy = officialPolicies.find((p) => p.slug === slug);
-    if (!policy) {
+    const { commentText, stakeholder, policyId } = body;
+
+    // 3. Validate comment text boundaries
+    if (
+      !commentText ||
+      typeof commentText !== "string" ||
+      commentText.trim().length < 10 ||
+      commentText.trim().length > 4000
+    ) {
       return NextResponse.json(
         {
           success: false,
-          error: "POLICY_NOT_FOUND",
-          message: "Policy not found."
+          error: "VALIDATION_ERROR",
+          message: "Comment must be between 10 and 4,000 characters."
         },
-        { status: 404 }
+        { status: 400 }
       );
     }
 
+    // 4. Verify PolicyLens 4-day preview commenting window
     let deadlineDate: Date | null = null;
     if (policy.openedAt) {
       const opened = new Date(policy.openedAt);
-      if (!isNaN(opened.getTime())) {
+      if (!Number.isNaN(opened.getTime())) {
         deadlineDate = new Date(opened.getTime() + 4 * 24 * 60 * 60 * 1000);
       }
     } else if (policy.commentingDeadline) {
       const parsed = new Date(policy.commentingDeadline);
-      if (!isNaN(parsed.getTime())) {
+      if (!Number.isNaN(parsed.getTime())) {
         deadlineDate = parsed;
       }
     }
@@ -73,18 +108,23 @@ export async function POST(
       );
     }
 
-    // Persist comment to data/submissions/<slug>.json
-    const projectRoot = path.resolve(process.cwd(), "..");
-    // Also support current dir if cwd is project root
-    const dataDir = fs.existsSync(path.join(process.cwd(), "data"))
-      ? path.join(process.cwd(), "data", "submissions")
-      : path.join(projectRoot, "data", "submissions");
-
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
+    // 5. Secure file path resolution with strict directory containment
+    let filePath: string;
+    try {
+      filePath = resolveSafeDataFilePath("submissions", slug);
+    } catch (secErr) {
+      const msg = secErr instanceof SecurityError ? secErr.message : "Access denied";
+      return NextResponse.json(
+        { success: false, error: "SECURITY_VIOLATION", message: msg },
+        { status: 400 }
+      );
     }
 
-    const filePath = path.join(dataDir, `${slug}.json`);
+    const parentDir = path.dirname(filePath);
+    if (!fs.existsSync(parentDir)) {
+      fs.mkdirSync(parentDir, { recursive: true });
+    }
+
     let existingComments: Array<{
       id: string;
       comment_text: string;
@@ -96,17 +136,27 @@ export async function POST(
     if (fs.existsSync(filePath)) {
       try {
         existingComments = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        if (!Array.isArray(existingComments)) {
+          existingComments = [];
+        }
       } catch {
         existingComments = [];
       }
     }
 
-    const newCommentId = `sub-${slug}-${Date.now()}`;
+    const safePolicyId = typeof policyId === "string" && isValidSlugFormat(policyId)
+      ? policyId
+      : slug;
+    const safeStakeholder = typeof stakeholder === "string" && stakeholder.trim().length <= 100
+      ? stakeholder.trim()
+      : "Citizen / Community Member";
+
+    const newCommentId = `sub-${slug}-${Date.now().toString(36)}`;
     const newRecord = {
       id: newCommentId,
       comment_text: commentText.trim(),
-      stakeholder: stakeholder || "Citizen / Community Member",
-      policy_id: policyId || slug,
+      stakeholder: safeStakeholder,
+      policy_id: safePolicyId,
       created_at: new Date().toISOString()
     };
 
@@ -143,12 +193,41 @@ export async function GET(
 ) {
   const { slug } = await params;
 
-  const projectRoot = path.resolve(process.cwd(), "..");
-  const dataDir = fs.existsSync(path.join(process.cwd(), "data"))
-    ? path.join(process.cwd(), "data", "submissions")
-    : path.join(projectRoot, "data", "submissions");
+  // 1. Validate slug format (reject path traversal, special characters)
+  if (!isValidSlugFormat(slug)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "INVALID_SLUG",
+        message: "Policy identifier contains invalid characters or format."
+      },
+      { status: 400 }
+    );
+  }
 
-  const filePath = path.join(dataDir, `${slug}.json`);
+  // 2. Validate known policy existence
+  if (!isKnownPolicySlug(slug)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: "POLICY_NOT_FOUND",
+        message: "Policy not found."
+      },
+      { status: 404 }
+    );
+  }
+
+  // 3. Secure file path resolution with strict directory containment
+  let filePath: string;
+  try {
+    filePath = resolveSafeDataFilePath("submissions", slug);
+  } catch (secErr) {
+    const msg = secErr instanceof SecurityError ? secErr.message : "Access denied";
+    return NextResponse.json(
+      { success: false, error: "SECURITY_VIOLATION", message: msg },
+      { status: 400 }
+    );
+  }
 
   if (!fs.existsSync(filePath)) {
     return NextResponse.json({ slug, submissions: [] });
@@ -156,7 +235,8 @@ export async function GET(
 
   try {
     const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    return NextResponse.json({ slug, submissions: data });
+    const submissions = Array.isArray(data) ? data : [];
+    return NextResponse.json({ slug, submissions });
   } catch {
     return NextResponse.json({ slug, submissions: [] });
   }
