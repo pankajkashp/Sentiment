@@ -33,7 +33,13 @@ function getStanceBadge(stance: StanceType) {
   }
 }
 
-export function AllCommentsList({ comments }: { comments: CommentItem[] }) {
+export function AllCommentsList({
+  comments,
+  isAnalysisReady = true
+}: {
+  comments: CommentItem[];
+  isAnalysisReady?: boolean;
+}) {
   const [sortOrder, setSortOrder] = useState<"top" | "newest" | "oldest">("top");
   const [visibleCount, setVisibleCount] = useState<number>(10);
   const [expandedAnalysisIds, setExpandedAnalysisIds] = useState<Record<string, boolean>>({});
@@ -197,36 +203,47 @@ export function AllCommentsList({ comments }: { comments: CommentItem[] }) {
                       <Bot size={13} className="text-[#E87518]" />
                       Model Analysis &amp; Attribution Breakdown
                     </span>
-                    {item.confidenceScore && (
+                    {isAnalysisReady && item.confidenceScore && (
                       <span className="text-[#16834A] bg-[#e6f4ea] px-1.5 py-0.5 rounded">
                         Confidence: {Math.round(item.confidenceScore * 100)}%
                       </span>
                     )}
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                    <div>
-                      <strong className="text-[10px] uppercase text-[#666666] block">Main Grievance / Concern:</strong>
-                      <p className="text-[#171717]">{item.mainArgument}</p>
+                  {!isAnalysisReady ? (
+                    <div className="p-2 text-xs text-[#666666] bg-white rounded border border-[#e2e8f0]">
+                      <p className="font-semibold text-[#143454] mb-0.5">
+                        Analysis Pending or In Progress
+                      </p>
+                      <p className="text-[11px] leading-relaxed">
+                        The machine learning pipeline has not completed sentiment and demand extraction for this submission. The original citizen text and provenance metadata are preserved as primary source records.
+                      </p>
                     </div>
+                  ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                      <div>
+                        <strong className="text-[10px] uppercase text-[#666666] block">Main Grievance / Concern:</strong>
+                        <p className="text-[#171717]">{item.mainArgument}</p>
+                      </div>
 
-                    <div>
-                      <strong className="text-[10px] uppercase text-[#666666] block">Action Requested:</strong>
-                      <p className="text-[#171717]">{item.suggestedAction || "None specified"}</p>
-                    </div>
+                      <div>
+                        <strong className="text-[10px] uppercase text-[#666666] block">Action Requested:</strong>
+                        <p className="text-[#171717]">{item.suggestedAction || "None specified"}</p>
+                      </div>
 
-                    <div className="sm:col-span-2">
-                      <strong className="text-[10px] uppercase text-[#666666] block">Attribution &amp; Safeguard Decision:</strong>
-                      <span className="inline-block mt-0.5 text-[11px] font-mono bg-white px-2 py-0.5 rounded border border-[#e2e8f0] text-[#143454]">
-                        {item.demandStatus} • {item.attributionTier}
-                      </span>
-                    </div>
+                      <div className="sm:col-span-2">
+                        <strong className="text-[10px] uppercase text-[#666666] block">Attribution &amp; Safeguard Decision:</strong>
+                        <span className="inline-block mt-0.5 text-[11px] font-mono bg-white px-2 py-0.5 rounded border border-[#e2e8f0] text-[#143454]">
+                          {item.demandStatus} • {item.attributionTier}
+                        </span>
+                      </div>
 
-                    <div className="sm:col-span-2">
-                      <strong className="text-[10px] uppercase text-[#666666] block">Evidence &amp; Reasoning:</strong>
-                      <p className="text-[#555555]">{item.evidenceReasoning}</p>
+                      <div className="sm:col-span-2">
+                        <strong className="text-[10px] uppercase text-[#666666] block">Evidence &amp; Reasoning:</strong>
+                        <p className="text-[#555555]">{item.evidenceReasoning}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               )}
             </div>

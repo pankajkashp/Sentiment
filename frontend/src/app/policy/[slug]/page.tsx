@@ -140,7 +140,11 @@ export default async function PolicyDetailPage({ params }: { params: Promise<{ s
       </article>
 
       {/* 7. Public Opinion & AI-Powered Comments Analysis Section */}
-      <PublicOpinionSection policySlug={post.slug} policyTitle={post.title} />
+      <PublicOpinionSection
+        policySlug={post.slug}
+        policyTitle={post.title}
+        policyId={post.id}
+      />
     </main>
   );
 }
