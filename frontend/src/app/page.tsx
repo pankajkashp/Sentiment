@@ -10,6 +10,8 @@ import { demoPosts } from "@/features/feed/demo-data";
 
 type Filter = "Latest" | "Trending" | "24 hours";
 const categories = ["All topics", "Environment", "Public services", "Economy", "Health", "Digital government", "Education"];
+// Fixed clock for this explicitly fictional demo dataset; production uses server timestamps.
+const DEMO_REFERENCE_NOW = Date.parse("2026-10-13T18:00:00+05:30");
 
 function FeedContent() {
   const [filter, setFilter] = useState<Filter>("Latest");
@@ -18,9 +20,8 @@ function FeedContent() {
   const [language, setLanguage] = useState("All languages");
 
   const visiblePosts = useMemo(() => {
-    const now = Date.now();
     const filtered = demoPosts.filter((post) => {
-      const withinFourDays = now - new Date(post.publishedAt).getTime() <= 4 * 86_400_000;
+      const withinFourDays = DEMO_REFERENCE_NOW - new Date(post.publishedAt).getTime() <= 4 * 86_400_000;
       const withinDay = now - new Date(post.publishedAt).getTime() <= 86_400_000;
       const matchesCategory = category === "All topics" || post.category === category;
       const matchesLanguage = language === "All languages" || post.language === language;
