@@ -9,7 +9,9 @@ import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 function InnerChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const showCompactHeader = pathname !== "/";
+  const isAuthRoute = pathname === "/login" || pathname === "/register";
+  const isRestrictedRoute = pathname.startsWith("/admin");
+  const showCompactHeader = pathname !== "/" && !isAuthRoute && !isRestrictedRoute;
   return (
     <>
       {showCompactHeader && (
@@ -24,7 +26,7 @@ function InnerChrome({ children }: { children: ReactNode }) {
         </header>
       )}
       {children}
-      <SiteNav/>
+      {!isAuthRoute && !isRestrictedRoute && <SiteNav/>}
     </>
   );
 }
