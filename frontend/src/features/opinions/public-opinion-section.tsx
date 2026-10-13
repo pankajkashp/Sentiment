@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { ShareOpinionForm } from "./share-opinion-form";
-import { TopOpinionsSection } from "./top-opinions-section";
 import { AllCommentsList } from "./all-comments-list";
 import type { ConsultationStatus } from "../feed/types";
 import type { CommentItem } from "./types";
@@ -23,20 +22,16 @@ export function PublicOpinionSection({
   openedAt,
   commentingDeadline
 }: PublicOpinionSectionProps) {
-  // No sample comments or analysis are displayed for policies until a real API response
-  // explicitly supplies them. This keeps the existing research benchmark isolated.
+  // Only temporary comments entered in this browser session are shown in this
+  // frontend-only phase. Real analysed comments are hidden until backend integration.
   const [sessionComments, setSessionComments] = useState<CommentItem[]>([]);
-  const [analysisComments, setAnalysisComments] = useState<CommentItem[]>([]);
-  const [analysisReady, setAnalysisReady] = useState(false);
-  const [analysisLoading, setAnalysisLoading] = useState(false);
 
   const handleNewComment = (newSub: { id: string; text: string; stakeholder: string }) => {
-    // Session-only items are clearly labelled as temporary and are never assigned an AI stance.
-    const newCommentItem: CommentItem = {
+    const previewComment: CommentItem = {
       id: newSub.id,
       originalText: newSub.text,
       stance: "UNCLEAR",
-      policyTopic: "PENDING_ANALYSIS",
+      policyTopic: "PENDING_AI_ANALYSIS",
       mainArgument: "",
       suggestedAction: "",
       evidenceReasoning: "",
@@ -44,39 +39,15 @@ export function PublicOpinionSection({
       demandStatus: "UNCLEAR_OR_INSUFFICIENT",
       attributionTier: "NONE_UNSTATED",
       stakeholder: newSub.stakeholder,
-      sourceDocument: "Temporary browser session",
+      sourceDocument: "Temporary browser-session preview",
       sourceUrl: "",
       timestamp: "Just now",
       rankingScore: 0,
       rank: sessionComments.length + 1,
       isTopInformative: false
     };
-
-    setSessionComments((prev) => [newCommentItem, ...prev]);
+    setSessionComments((prev) => [previewComment, ...prev]);
   };
-
-  const handleLoadAnalysis = async () => {
-    setAnalysisLoading(true);
-    setAnalysisReady(false);
-    try {
-      const res = await fetch(`/api/policies/${encodeURIComponent(policySlug)}/analysis`);
-      if (!res.ok) throw new Error("Analysis endpoint unavailable");
-      const json = await res.json();
-      const data = json?.data;
-      if (!data || !Array.isArray(data.all_comments) || !Array.isArray(data.top_comments)) {
-        throw new Error("No analysis result returned");
-      }
-      setAnalysisComments(data.all_comments);
-      setAnalysisReady(true);
-    } catch {
-      setAnalysisComments([]);
-      setAnalysisReady(false);
-    } finally {
-      setAnalysisLoading(false);
-    }
-  };
-
-  const comments = [...sessionComments, ...analysisComments];
 
   return (
     <section className="mt-8 space-y-6">
@@ -88,24 +59,7 @@ export function PublicOpinionSection({
         commentingDeadline={commentingDeadline}
         onSubmissionSuccess={handleNewComment}
       />
-
-      {analysisReady && analysisComments.length > 0 && (
-        <TopOpinionsSection comments={analysisComments} />
-      )}
-
-      <AllCommentsList comments={comments} isAnalysisReady={analysisReady} />
-
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-[#e5e7eb] bg-white px-4 py-3 text-xs text-[#666666]">
-        <p>AI-highlighted opinions appear here only when actual analysis results are available.</p>
-        <button
-          type="button"
-          onClick={handleLoadAnalysis}
-          disabled={analysisLoading}
-          className="rounded-md border border-[#d1d5db] px-3 py-1.5 font-semibold text-[#143454] hover:bg-[#f8fafc] disabled:opacity-50"
-        >
-          {analysisLoading ? "Checking results…" : "Check analysis results"}
-        </button>
-      </div>
+      <AllCommentsList comments={sessionComments} isAnalysisReady={false} />
     </section>
   );
 }
