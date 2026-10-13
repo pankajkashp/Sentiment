@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useSyncExternalStore } from "react";
-import { Send, AlertTriangle, CheckCircle2, Lock, MessageSquare, HelpCircle } from "lucide-react";
+import { Send, AlertTriangle, Lock, MessageSquare, HelpCircle } from "lucide-react";
 
 function subscribeToClock(callback: () => void) {
   const timer = setInterval(callback, 30000);
@@ -35,9 +35,8 @@ export function ShareOpinionForm({
 }: ShareOpinionFormProps) {
   const [stakeholder, setStakeholder] = useState("Citizen / Community Member");
   const [commentText, setCommentText] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionResult, setSubmissionResult] = useState<{
-    status: "idle" | "success" | "error" | "local";
+    status: "idle" | "local" | "error";
     message: string;
   }>({ status: "idle", message: "" });
 
@@ -73,7 +72,7 @@ export function ShareOpinionForm({
       })
     : null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmed = commentText.trim();
 
@@ -90,40 +89,14 @@ export function ShareOpinionForm({
       return;
     }
 
-    // Frontend-only phase: never imply that the API or database accepted data.
-    setIsSubmitting(true);
-    setSubmissionResult({ status: "idle", message: "" });
-    try {
-      const res = await fetch(`/api/policies/${encodeURIComponent(policySlug)}/comments`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          policyId: policyId || policySlug,
-          commentText: trimmed,
-          stakeholder
-        })
-      });
-      const data = await res.json().catch(() => null);
-      if (res.ok && data?.success) {
-        const submitted = trimmed;
-        setSubmissionResult({ status: "success", message: "The server confirmed receipt of your comment." });
-        setCommentText("");
-        onSubmissionSuccess?.({ id: String(data.commentId || `server-${Date.now()}`), text: submitted, stakeholder });
-      } else {
-        setSubmissionResult({
-          status: "error",
-          message: "The comment was not confirmed by the server. It has not been shown as submitted; please try again when submissions are available."
-        });
-      }
-    } catch {
-      // Browser-only demo mode: keep entered text in the form, with no fabricated success state.
-      setSubmissionResult({
-        status: "local",
-        message: "Frontend preview only — no backend is connected, so this comment has not been submitted or saved."
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Frontend-only preview: no API, database, or Government endpoint is called.
+    const id = `session-${(policyId || policySlug).replace(/[^a-zA-Z0-9-]/g, "-")}-${Date.now().toString(36)}`;
+    onSubmissionSuccess?.({ id, text: trimmed, stakeholder });
+    setSubmissionResult({
+      status: "local",
+      message: "Preview only: this comment is shown for this page session. It was not sent to the Ministry or saved to a database."
+    });
+    setCommentText("");
   };
 
   return (
@@ -153,6 +126,10 @@ export function ShareOpinionForm({
         )}
       </div>
 
+      <p className="text-[11px] leading-relaxed text-[#666666]">
+        PolicyLens is an independent frontend preview. Comments are not official Government feedback, are not sent to MHA, and are not saved.
+      </p>
+
       {isDeadlinePassed && (
         <div className="rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#555555] flex items-center gap-2">
           <Lock size={14} className="text-[#666666]" />
@@ -176,7 +153,7 @@ export function ShareOpinionForm({
             id="stakeholder-select"
             value={stakeholder}
             onChange={(e) => setStakeholder(e.target.value)}
-            disabled={isFormDisabled || isSubmitting}
+            disabled={isFormDisabled}
             className="w-full rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-2.5 text-xs text-[#171717] outline-none focus:border-[#143454] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <option>Citizen / Community Member</option>
@@ -199,7 +176,7 @@ export function ShareOpinionForm({
             maxLength={2000}
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
-            disabled={isFormDisabled || isSubmitting}
+            disabled={isFormDisabled}
             placeholder={isFormDisabled ? "Commenting is closed for this policy." : "Write your opinion, concern, or suggested improvement…"}
             className="w-full rounded-lg border border-[#e5e7eb] bg-[#f9fafb] p-3 text-xs text-[#171717] outline-none focus:border-[#E87518] focus:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             required={!isFormDisabled}
@@ -208,13 +185,11 @@ export function ShareOpinionForm({
 
         {submissionResult.status !== "idle" && (
           <div className={`rounded-lg border p-3 text-xs flex items-start gap-2 ${
-            submissionResult.status === "success"
-              ? "border-[#86efac] bg-[#f0fdf4] text-[#166534]"
-              : submissionResult.status === "local"
-                ? "border-[#e5e7eb] bg-[#f8fafc] text-[#475569]"
-                : "border-[#fca5a5] bg-[#fef2f2] text-[#991b1b]"
+            submissionResult.status === "local"
+              ? "border-[#e5e7eb] bg-[#f8fafc] text-[#475569]"
+              : "border-[#fca5a5] bg-[#fef2f2] text-[#991b1b]"
           }`}>
-            {submissionResult.status === "success" ? <CheckCircle2 size={15} /> : <AlertTriangle size={15} />}
+            {submissionResult.status === "local" ? <MessageSquare size={15} /> : <AlertTriangle size={15} />}
             <span>{submissionResult.message}</span>
           </div>
         )}
@@ -222,10 +197,10 @@ export function ShareOpinionForm({
         <div className="flex items-center justify-end pt-1">
           <button
             type="submit"
-            disabled={isFormDisabled || isSubmitting || commentText.trim().length < 10}
+            disabled={isFormDisabled || commentText.trim().length < 10}
             className="inline-flex items-center gap-1.5 rounded-lg bg-[#143454] px-4 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-[#0e2a47] disabled:opacity-50 disabled:cursor-not-allowed transition-colors cursor-pointer"
           >
-            {isSubmitting ? "Submitting Comment…" : <><Send size={13} /><span>Submit Comment</span></>}
+            <Send size={13} /><span>Add Preview Comment</span>
           </button>
         </div>
       </form>
