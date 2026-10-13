@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock3, MessageCircle, MoveUpRight } from "lucide-react";
 import type { PolicyPost } from "./types";
@@ -17,7 +18,7 @@ export function PolicyCard({ post, featured = false }: { post: PolicyPost; featu
     <article className="group overflow-hidden rounded-[22px] surface transition-shadow hover:shadow-[var(--shadow-soft)]">
       {featured ? (
         <Link href={`/policy/${post.slug}`} className="photo-wash relative block h-[210px] sm:h-[260px]">
-          <img src={post.image} alt={post.imageAlt} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
+          <Image src={post.image} alt={post.imageAlt} fill priority sizes="(max-width: 760px) 100vw, 780px" className="object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#101913]/80 via-[#101913]/12 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-6">
             <div className="max-w-[600px]">
@@ -30,7 +31,7 @@ export function PolicyCard({ post, featured = false }: { post: PolicyPost; featu
       ) : (
         <div className="flex min-w-0">
           <Link href={`/policy/${post.slug}`} aria-label={`Read ${post.title}`} className="relative block w-[108px] shrink-0 overflow-hidden sm:w-[158px]">
-            <img src={post.image} alt={post.imageAlt} className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+            <Image src={post.image} alt={post.imageAlt} fill sizes="(max-width: 760px) 108px, 158px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
           </Link>
           <div className="min-w-0 flex-1 p-4 sm:p-5">
             <div className="mb-2 flex items-center justify-between gap-2">
