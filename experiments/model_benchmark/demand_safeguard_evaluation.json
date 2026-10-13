@@ -1,0 +1,49 @@
+{
+  "evaluation_timestamp": "2026-10-13T15:43:52.401654",
+  "total_evaluated_records": 50,
+  "ground_truth_distribution": {
+    "comments_with_demand_count": 47,
+    "comments_with_empty_demand_count": 3,
+    "empty_demand_rate_pct": 6.0
+  },
+  "demand_status_distribution": {
+    "EXPLICIT_DEMAND": 11,
+    "IMPLICIT_DEMAND": 6,
+    "CONCERN_ONLY": 11,
+    "UNCLEAR_OR_INSUFFICIENT": 22
+  },
+  "attribution_tier_distribution": {
+    "RESPONDENT_EXPLICIT_DEMAND": 17,
+    "MODEL_INFERRED_RECOMMENDATION": 0,
+    "ANALYST_PROPOSED_ACTION": 0,
+    "NONE_UNSTATED": 33
+  },
+  "performance_comparison": {
+    "baseline_unconditional": {
+      "precision": 0.94,
+      "recall": 1.0,
+      "f1": 0.9691,
+      "accuracy": 0.94,
+      "correctly_preserved_empty_demands": 0,
+      "unsupported_hallucinated_demands": 3,
+      "hallucination_rate_pct": 100.0
+    },
+    "safeguarded_detector": {
+      "precision": 1.0,
+      "recall": 0.3617,
+      "f1": 0.5312,
+      "accuracy": 0.4,
+      "correctly_preserved_empty_demands": 3,
+      "unsupported_hallucinated_demands": 0,
+      "hallucination_rate_pct": 0.0,
+      "missed_demands_count": 30,
+      "cases_sent_for_human_review_count": 22
+    }
+  },
+  "safeguard_attribution_hierarchy": {
+    "rule_1": "RESPONDENT_EXPLICIT_DEMAND: Directly stated in the citizen comment verbatim.",
+    "rule_2": "MODEL_INFERRED_RECOMMENDATION: Machine-generated policy recommendation based on thematic context.",
+    "rule_3": "ANALYST_PROPOSED_ACTION: Human policy analyst reform proposal.",
+    "rule_4": "Never present these three tiers as equivalent."
+  }
+}

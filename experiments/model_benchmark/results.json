@@ -1,0 +1,82 @@
+{
+  "benchmark_metadata": {
+    "timestamp": "2026-10-13T15:25:30.945305",
+    "data_source_mode": "VERIFIED_HUMAN_ANNOTATIONS",
+    "approved_dataset_path": "/Users/pankaj/Desktop/Project/major project/Code/experiments/semantic_clustering/dataset/policylens_pilot_annotation_batch_50.csv",
+    "empirical_evaluation_status": "EMPIRICAL_HUMAN_EVALUATION",
+    "benchmark_purpose": "EMPIRICAL_RESEARCH_BENCHMARK",
+    "evaluated_samples": 50,
+    "n_splits": 5,
+    "n_repeats": 2,
+    "leakage_prevention": "Strict train-fold TF-IDF fitting; no duplicate leakage; stratified splits"
+  },
+  "best_stance_model": {
+    "model": "LinearSVC",
+    "tfidf_config": "tfidf_word_1_1_sublinear",
+    "model_params": {
+      "C": 10.0,
+      "class_weight": "balanced"
+    },
+    "mean_accuracy": 0.6,
+    "mean_macro_f1": 0.4432,
+    "mean_cohen_kappa": 0.2582,
+    "per_class": {
+      "NEUTRAL": {
+        "precision": 0.2,
+        "recall": 0.1667,
+        "f1": 0.1818,
+        "support": 18
+      },
+      "OPPOSE": {
+        "precision": 0.7143,
+        "recall": 0.3846,
+        "f1": 0.5,
+        "support": 26
+      },
+      "SUPPORT": {
+        "precision": 0.662,
+        "recall": 0.8393,
+        "f1": 0.7402,
+        "support": 56
+      }
+    },
+    "confusion_matrix": [
+      [
+        3,
+        3,
+        12
+      ],
+      [
+        4,
+        10,
+        12
+      ],
+      [
+        8,
+        1,
+        47
+      ]
+    ]
+  },
+  "topic_classification": {
+    "unsupervised_clustering_evaluation": {
+      "cluster_purity": 0.56,
+      "adjusted_rand_index": 0.0407,
+      "normalized_mutual_info": 0.3005,
+      "num_clusters": 8,
+      "num_topics": 7
+    }
+  },
+  "concern_demand_extraction": {
+    "total_evaluated_comments": 50,
+    "true_blank_demands_count": 3,
+    "empty_demand_agreement_rate": 0.0,
+    "unsupported_hallucinated_demand_rate": 1.0,
+    "mean_demand_token_f1": 0.0514,
+    "mean_demand_token_jaccard": 0.0272,
+    "mean_concern_token_f1": 0.0591,
+    "mean_concern_token_jaccard": 0.0312,
+    "evidence_traceability_pct": 100.0
+  },
+  "summary_table_rows_count": 40
+}

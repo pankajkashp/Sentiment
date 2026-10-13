@@ -1,0 +1,124 @@
+{
+  "experiment_id": "exp_semantic_clustering_q8_v1",
+  "experiment_name": "PolicyLens Semantic Grouping & Collective Verdict Prototype",
+  "timestamp": "2026-10-13T09:53:57Z",
+  "dataset": {
+    "source": "Open Government Consultation 2017-18 Get Involved Questionnaire",
+    "question_code": "Q8",
+    "question_text": "What other topics or commitments should Canada include in its next Open Government Action Plan?",
+    "total_substantive_comments": 2161,
+    "language_distribution": {
+      "en": 1826,
+      "fr": 335
+    }
+  },
+  "model_configuration": {
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_dimension": 384,
+    "normalization": true,
+    "clustering_algorithm": "KMeans",
+    "random_seed": 42,
+    "n_init": 15,
+    "k_evaluated": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "silhouette_scores": {
+      "5": 0.0609,
+      "6": 0.0581,
+      "7": 0.0601,
+      "8": 0.0602,
+      "9": 0.0603,
+      "10": 0.045
+    },
+    "selected_k": 9,
+    "pca_components": 2,
+    "pca_variance_explained": [
+      0.0573,
+      0.0481
+    ]
+  },
+  "cluster_distribution": [
+    {
+      "cluster_id": 0,
+      "theme": "Democratic Reform, Ethical Governance & Political Accountability",
+      "size": 347,
+      "share_pct": 16.06,
+      "top_keywords": "government, accountability, reform, accountable, open, decisions",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 1,
+      "theme": "Fiscal Accountability, Public Spending & Procurement Transparency",
+      "size": 239,
+      "share_pct": 11.06,
+      "top_keywords": "spending, tax, government, debt, income, money",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 2,
+      "theme": "Open Data Usability, Standards & Privacy Protection",
+      "size": 180,
+      "share_pct": 8.33,
+      "top_keywords": "data, information, government, open, access, privacy",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 3,
+      "theme": "National Civic Priorities & Citizen-Centric Governance",
+      "size": 518,
+      "share_pct": 23.97,
+      "top_keywords": "canada, canadians, canadian, government, people, need",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 4,
+      "theme": "Environmental Protection & Climate Action Transparency",
+      "size": 96,
+      "share_pct": 4.44,
+      "top_keywords": "environment, environmental, climate, climate change, change, clean",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 5,
+      "theme": "Social Policy Priorities: Health, Education & Electoral Reform",
+      "size": 239,
+      "share_pct": 11.06,
+      "top_keywords": "health, education, thank, job, questions, proportional",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 6,
+      "theme": "Francophone Civic Priorities & Bilingual Public Administration",
+      "size": 321,
+      "share_pct": 14.85,
+      "top_keywords": "et, la, les, des, le, pour",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 7,
+      "theme": "Public Service Administration & Phoenix Pay System Resolution",
+      "size": 44,
+      "share_pct": 2.04,
+      "top_keywords": "phoenix, fix, pay, fix phoenix, phoenix pay, pheonix",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    },
+    {
+      "cluster_id": 8,
+      "theme": "Indigenous Reconciliation & Data Sovereignty",
+      "size": 177,
+      "share_pct": 8.19,
+      "top_keywords": "immigration, nations, indigenous, reconciliation, diversity, aboriginal",
+      "verification_status": "UNVERIFIED (Awaiting Human Review)"
+    }
+  ],
+  "verification_guard": {
+    "human_verified": false,
+    "status": "UNVERIFIED (Awaiting Human Review)",
+    "notes": "Automated clustering and keyword summaries are hypotheses requiring human review before policy action."
+  }
+}

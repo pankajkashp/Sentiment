@@ -1,0 +1,732 @@
+{
+  "consultation_title": "Government of Canada \u2014 Open Government Consultation",
+  "generated_at": "2026-10-13T15:46:30.237744",
+  "total_analyzed_comments": 2161,
+  "overall_stance_summary": {
+    "SUPPORT": 966,
+    "OPPOSE": 945,
+    "NEUTRAL": 250
+  },
+  "findings_by_importance": [
+    {
+      "theme_id": "3",
+      "theme_title": "Theme_3",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 518,
+      "share_of_voice_pct": 23.97,
+      "stance_distribution": {
+        "OPPOSE": 263,
+        "SUPPORT": 197,
+        "NEUTRAL": 58
+      },
+      "severity_score": 0.655,
+      "stakeholder_breadth_score": 0.848,
+      "composite_importance_score": 0.761,
+      "synthesized_concern": "Some families all of their children come in Canada, and their parents can not remain at their home country and live alon...",
+      "requested_actions": [
+        {
+          "action_text": "Am one please",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000053779_Q8",
+          "verbatim_source_text": "Ways of offering free visas to international students interested to study in Canada. Am one please",
+          "evidence_ids": [
+            "110000053779_Q8"
+          ]
+        },
+        {
+          "action_text": "I would like to see government decisions made,or heavily being based on, crowd-models of collective decision making.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000053962_Q8",
+          "verbatim_source_text": "I would like to see government decisions made,or heavily being based on, crowd-models of collective decision making.     Equally important -- electoral reform . We need a version of proportional representation. And a national conversation on what Canadians want,with good information to educate all of us on alternative models.",
+          "evidence_ids": [
+            "110000053962_Q8"
+          ]
+        },
+        {
+          "action_text": "We need better protection for Canadians from unreasonable government surveillance.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000074507_Q8",
+          "verbatim_source_text": "We need better protection for Canadians from unreasonable government surveillance.  Collection of personal data (tapping phones, etc.) needs to be authorized by a judge in all cases, including national security cases.",
+          "evidence_ids": [
+            "110000074507_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000194613_Q8",
+          "verbatim_text": "Some families all of their children come in Canada, and their parents can not remain at their home country and live alone, so they have come to Canada, without economical supporting inevitably ! why because they couldn't work in Canada as visitor! therefore, being concerned about this group of parents wouldn't be trivial thing.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000049694_Q8",
+          "verbatim_text": "1. concern with my Charter Right to oppose legislation that unilaterally imposes abortion and euthanasia on Canadians.  2.  deteriorating health care, e.g. long waits for surgeries and tests",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        },
+        {
+          "comment_id": "110000050298_Q8",
+          "verbatim_text": "The last set of choices was slanted.  1) dignity of all persons, their information, fundamental freedoms, rights, entitlements and responsibilities  2) equity: telling the truth and reconciliation for the future  3) use of openness to live up to Canada's commitments to international legal instruments such as treaties, conventions and declarations.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        }
+      ],
+      "counterevidence_and_minority_views": [],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 197, Oppose: 263)."
+      ]
+    },
+    {
+      "theme_id": "0",
+      "theme_title": "Theme_0",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 347,
+      "share_of_voice_pct": 16.06,
+      "stance_distribution": {
+        "OPPOSE": 165,
+        "SUPPORT": 123,
+        "NEUTRAL": 59
+      },
+      "severity_score": 0.633,
+      "stakeholder_breadth_score": 0.833,
+      "composite_importance_score": 0.644,
+      "synthesized_concern": "Increased campaigns and efforts to engage the common public (e.g., through dissemination of relevant information, advert...",
+      "requested_actions": [
+        {
+          "action_text": "Citizens should be allowed to vote on issues rather than politicians.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000094844_Q8",
+          "verbatim_source_text": "The best people from each political party should join together.  Politicians should be elected based on merit and ethics.  Citizens should be allowed to vote on issues rather than politicians.",
+          "evidence_ids": [
+            "110000094844_Q8"
+          ]
+        },
+        {
+          "action_text": "Open government should make hiring and appointment processes more transparent.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000118902_Q8",
+          "verbatim_source_text": "Open government should make hiring and appointment processes more transparent.",
+          "evidence_ids": [
+            "110000118902_Q8"
+          ]
+        },
+        {
+          "action_text": "Accountability - if govt officials/politicians are proven to be irresponsible with taxpayer $, or dishonest etc, they should face consequences such as a warning and then dismissal.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000052935_Q8",
+          "verbatim_source_text": "Accountability - if govt officials/politicians are proven to be irresponsible with taxpayer $, or dishonest etc, they should face consequences such as a warning and then dismissal. Unions protect incompetent govt employees much too often. There also should be measurement so that a government project that was supposed to cost a certain amount is evaluated on a regular basis to ensure it is on track and if it goes over budget, once again consequences should occur for its managers. No accountability means no one in govt really cares about meeting goals or using scarce tax dollars effectively. Also government compensation including benefits should be in line with private sector norms.",
+          "evidence_ids": [
+            "110000052935_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000052011_Q8",
+          "verbatim_text": "Increased campaigns and efforts to engage the common public (e.g., through dissemination of relevant information, advertisements that also educate), especially those in their 30s and 20s to actively participate in government initiatives and the functioning of democracy.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        },
+        {
+          "comment_id": "110000057300_Q8",
+          "verbatim_text": "Proportional representation in federal elections",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000058970_Q8",
+          "verbatim_text": "Electoral reform",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        }
+      ],
+      "counterevidence_and_minority_views": [],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 123, Oppose: 165)."
+      ]
+    },
+    {
+      "theme_id": "6",
+      "theme_title": "Theme_6",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 321,
+      "share_of_voice_pct": 14.85,
+      "stance_distribution": {
+        "SUPPORT": 162,
+        "OPPOSE": 138,
+        "NEUTRAL": 21
+      },
+      "severity_score": 0.601,
+      "stakeholder_breadth_score": 0.904,
+      "composite_importance_score": 0.634,
+      "synthesized_concern": "Seria bueno un cupo para Colombianos con ganas de ir a estudiar y crecer.",
+      "requested_actions": [
+        {
+          "action_text": "La sant\u00e9 des canadiens, la r\u00e9duction de la pauvret\u00e9 \u00e0 l`\u00e9chelle mondiale.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000048533_Q8",
+          "verbatim_source_text": "La sant\u00e9 des canadiens, la r\u00e9duction de la pauvret\u00e9 \u00e0 l`\u00e9chelle mondiale.",
+          "evidence_ids": [
+            "110000048533_Q8"
+          ]
+        },
+        {
+          "action_text": "Obliger l'ensemble des bureaux gouvernementaux et des syndicats publics de respecter la totalit\u00e9 des normes d'accessibilit\u00e9 et d'aller au-del\u00e0 des normes minimales.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000059305_Q8",
+          "verbatim_source_text": "Obliger l'ensemble des bureaux gouvernementaux et des syndicats publics de respecter la totalit\u00e9 des normes d'accessibilit\u00e9 et d'aller au-del\u00e0 des normes minimales.",
+          "evidence_ids": [
+            "110000059305_Q8"
+          ]
+        },
+        {
+          "action_text": "simplification des procedure de l'emigration",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000106571_Q8",
+          "verbatim_source_text": "simplification des procedure de l'emigration",
+          "evidence_ids": [
+            "110000106571_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000089636_Q8",
+          "verbatim_text": "Seria bueno un cupo para Colombianos con ganas de ir a estudiar y crecer.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        },
+        {
+          "comment_id": "110000049348_Q8",
+          "verbatim_text": "S\u00e9paration entre le pouvoir \u00e9conomique ( le milieu des affaires, les fortunes...  ) et les autres pouvoirs ( judiciaire, l\u00e9gislatif et ex\u00e9cutif)...",
+          "stakeholder": "No Answer / Pas de r\u00e9ponse",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        },
+        {
+          "comment_id": "110000048533_Q8",
+          "verbatim_text": "La sant\u00e9 des canadiens, la r\u00e9duction de la pauvret\u00e9 \u00e0 l`\u00e9chelle mondiale.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        }
+      ],
+      "counterevidence_and_minority_views": [
+        {
+          "comment_id": "110000048533_Q8",
+          "verbatim_text": "La sant\u00e9 des canadiens, la r\u00e9duction de la pauvret\u00e9 \u00e0 l`\u00e9chelle mondiale.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE (Dissenting/Counterview)"
+        }
+      ],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 162, Oppose: 138)."
+      ]
+    },
+    {
+      "theme_id": "1",
+      "theme_title": "Theme_1",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 239,
+      "share_of_voice_pct": 11.06,
+      "stance_distribution": {
+        "OPPOSE": 119,
+        "SUPPORT": 91,
+        "NEUTRAL": 29
+      },
+      "severity_score": 0.649,
+      "stakeholder_breadth_score": 0.84,
+      "composite_importance_score": 0.585,
+      "synthesized_concern": "terrible, inefficient, wasteful policies and spending in departments.",
+      "requested_actions": [
+        {
+          "action_text": "The government needs to look at the true costs of people off work for extended periods of time as apposed to offering medical services in a timely manner in order for people to return to work sooner.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000085535_Q8",
+          "verbatim_source_text": "Different branches of the government are not communicating clearly or at all.  I am currently of work indefintely and on a 6 month wait list for an MRI, 1 week if I'm willing to pay out of pocket at a private MRI clinic. I find it very hard to believe that it's more cost effective to let me sit a home and get paid as a government employee as apposed to my benefits paying for a privater MRI.  I believe if there were better communication between the branches of government this would not be the case.    The government needs to look at the true costs of people off work for extended periods of time as apposed to offering medical services in a timely manner in order for people to return to work sooner.  I am only one case that is costing the government money on a daily bases due to lost time a work.  All total I'm sure getting proper medical care to allow people to return to work sooner far out weights the cost of timely medical care.",
+          "evidence_ids": [
+            "110000085535_Q8"
+          ]
+        },
+        {
+          "action_text": "Please address the offshore bank accounts problem seriously.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000095027_Q8",
+          "verbatim_source_text": "Please address the offshore bank accounts problem seriously. No matter who falls.",
+          "evidence_ids": [
+            "110000095027_Q8"
+          ]
+        },
+        {
+          "action_text": "As a taxpayer, I want to see a government where I can vote by referendum to any spending initiative over a fixed dollar amount.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000496582_Q8",
+          "verbatim_source_text": "As a taxpayer, I want to see a government where I can vote by referendum to any spending initiative over a fixed dollar amount.   Say for example, the next time Trudeau want to give our tax dollars to a foreign group to \"help women in Africa\", he'll have to come to me for my approval, by referendum before giving away our tax dollars",
+          "evidence_ids": [
+            "110000496582_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000054333_Q8",
+          "verbatim_text": "terrible, inefficient, wasteful policies and spending in departments.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000054850_Q8",
+          "verbatim_text": "Reveal Trudeau's financial ties to Aga Khan",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        },
+        {
+          "comment_id": "110000075018_Q8",
+          "verbatim_text": "Income security also",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        }
+      ],
+      "counterevidence_and_minority_views": [],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 91, Oppose: 119)."
+      ]
+    },
+    {
+      "theme_id": "5",
+      "theme_title": "Theme_5",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 239,
+      "share_of_voice_pct": 11.06,
+      "stance_distribution": {
+        "SUPPORT": 131,
+        "OPPOSE": 69,
+        "NEUTRAL": 39
+      },
+      "severity_score": 0.502,
+      "stakeholder_breadth_score": 0.879,
+      "composite_importance_score": 0.543,
+      "synthesized_concern": "Youth/young-adult interaction",
+      "requested_actions": [
+        {
+          "action_text": "I am very interested in our military and ensuring they have what they need to do the job we entrust them to do.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000049813_Q8",
+          "verbatim_source_text": "I am very interested in our military and ensuring they have what they need to do the job we entrust them to do.",
+          "evidence_ids": [
+            "110000049813_Q8"
+          ]
+        },
+        {
+          "action_text": "Stop talking about the tech and talk more about the goals/outcomes.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000089559_Q8",
+          "verbatim_source_text": "1. Using empirical evidence to make adjustments to intended strategies based on what emerges during execution  2. Engaging across a broad spectrum of society and not just the techie community - artists, writers, etc. can cause us to look at issues differently  3. Stop talking about the tech and talk more about the goals/outcomes. For example, starting with why the GC is in the business of grants and contributions is very different than saying we need to modernize the grants and contribution system (i.e. the software). The former takes us back to the intent of G's and C's which can lead to a very different approach and set of more meaningful outcomes than the latter.",
+          "evidence_ids": [
+            "110000089559_Q8"
+          ]
+        },
+        {
+          "action_text": "Create a better workplace environment and an exiting workplace to work for youth...",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000074815_Q8",
+          "verbatim_source_text": "1. Create a better workplace environment and an exiting workplace to work for youth...  2. Reduce the burden to conduct GoC operations on a day to day.  3. Better accept risk, and no being risk adverse.",
+          "evidence_ids": [
+            "110000074815_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000049372_Q8",
+          "verbatim_text": "Youth/young-adult interaction",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000049563_Q8",
+          "verbatim_text": "no that's okay",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "NEUTRAL"
+        },
+        {
+          "comment_id": "110000049813_Q8",
+          "verbatim_text": "I am very interested in our military and ensuring they have what they need to do the job we entrust them to do.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        }
+      ],
+      "counterevidence_and_minority_views": [
+        {
+          "comment_id": "110000049372_Q8",
+          "verbatim_text": "Youth/young-adult interaction",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE (Dissenting/Counterview)"
+        }
+      ],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 131, Oppose: 69)."
+      ]
+    },
+    {
+      "theme_id": "8",
+      "theme_title": "Theme_8",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 177,
+      "share_of_voice_pct": 8.19,
+      "stance_distribution": {
+        "SUPPORT": 100,
+        "OPPOSE": 61,
+        "NEUTRAL": 16
+      },
+      "severity_score": 0.541,
+      "stakeholder_breadth_score": 0.92,
+      "composite_importance_score": 0.529,
+      "synthesized_concern": "Honour of the Crown towards Indigenous peoples - honouring treaties, publicizing and respecting the duty to consult.",
+      "requested_actions": [
+        {
+          "action_text": "the government should help students abroad",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000057946_Q8",
+          "verbatim_source_text": "the government should help students abroad",
+          "evidence_ids": [
+            "110000057946_Q8"
+          ]
+        },
+        {
+          "action_text": "We need less government, not more.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000053665_Q8",
+          "verbatim_source_text": "We need less government, not more.  Better control on immigration.  Less rights and benefits for refugees",
+          "evidence_ids": [
+            "110000053665_Q8"
+          ]
+        },
+        {
+          "action_text": "I would like to know more about the Reconciliation process and have a clear understanding of negotiations in a timely manner.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000087699_Q8",
+          "verbatim_source_text": "I would like to know more about the Reconciliation process and have a clear understanding of negotiations in a timely manner.",
+          "evidence_ids": [
+            "110000087699_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000272017_Q8",
+          "verbatim_text": "Honour of the Crown towards Indigenous peoples - honouring treaties, publicizing and respecting the duty to consult.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "NEUTRAL"
+        },
+        {
+          "comment_id": "110000049204_Q8",
+          "verbatim_text": "What are the protection the govt Is giving to immigrants",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        },
+        {
+          "comment_id": "110000050412_Q8",
+          "verbatim_text": "Less involvement with the UN, more involvement with the US",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        }
+      ],
+      "counterevidence_and_minority_views": [
+        {
+          "comment_id": "110000050412_Q8",
+          "verbatim_text": "Less involvement with the UN, more involvement with the US",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE (Dissenting/Counterview)"
+        }
+      ],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 100, Oppose: 61)."
+      ]
+    },
+    {
+      "theme_id": "2",
+      "theme_title": "Theme_2",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 180,
+      "share_of_voice_pct": 8.33,
+      "stance_distribution": {
+        "SUPPORT": 92,
+        "OPPOSE": 69,
+        "NEUTRAL": 19
+      },
+      "severity_score": 0.568,
+      "stakeholder_breadth_score": 0.831,
+      "composite_importance_score": 0.518,
+      "synthesized_concern": "I think that the government should consider generating publicly-available data about its own activities at every opportu...",
+      "requested_actions": [
+        {
+          "action_text": "I think that the government should consider generating publicly-available data about its own activities at every opportunity it's highest operational duty, because that is the only thing that can obje",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000049302_Q8",
+          "verbatim_source_text": "I think that the government should consider generating publicly-available data about its own activities at every opportunity it's highest operational duty, because that is the only thing that can objectively create opportunities for all of those activities to be enhanced, studied, and improved.  Privacy legislation should not be only about what people are not permitted to share, and the exceptions to that restriction. Because that can be accomplished by stating ONLY the exceptions.  The permission to share should be an obligation to share, with the same exceptions, and systems should be built to facilitate categorizing information between disclosable and not disclosable and disclosing everything disclosable by default.  They don't need to know that I applied for a passport, but there is no reason not to tell them how long my passport application took to process.",
+          "evidence_ids": [
+            "110000049302_Q8"
+          ]
+        },
+        {
+          "action_text": "Concern that more time is spent auditing and reporting than \"doing\" and how can more open data allow reduction in extensive oversight agencies and regimes while still keeping in mind importance of dem",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000084631_Q8",
+          "verbatim_source_text": "Concern that more time is spent auditing and reporting than \"doing\" and how can more open data allow reduction in extensive oversight agencies and regimes while still keeping in mind importance of democratic institutions",
+          "evidence_ids": [
+            "110000084631_Q8"
+          ]
+        },
+        {
+          "action_text": "I want the government to provide easily accessible  and complete databases of official publications and data.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000088659_Q8",
+          "verbatim_source_text": "1. I want the government to provide easily accessible  and complete databases of official publications and data.  2. I want the government to digitize government publications that are currently unavailable online.  3. I want the government to respond fully to Access for Information Requests and make ATIP requests that have already been filled, easily available to the public.  4. I want the government to eliminate crown copyright, thus making it even easier to share older information and publications.",
+          "evidence_ids": [
+            "110000088659_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000049302_Q8",
+          "verbatim_text": "I think that the government should consider generating publicly-available data about its own activities at every opportunity it's highest operational duty, because that is the only thing that can objectively create opportunities for all of those activities to be enhanced, studied, and improved.  Privacy legislation should not be only about what people are not permitted to share, and the exceptions to that restriction. Because that can be accomplished by stating ONLY the exceptions.  The permission to share should be an obligation to share, with the same exceptions, and systems should be built to facilitate categorizing information between disclosable and not disclosable and disclosing everything disclosable by default.  They don't need to know that I applied for a passport, but there is no reason not to tell them how long my passport application took to process.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000056284_Q8",
+          "verbatim_text": "As a researcher, I want to be able to understand the cost and outcomes of government policies and programs",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        },
+        {
+          "comment_id": "110000075326_Q8",
+          "verbatim_text": "The ability to access and use the data, i.e. availability of data in formats in addition to xml such that an average individual can employ the data quickly and easily.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "NEUTRAL"
+        }
+      ],
+      "counterevidence_and_minority_views": [
+        {
+          "comment_id": "110000049302_Q8",
+          "verbatim_text": "I think that the government should consider generating publicly-available data about its own activities at every opportunity it's highest operational duty, because that is the only thing that can objectively create opportunities for all of those activities to be enhanced, studied, and improved.  Privacy legislation should not be only about what people are not permitted to share, and the exceptions to that restriction. Because that can be accomplished by stating ONLY the exceptions.  The permission to share should be an obligation to share, with the same exceptions, and systems should be built to facilitate categorizing information between disclosable and not disclosable and disclosing everything disclosable by default.  They don't need to know that I applied for a passport, but there is no reason not to tell them how long my passport application took to process.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE (Dissenting/Counterview)"
+        }
+      ],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 92, Oppose: 69)."
+      ]
+    },
+    {
+      "theme_id": "4",
+      "theme_title": "Theme_4",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 96,
+      "share_of_voice_pct": 4.44,
+      "stance_distribution": {
+        "SUPPORT": 50,
+        "OPPOSE": 37,
+        "NEUTRAL": 9
+      },
+      "severity_score": 0.57,
+      "stakeholder_breadth_score": 0.882,
+      "composite_importance_score": 0.479,
+      "synthesized_concern": "Less focus on economy and more on social issues.  Looking at a new world order based on what makes a just society",
+      "requested_actions": [
+        {
+          "action_text": "Stop playing at government and take responability and accountabilityfor your actions.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000050837_Q8",
+          "verbatim_source_text": "Listen to the people that elected you. Don't just blindly follow the socially trendy directions. Dont introduce and promote meaningless laws such as carbon tax ant treat us like idiots and trll us that its revenue neutral and going to make a difference. No carbon credits for anyone. Stop playing at government and take responability and accountabilityfor your actions.",
+          "evidence_ids": [
+            "110000050837_Q8"
+          ]
+        },
+        {
+          "action_text": "major reduction on borrowing money from world banks.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000092883_Q8",
+          "verbatim_source_text": "major reduction on borrowing money from world banks. Elimination of extravagant government spending in areas including but not limited to foreign policies, charitable donations (why we are donating to highly controversial clinton foundation and other scandalous entities.) My children will be paying for these gross expenditures for a very long time. there needs to be a voice for the citizens on major decisions such as carbon tax which has absolutely no scientific evidence to back its merit and makes absolutely no logical sense on an environmental standpoint when a better alternative would be to limit imports from countries with very poor environmental policy until they can raise standards. makes about as much sense as fighting oil pipelines being built to our industry standards and environmental requirements when our only other alternative is to purchase oil from countries with very little to no regulations. these policies do much more damage to our world then would be done if we were responsible with our own resources and would greatly benefit our economy while keeping finances out of the hands of groups out to eliminate the first world. less taxes make for a much stronger economy and result in much more government revenue in the long run. less government agencies eliminating many unnecessary public sector expenses. there needs to be more private sector jobs then public to even have a sustainable economy but this seems to be a widely ignored issue in our government choosing to increase taxes and create new taxes in an attempt to cover these excessive expenditures. Our current government acts like my ex wife with an unlimited high interest credit card borrowing money to satisfy their need to appear better.",
+          "evidence_ids": [
+            "110000092883_Q8"
+          ]
+        },
+        {
+          "action_text": "lessening income inequality; creating a national housing strategy to tackle homelessness, the precariously housed and create / support affordable housing now.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000054931_Q8",
+          "verbatim_source_text": "lessening income inequality; creating a national housing strategy to tackle homelessness, the precariously housed and create / support affordable housing now. This is more important to me than several of the items on the previous list (including my choices).",
+          "evidence_ids": [
+            "110000054931_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000084689_Q8",
+          "verbatim_text": "Less focus on economy and more on social issues.  Looking at a new world order based on what makes a just society",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000086499_Q8",
+          "verbatim_text": "Health System    Environmental problems. Canadians do not recycle",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000093718_Q8",
+          "verbatim_text": "A clean and healthy environment with an aim to reduce carbon emissions, Safe and secure Canada in the wake of terrorism, healthy Canadians, innovation and knowledge-based economy, prosperous Canada through global commerce.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "SUPPORT"
+        }
+      ],
+      "counterevidence_and_minority_views": [
+        {
+          "comment_id": "110000084689_Q8",
+          "verbatim_text": "Less focus on economy and more on social issues.  Looking at a new world order based on what makes a just society",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE (Dissenting/Counterview)"
+        }
+      ],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 50, Oppose: 37)."
+      ]
+    },
+    {
+      "theme_id": "7",
+      "theme_title": "Theme_7",
+      "validation_status": "HUMAN_VALIDATED",
+      "total_comments": 44,
+      "share_of_voice_pct": 2.04,
+      "stance_distribution": {
+        "OPPOSE": 24,
+        "SUPPORT": 20
+      },
+      "severity_score": 0.682,
+      "stakeholder_breadth_score": 0.544,
+      "composite_importance_score": 0.402,
+      "synthesized_concern": "The Phoenix disaster points to the need for open development of software by governments. Most of the tools needed are th...",
+      "requested_actions": [
+        {
+          "action_text": "Fix the Phoenix disaster.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000052796_Q8",
+          "verbatim_source_text": "Fix the Phoenix disaster. Stop blaming the employees and telling them that they are to blame for not correctly filling in the forms. We need to be able to pick up the telephone, explain the problem and get it fixed by the person on the other side of the telephone and not be speaking to an intake person who has no power to do anything.    This seems to be the problem with most government departments. Nobody has the power to actually fix the problems on the spot. CRA is a also a good example where is take years to get problems solved!",
+          "evidence_ids": [
+            "110000052796_Q8"
+          ]
+        },
+        {
+          "action_text": "There needs to be accountability in the public service / government.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000052841_Q8",
+          "verbatim_source_text": "There needs to be accountability in the public service / government. The phoenix debacle / fiasco is a really good example illustrating the lack of accountability in the public service. Who was accountable for the systematic failure? If someone was, this was not communicated to stakeholders, e.g. public servants. In the public service, the CEO / board would be fired.",
+          "evidence_ids": [
+            "110000052841_Q8"
+          ]
+        },
+        {
+          "action_text": "Stop the horrible red-tape and denials of claims for Veterans.",
+          "attribution_tier": "RESPONDENT_EXPLICIT_DEMAND",
+          "demand_type": "CITIZEN_EXTRACTED_DEMAND",
+          "source_comment_id": "110000052880_Q8",
+          "verbatim_source_text": "Veteran's Affairs - either give us our life-long pensions back or explain why you can't. Stop the horrible red-tape and denials of claims for Veterans. FIX PHOENIX for God's sake! I've had my pay screwed up since it went live. Enough is enough.",
+          "evidence_ids": [
+            "110000052880_Q8"
+          ]
+        }
+      ],
+      "supporting_evidence": [
+        {
+          "comment_id": "110000496991_Q8",
+          "verbatim_text": "The Phoenix disaster points to the need for open development of software by governments. Most of the tools needed are the same across many governments, but contractors want to make each one \"special\" and charge for custom development. Well-organized open-source tools can save money AND avoid the mess.",
+          "stakeholder": "Academia / Milieu universitaire",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000089222_Q8",
+          "verbatim_text": "phoenix pay system should be stopped. someone should be accountable!!!",
+          "stakeholder": "Business / Milieu des affaires",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        },
+        {
+          "comment_id": "110000049782_Q8",
+          "verbatim_text": "You must fix Phoenix.  My colleagues and I are stressed about the loss of trust in our pay system.  Our pay stubs are cryptic so we don't know if we have been paid the correct amount.  Employees are waiting months to be paid correctly. Employees are afraid to go on leave without pay because they will be off the payroll with no confidence in being reinstated.  We have wasted countless hours on fruitless phone calls to compensation.  The compensation officers receive hundreds of calls a day from angry public servants and they are unable to assist because they also have no confidence in the system.  I have been waiting over a year to be paid correctly for an acting  position.  I am not in financial hardship so I am at the bottom of the priority list.  In January, $1000 was inadvertently deducted from my pay.  The compensation officer assured me it was a mistake and would be corrected.  I am still waiting, like thousands other public servants, for someone to open my file and correct the mistakes.  I have no confidence that this will ever be rectified.",
+          "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+          "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government",
+          "stance": "OPPOSE"
+        }
+      ],
+      "counterevidence_and_minority_views": [],
+      "uncertainty_flags": [
+        "POLARIZED_FEEDBACK: Significant polarization observed (Support: 20, Oppose: 24)."
+      ]
+    }
+  ],
+  "high_urgency_demands": [],
+  "methodology_and_limitations": {
+    "weighting_rationale": "Composite Importance = 40% Volume + 35% Problem Severity + 25% Stakeholder Breadth.",
+    "abstention_policy": "Abstains or flags uncertainty if theme sample size < 5.",
+    "evidence_traceability": "All claims carry verbatim excerpts and persistent comment_ids."
+  }
+}

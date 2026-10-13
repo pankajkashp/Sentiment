@@ -1,0 +1,75 @@
+{
+  "dataset_name": "human_annotation_worksheet_50",
+  "status": "VALID_AND_READY",
+  "is_valid_format": true,
+  "is_fully_annotated": true,
+  "action_required": "None. Dataset is fully labeled and validated against PolicyLens taxonomy.",
+  "metrics": {
+    "total_comments": 50,
+    "completed_topic_labels": 50,
+    "completed_stance_labels": 50,
+    "fully_labeled_rows": 50,
+    "completion_rate_pct": 100.0,
+    "missing_topic_labels_count": 0,
+    "missing_stance_labels_count": 0
+  },
+  "taxonomy_validation": {
+    "valid_topic_codes": [
+      "ACCOUNTABILITY",
+      "CAPACITY",
+      "DIGITAL_SERVICES",
+      "INNOVATION",
+      "OPEN_DATA",
+      "OTHER",
+      "PARTICIPATION",
+      "PRIVACY_SECURITY",
+      "TRANSPARENCY",
+      "TRUST",
+      "UNCLEAR"
+    ],
+    "invalid_topic_entries": [],
+    "observed_topic_distribution": {
+      "ACCOUNTABILITY": 6,
+      "TRANSPARENCY": 8,
+      "OTHER": 23,
+      "PARTICIPATION": 7,
+      "DIGITAL_SERVICES": 3,
+      "OPEN_DATA": 1,
+      "UNCLEAR": 2
+    },
+    "unclear_comments_count": 2
+  },
+  "stance_validation": {
+    "valid_stance_categories": [
+      "MIXED",
+      "NEUTRAL",
+      "OPPOSE",
+      "SUPPORT"
+    ],
+    "invalid_stance_entries": [],
+    "observed_stance_distribution": {
+      "NEUTRAL": 9,
+      "OPPOSE": 13,
+      "SUPPORT": 28
+    },
+    "neutral_stance_count": 9,
+    "mixed_stance_count": 0
+  },
+  "concern_demand_analysis": {
+    "annotated_concerns_count": 48,
+    "annotated_demands_count": 47,
+    "concern_with_no_demand_count": 1,
+    "demand_with_no_concern_count": 0,
+    "both_concern_and_demand_present_count": 47,
+    "both_empty_count": 2,
+    "empty_vs_missing_rule": "Empty string in an annotated row signifies a legitimate absence of concern or demand. NaN represents an unannotated missing record. PolicyLens never invents or hallucinates demands."
+  },
+  "integrity_checks": {
+    "required_columns_present": true,
+    "missing_columns": [],
+    "duplicate_comment_ids_count": 0,
+    "duplicate_comment_texts_count": 0,
+    "text_preservation_verified": true,
+    "text_mismatches": []
+  }
+}

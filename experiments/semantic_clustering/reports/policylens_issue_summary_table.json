@@ -1,0 +1,389 @@
+[
+  {
+    "cluster_id": 0,
+    "cluster_theme": "Democratic Reform, Ethical Governance & Political Accountability",
+    "cluster_size": 347,
+    "share_of_feedback_pct": 16.06,
+    "top_keywords": "government, accountability, reform, accountable, open, decisions",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Citizens perceive a disconnect between public consultation promises and government decisions, driven by corporate lobbying and limited political accountability.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Tighten lobbying disclosure regulations, reform electoral and parliamentary transparency rules, and publish clear rationales for government decisions.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000054926_Q8",
+      "110000054017_Q8",
+      "110000073531_Q8"
+    ],
+    "representative_excerpts": [
+      "streamline government, the government can't be all things to all people.  Pick the priorities and do them well.",
+      "Government being accountable to the citizens   Decision-making and how it supports responsible, accountable and transparent government",
+      "Government accountability needs to include MP's, their assistants, party members.  We have seen far too many of this current governments \"do as i say not as i do\" with respect to ministers not keeping family business in blind trusts (Morneau and Rayb..."
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000054926_Q8",
+        "stakeholder": "Business / Milieu des affaires",
+        "similarity": 0.7476,
+        "verbatim_excerpt": "streamline government, the government can't be all things to all people.  Pick the priorities and do them well.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000054017_Q8",
+        "stakeholder": "Other / Autre",
+        "similarity": 0.7339,
+        "verbatim_excerpt": "Government being accountable to the citizens   Decision-making and how it supports responsible, accountable and transparent government",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000073531_Q8",
+        "stakeholder": "Retired / \u00c0 la retraite",
+        "similarity": 0.7266,
+        "verbatim_excerpt": "Government accountability needs to include MP's, their assistants, party members.  We have seen far too many of this current governments \"do as i say not as i do\" with respect to ministers not keeping family business in blind trusts (Morneau and Rayb...",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 1,
+    "cluster_theme": "Fiscal Accountability, Public Spending & Procurement Transparency",
+    "cluster_size": 239,
+    "share_of_feedback_pct": 11.06,
+    "top_keywords": "spending, tax, government, debt, income, money",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Lack of transparent line-item visibility into federal spending, outsourced vendor contracting, and tax expenditures.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Publish comprehensive machine-readable procurement and budgetary disclosures with searchable vendor histories and expenditure audits.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000098829_Q8",
+      "110000109369_Q8",
+      "110000075460_Q8"
+    ],
+    "representative_excerpts": [
+      "I am concerned with Government spending and increased taxes. Less government is needed.",
+      "Stop the out-of-control spending and lack of accountability",
+      "Government over spending, common sense business practices, lower taxes"
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000098829_Q8",
+        "stakeholder": "Academia / Milieu universitaire",
+        "similarity": 0.7169,
+        "verbatim_excerpt": "I am concerned with Government spending and increased taxes. Less government is needed.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000109369_Q8",
+        "stakeholder": "Business / Milieu des affaires",
+        "similarity": 0.7045,
+        "verbatim_excerpt": "Stop the out-of-control spending and lack of accountability",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000075460_Q8",
+        "stakeholder": "Business / Milieu des affaires",
+        "similarity": 0.702,
+        "verbatim_excerpt": "Government over spending, common sense business practices, lower taxes",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 2,
+    "cluster_theme": "Open Data Usability, Standards & Privacy Protection",
+    "cluster_size": 180,
+    "share_of_feedback_pct": 8.33,
+    "top_keywords": "data, information, government, open, access, privacy",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Open data portals suffer from broken links, outdated datasets, non-standardized proprietary formats, and inadequate privacy safeguards.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Enforce mandatory open data standards (APIs, CSV, JSON), systematic data catalog refreshes, and clear citizen privacy-by-design guidelines.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000058363_Q8",
+      "110000089549_Q8",
+      "110000222628_Q8"
+    ],
+    "representative_excerpts": [
+      "Easy, equitable access to government data and information.",
+      "Promotion of the open government initiatives; making sure that citizens are made aware of the availability of open data and transparency information.",
+      "Being able to use government data to meet my personal/business needs."
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000058363_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.7894,
+        "verbatim_excerpt": "Easy, equitable access to government data and information.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000089549_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.7474,
+        "verbatim_excerpt": "Promotion of the open government initiatives; making sure that citizens are made aware of the availability of open data and transparency information.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000222628_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.746,
+        "verbatim_excerpt": "Being able to use government data to meet my personal/business needs.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 3,
+    "cluster_theme": "National Civic Priorities & Citizen-Centric Governance",
+    "cluster_size": 518,
+    "share_of_feedback_pct": 23.97,
+    "top_keywords": "canada, canadians, canadian, government, people, need",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Citizens express a broad desire for responsive government, reduced bureaucracy, and public services that directly benefit all Canadians.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Prioritize high-impact public service delivery benchmarks and measure citizen satisfaction across all open government commitments.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000052899_Q8",
+      "110000109366_Q8",
+      "110000048832_Q8"
+    ],
+    "representative_excerpts": [
+      "A government that is for the best interests of the Canadian people not the best interests of whatever international group needs support now. We are facing health crisis, mental health crisis, opioid addiction and homelessness in this country; lets ma...",
+      "More focus on Canadians less on the problems of other contries",
+      "well managed & efficient government operations;   transparent accountable and responsive federal government;   safe & secure Canada  Healthy Canadians"
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000052899_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.8047,
+        "verbatim_excerpt": "A government that is for the best interests of the Canadian people not the best interests of whatever international group needs support now. We are facing health crisis, mental health crisis, opioid addiction and homelessness in this country; lets ma...",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000109366_Q8",
+        "stakeholder": "Other / Autre",
+        "similarity": 0.7937,
+        "verbatim_excerpt": "More focus on Canadians less on the problems of other contries",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000048832_Q8",
+        "stakeholder": "Individual / Particulier",
+        "similarity": 0.7801,
+        "verbatim_excerpt": "well managed & efficient government operations;   transparent accountable and responsive federal government;   safe & secure Canada  Healthy Canadians",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 4,
+    "cluster_theme": "Environmental Protection & Climate Action Transparency",
+    "cluster_size": 96,
+    "share_of_feedback_pct": 4.44,
+    "top_keywords": "environment, environmental, climate, climate change, change, clean",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Insufficient public disclosure and open monitoring of environmental assessments, carbon emissions, and corporate environmental compliance.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Mandate open environmental data publishing, real-time climate monitoring dashboards, and transparent regulatory review processes.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000098530_Q8",
+      "110000075453_Q8",
+      "110000075987_Q8"
+    ],
+    "representative_excerpts": [
+      "Set government policies that allow every citizen to benefit, not only the rich.  Protect our environment. Encourage more environmentally friendly infrastucture, like geothermal heating and solar power. Stop building dams that ruin the environment.",
+      "Put people to work saving the environment. There is not end to what needs to be done there. Offer increased social assistance for people willing to pitch in. Without sustainable environment, none of the other stuff you are talking about matter. Put t...",
+      "Clean energy; elimination of financial subsidies to fossil fuel producers; taking action to counter man-caused climate change; no more pipelines."
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000098530_Q8",
+        "stakeholder": "Other / Autre",
+        "similarity": 0.7766,
+        "verbatim_excerpt": "Set government policies that allow every citizen to benefit, not only the rich.  Protect our environment. Encourage more environmentally friendly infrastucture, like geothermal heating and solar power. Stop building dams that ruin the environment.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000075453_Q8",
+        "stakeholder": "Community or Non-profit / Service communautaire ou sans but lucratif",
+        "similarity": 0.7724,
+        "verbatim_excerpt": "Put people to work saving the environment. There is not end to what needs to be done there. Offer increased social assistance for people willing to pitch in. Without sustainable environment, none of the other stuff you are talking about matter. Put t...",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000075987_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.7467,
+        "verbatim_excerpt": "Clean energy; elimination of financial subsidies to fossil fuel producers; taking action to counter man-caused climate change; no more pipelines.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 5,
+    "cluster_theme": "Social Policy Priorities: Health, Education & Electoral Reform",
+    "cluster_size": 239,
+    "share_of_feedback_pct": 11.06,
+    "top_keywords": "health, education, thank, job, questions, proportional",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Citizen priorities focus heavily on healthcare access, education funding, and democratic representation mechanisms.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Expand open data commitments to track inter-governmental health transfers, educational outcomes, and electoral representation data.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000099413_Q8",
+      "110000058151_Q8",
+      "110000095970_Q8"
+    ],
+    "representative_excerpts": [
+      "I could have listed far more priorities than 3 in the previous question :)",
+      "Would suggest more than three could be selected in the previous question (3 out of 16 strategic priorities is not very many). thank you!",
+      "Very hard to pick just 3 out of the 16 priorities -- not sure that is going to be useful. Health care is also very very important"
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000099413_Q8",
+        "stakeholder": "Individual / Particulier",
+        "similarity": 0.5889,
+        "verbatim_excerpt": "I could have listed far more priorities than 3 in the previous question :)",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000058151_Q8",
+        "stakeholder": "Individual / Particulier",
+        "similarity": 0.5738,
+        "verbatim_excerpt": "Would suggest more than three could be selected in the previous question (3 out of 16 strategic priorities is not very many). thank you!",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000095970_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.5732,
+        "verbatim_excerpt": "Very hard to pick just 3 out of the 16 priorities -- not sure that is going to be useful. Health care is also very very important",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 6,
+    "cluster_theme": "Francophone Civic Priorities & Bilingual Public Administration",
+    "cluster_size": 321,
+    "share_of_feedback_pct": 14.85,
+    "top_keywords": "et, la, les, des, le, pour",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Les citoyens francophones soulignent des lacunes dans l'acc\u00e8s bilingue \u00e9quitable aux donn\u00e9es gouvernementales et aux services publics ouverts.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Assurer la parit\u00e9 bilingue stricte dans la publication des donn\u00e9es ouvertes et les m\u00e9canismes de consultation civique f\u00e9d\u00e9raux.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000058205_Q8",
+      "110000058196_Q8",
+      "110000087982_Q8"
+    ],
+    "representative_excerpts": [
+      "-la discrimination vers les Minorit\u00e9s visibles et ethnique \u00e0 besoin d'un  vrai plan d'action pour la diversit\u00e9 en emploi et all\u00e9ger le processus d'embauche a la fonction publique pour une  Canada  inclusive ,solidaire  et \u00e9quitable.  -Comme un Montr\u00e9...",
+      "\u00c9duquer les canadiens sur leurs droits et surtout leurs responsabilit\u00e9s.",
+      "Je sais que l'\u00e9ducation est de competence provinciale, mais elle demeure le centre avec tous les changements technologiques et la mondialisation."
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000058205_Q8",
+        "stakeholder": "Other / Autre",
+        "similarity": 0.7417,
+        "verbatim_excerpt": "-la discrimination vers les Minorit\u00e9s visibles et ethnique \u00e0 besoin d'un  vrai plan d'action pour la diversit\u00e9 en emploi et all\u00e9ger le processus d'embauche a la fonction publique pour une  Canada  inclusive ,solidaire  et \u00e9quitable.  -Comme un Montr\u00e9...",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000058196_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.7357,
+        "verbatim_excerpt": "\u00c9duquer les canadiens sur leurs droits et surtout leurs responsabilit\u00e9s.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000087982_Q8",
+        "stakeholder": "Academia / Milieu universitaire",
+        "similarity": 0.7351,
+        "verbatim_excerpt": "Je sais que l'\u00e9ducation est de competence provinciale, mais elle demeure le centre avec tous les changements technologiques et la mondialisation.",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 7,
+    "cluster_theme": "Public Service Administration & Phoenix Pay System Resolution",
+    "cluster_size": 44,
+    "share_of_feedback_pct": 2.04,
+    "top_keywords": "phoenix, fix, pay, fix phoenix, phoenix pay, pheonix",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Federal employees experience ongoing compensation failures, administrative distress, and fear of retaliation related to the Phoenix pay system rollout.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Dedicate immediate open government accountability tracking to resolving federal public service payroll systems and protecting whistleblower rights.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000054085_Q8",
+      "110000077294_Q8",
+      "110000089222_Q8"
+    ],
+    "representative_excerpts": [
+      "Fix or replace the Phoenix pay system",
+      "Quick resolution of all Phoenix Pay issues",
+      "phoenix pay system should be stopped. someone should be accountable!!!"
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000054085_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.894,
+        "verbatim_excerpt": "Fix or replace the Phoenix pay system",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000077294_Q8",
+        "stakeholder": "Federal Government / Gouvernement f\u00e9d\u00e9ral",
+        "similarity": 0.8619,
+        "verbatim_excerpt": "Quick resolution of all Phoenix Pay issues",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000089222_Q8",
+        "stakeholder": "Business / Milieu des affaires",
+        "similarity": 0.8538,
+        "verbatim_excerpt": "phoenix pay system should be stopped. someone should be accountable!!!",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  },
+  {
+    "cluster_id": 8,
+    "cluster_theme": "Indigenous Reconciliation & Data Sovereignty",
+    "cluster_size": 177,
+    "share_of_feedback_pct": 8.19,
+    "top_keywords": "immigration, nations, indigenous, reconciliation, diversity, aboriginal",
+    "candidate_concern": "[UNVERIFIED - Awaiting Human Review] Open government initiatives fail to reflect Indigenous self-determination, reconciliation commitments, and the data sovereignty of First Nations, Inuit, and M\u00e9tis.",
+    "candidate_requested_action": "[UNVERIFIED - Awaiting Human Review] Partner with Indigenous leadership to establish co-governed data frameworks aligned with OCAP principles and TRC Calls to Action.",
+    "verification_status": "UNVERIFIED (Awaiting Human Review)",
+    "representative_comment_ids": [
+      "110000053903_Q8",
+      "110000084383_Q8",
+      "110000050577_Q8"
+    ],
+    "representative_excerpts": [
+      "- Continue welcoming refugees and new immigrants;  - Truth and Reconciliation with First Nations that respects the treaties agreements and welcomes new Canadians as well;   - Continue with international trade and collaboration... But, if we agree to ...",
+      "Indigenous relationships  immigration",
+      "Ensuring first nations are brought out of their disadvantaged situations"
+    ],
+    "evidence_metadata": [
+      {
+        "comment_id": "110000053903_Q8",
+        "stakeholder": "Community or Non-profit / Service communautaire ou sans but lucratif",
+        "similarity": 0.7456,
+        "verbatim_excerpt": "- Continue welcoming refugees and new immigrants;  - Truth and Reconciliation with First Nations that respects the treaties agreements and welcomes new Canadians as well;   - Continue with international trade and collaboration... But, if we agree to ...",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000084383_Q8",
+        "stakeholder": "Business / Milieu des affaires",
+        "similarity": 0.706,
+        "verbatim_excerpt": "Indigenous relationships  immigration",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      },
+      {
+        "comment_id": "110000050577_Q8",
+        "stakeholder": "Municipal Government / Administration municipale",
+        "similarity": 0.7059,
+        "verbatim_excerpt": "Ensuring first nations are brought out of their disadvantaged situations",
+        "source_url": "https://open.canada.ca/en/content/canadas-action-plan-open-government"
+      }
+    ]
+  }
+]

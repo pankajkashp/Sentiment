@@ -1,0 +1,13 @@
+{
+  "status": "PENDING_HUMAN_ANNOTATION",
+  "message": "The worksheet contains zero completed human annotations. Waiting for human coders.",
+  "completion_status": {
+    "total_rows": 50,
+    "annotated_topics_count": 0,
+    "annotated_stances_count": 0,
+    "annotated_concerns_count": 0,
+    "annotated_demands_count": 0,
+    "completion_rate_pct": 0.0,
+    "is_fully_annotated": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "dataset_name": "McAuley-Lab/Amazon-Reviews-2023",
+  "category": "Subscription_Boxes",
+  "source_file": "raw/review_categories/Subscription_Boxes.jsonl",
+  "license": "Academic / Research Use (Julian McAuley Lab, UCSD)",
+  "citation": "Hou et al., Bridging Language and Items for Retrieval and Recommendation, arXiv:2403.03952, 2024",
+  "schema": {
+    "text_field": "text",
+    "rating_field": "rating",
+    "rating_mapping": {
+      "1.0, 2.0": "Negative",
+      "3.0": "Neutral",
+      "4.0, 5.0": "Positive"
+    }
+  },
+  "statistics": {
+    "raw_records": 16216,
+    "usable_records": 16205,
+    "unique_text_strings": 15845,
+    "train_size": 12981,
+    "val_size": 1618,
+    "test_size": 1606,
+    "train_ratio": 0.801,
+    "val_ratio": 0.0998,
+    "test_ratio": 0.0991
+  },
+  "leakage_prevention": "Group-level stratified splitting on text ensures zero review overlap between splits."
+}

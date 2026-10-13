@@ -1,0 +1,194 @@
+{
+  "Logistic Regression (Standard)": {
+    "validation": {
+      "accuracy": 0.8232,
+      "macro_f1": 0.623
+    },
+    "test": {
+      "accuracy": 0.7964,
+      "macro_f1": 0.5827,
+      "weighted_f1": 0.7649,
+      "per_class": {
+        "Negative": {
+          "precision": 0.7041,
+          "recall": 0.732,
+          "f1_score": 0.7178,
+          "support": 403
+        },
+        "Neutral": {
+          "precision": 0.3846,
+          "recall": 0.0847,
+          "f1_score": 0.1389,
+          "support": 177
+        },
+        "Positive": {
+          "precision": 0.8441,
+          "recall": 0.9444,
+          "f1_score": 0.8914,
+          "support": 1026
+        }
+      },
+      "confusion_matrix": [
+        [
+          295,
+          15,
+          93
+        ],
+        [
+          76,
+          15,
+          86
+        ],
+        [
+          48,
+          9,
+          969
+        ]
+      ]
+    }
+  },
+  "Logistic Regression (Balanced)": {
+    "validation": {
+      "accuracy": 0.801,
+      "macro_f1": 0.6864
+    },
+    "test": {
+      "accuracy": 0.7827,
+      "macro_f1": 0.6688,
+      "weighted_f1": 0.7936,
+      "per_class": {
+        "Negative": {
+          "precision": 0.7014,
+          "recall": 0.7345,
+          "f1_score": 0.7176,
+          "support": 403
+        },
+        "Neutral": {
+          "precision": 0.3444,
+          "recall": 0.4689,
+          "f1_score": 0.3971,
+          "support": 177
+        },
+        "Positive": {
+          "precision": 0.9311,
+          "recall": 0.8558,
+          "f1_score": 0.8918,
+          "support": 1026
+        }
+      },
+      "confusion_matrix": [
+        [
+          296,
+          72,
+          35
+        ],
+        [
+          64,
+          83,
+          30
+        ],
+        [
+          62,
+          86,
+          878
+        ]
+      ]
+    }
+  },
+  "Linear SVM (Standard)": {
+    "validation": {
+      "accuracy": 0.814,
+      "macro_f1": 0.6343
+    },
+    "test": {
+      "accuracy": 0.7995,
+      "macro_f1": 0.6254,
+      "weighted_f1": 0.7829,
+      "per_class": {
+        "Negative": {
+          "precision": 0.7002,
+          "recall": 0.7419,
+          "f1_score": 0.7205,
+          "support": 403
+        },
+        "Neutral": {
+          "precision": 0.3908,
+          "recall": 0.1921,
+          "f1_score": 0.2576,
+          "support": 177
+        },
+        "Positive": {
+          "precision": 0.8709,
+          "recall": 0.9269,
+          "f1_score": 0.898,
+          "support": 1026
+        }
+      },
+      "confusion_matrix": [
+        [
+          299,
+          34,
+          70
+        ],
+        [
+          72,
+          34,
+          71
+        ],
+        [
+          56,
+          19,
+          951
+        ]
+      ]
+    }
+  },
+  "Linear SVM (Balanced)": {
+    "validation": {
+      "accuracy": 0.8127,
+      "macro_f1": 0.6669
+    },
+    "test": {
+      "accuracy": 0.7821,
+      "macro_f1": 0.6354,
+      "weighted_f1": 0.7805,
+      "per_class": {
+        "Negative": {
+          "precision": 0.6927,
+          "recall": 0.727,
+          "f1_score": 0.7094,
+          "support": 403
+        },
+        "Neutral": {
+          "precision": 0.321,
+          "recall": 0.2938,
+          "f1_score": 0.3068,
+          "support": 177
+        },
+        "Positive": {
+          "precision": 0.8923,
+          "recall": 0.8879,
+          "f1_score": 0.8901,
+          "support": 1026
+        }
+      },
+      "confusion_matrix": [
+        [
+          293,
+          54,
+          56
+        ],
+        [
+          71,
+          52,
+          54
+        ],
+        [
+          59,
+          56,
+          911
+        ]
+      ]
+    }
+  }
+}

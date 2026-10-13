@@ -1,0 +1,11 @@
+=== Logistic Regression (Balanced) Test Set Report ===
+
+              precision    recall  f1-score   support
+
+    Negative     0.7014    0.7345    0.7176       403
+     Neutral     0.3444    0.4689    0.3971       177
+    Positive     0.9311    0.8558    0.8918      1026
+
+    accuracy                         0.7827      1606
+   macro avg     0.6590    0.6864    0.6688      1606
+weighted avg     0.8088    0.7827    0.7936      1606

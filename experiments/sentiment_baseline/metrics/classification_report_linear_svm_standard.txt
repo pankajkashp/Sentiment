@@ -1,0 +1,11 @@
+=== Linear SVM (Standard) Test Set Report ===
+
+              precision    recall  f1-score   support
+
+    Negative     0.7002    0.7419    0.7205       403
+     Neutral     0.3908    0.1921    0.2576       177
+    Positive     0.8709    0.9269    0.8980      1026
+
+    accuracy                         0.7995      1606
+   macro avg     0.6540    0.6203    0.6254      1606
+weighted avg     0.7751    0.7995    0.7829      1606
