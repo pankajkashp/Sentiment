@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "db:generate": "prisma generate",
-    "db:validate": "prisma validate"
+    "db:validate": "prisma validate",
+    "test:e2e": "playwright test"
   },
   "prisma": {
     "seed": "node --experimental-strip-types prisma/seed.ts"
@@ -25,6 +26,7 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.0",
     "@tailwindcss/postcss": "^4.1.0",
     "@types/node": "^22.15.0",
     "@types/react": "^19.2.0",

@@ -115,3 +115,7 @@ frontend/.env.local
 frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
+playwright-report/
+test-results/
+frontend/playwright-report/
+frontend/test-results/
