@@ -1,0 +1,249 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// -----------------------------------------------------------------------------
+// ENUMS
+// -----------------------------------------------------------------------------
+
+enum UserRole {
+  CITIZEN
+  ADMIN
+  MODERATOR
+}
+
+enum PolicyStatus {
+  OPEN
+  CLOSED
+  UPCOMING
+  ARCHIVED
+}
+
+enum CommentModerationStatus {
+  PENDING
+  APPROVED
+  FLAGGED
+  REJECTED
+}
+
+enum JobStatus {
+  PENDING
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+// -----------------------------------------------------------------------------
+// MODELS
+// -----------------------------------------------------------------------------
+
+/// User: Represents authenticated citizen or administrative accounts.
+/// Passwords must always be hashed (e.g., Argon2id/bcrypt) before storage.
+model User {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  passwordHash     String    @map("password_hash")
+  name             String?
+  role             UserRole  @default(CITIZEN)
+  stakeholderType  String?   @map("stakeholder_type")
+  isEmailVerified  Boolean   @default(false) @map("is_email_verified")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  comments         Comment[]
+  sessions         Session[]
+  verificationTokens VerificationToken[]
+
+  @@map("users")
+}
+
+/// Policy: Represents a verified government policy or welfare scheme.
+model Policy {
+  id                 String       @id @default(cuid())
+  slug               String       @unique
+  title              String
+  summary            String       @db.Text
+  fullDescription    String?      @map("full_description") @db.Text
+  category           String
+  status             PolicyStatus @default(OPEN)
+  ministry           String?
+  department         String?
+  schemeType         String?      @map("scheme_type")
+  sourceName         String       @map("source_name")
+  sourceUrl          String       @map("source_url")
+  publishedAt        DateTime     @map("published_at")
+  openedAt           DateTime?    @map("opened_at")
+  commentingDeadline DateTime?    @map("commenting_deadline")
+  createdAt          DateTime     @default(now()) @map("created_at")
+  updatedAt          DateTime     @updatedAt @map("updated_at")
+
+  comments           Comment[]
+  analysisJobs       AnalysisJob[]
+  analysisResults    AnalysisResult[]
+
+  @@index([status, publishedAt(sort: Desc)])
+  @@index([category])
+  @@map("policies")
+}
+
+/// Comment: Citizen feedback or consultation submission for a specific policy.
+/// Preserves the four-day consultation window rule and supports optional authenticated user linkage.
+model Comment {
+  id                  String                  @id @default(cuid())
+  policyId            String                  @map("policy_id")
+  userId              String?                 @map("user_id")
+  commentText         String                  @map("comment_text") @db.Text
+  stakeholder         String                  @default("Citizen / Community Member")
+  sourceLanguage      String                  @default("en") @map("source_language")
+  moderationStatus    CommentModerationStatus @default(APPROVED) @map("moderation_status")
+  isVerifiedSubmitter Boolean                 @default(false) @map("is_verified_submitter")
+  submittedAt         DateTime                @default(now()) @map("submitted_at")
+  createdAt           DateTime                @default(now()) @map("created_at")
+  updatedAt           DateTime                @updatedAt @map("updated_at")
+
+  policy              Policy                  @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  user                User?                   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  evidenceItems       Evidence[]
+
+  @@index([policyId, submittedAt(sort: Desc)])
+  @@index([policyId, moderationStatus])
+  @@index([userId])
+  @@map("comments")
+}
+
+/// AnalysisJob: Lifecycle and execution tracking for NLP background analysis tasks.
+model AnalysisJob {
+  id            String           @id @default(cuid())
+  policyId      String           @map("policy_id")
+  status        JobStatus        @default(PENDING)
+  jobType       String           @default("SCHEDULED_NLP_PIPELINE") @map("job_type")
+  triggerSource String           @default("SCHEDULED") @map("trigger_source")
+  startedAt     DateTime?        @map("started_at")
+  completedAt   DateTime?        @map("completed_at")
+  errorMessage  String?          @map("error_message") @db.Text
+  retryCount    Int              @default(0) @map("retry_count")
+  maxRetries    Int              @default(3) @map("max_retries")
+  createdAt     DateTime         @default(now()) @map("created_at")
+  updatedAt     DateTime         @updatedAt @map("updated_at")
+
+  policy        Policy           @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  results       AnalysisResult[]
+
+  @@index([policyId, createdAt(sort: Desc)])
+  @@index([status])
+  @@map("analysis_jobs")
+}
+
+/// AnalysisResult: Synthesized opinion intelligence output for a completed analysis job.
+model AnalysisResult {
+  id                    String        @id @default(cuid())
+  policyId              String        @map("policy_id")
+  jobId                 String        @map("job_id")
+  modelName             String        @map("model_name")
+  modelVersion          String        @map("model_version")
+  totalCommentsAnalyzed Int           @map("total_comments_analyzed")
+  supportCount          Int           @default(0) @map("support_count")
+  opposeCount           Int           @default(0) @map("oppose_count")
+  neutralCount          Int           @default(0) @map("neutral_count")
+  unclearCount          Int           @default(0) @map("unclear_count")
+  supportPercent        Float         @default(0.0) @map("support_percent")
+  opposePercent         Float         @default(0.0) @map("oppose_percent")
+  neutralPercent        Float         @default(0.0) @map("neutral_percent")
+  unclearPercent        Float         @default(0.0) @map("unclear_percent")
+  summaryText           String?       @map("summary_text") @db.Text
+  takeaways             Json?
+  metrics               Json?
+  createdAt             DateTime      @default(now()) @map("created_at")
+
+  policy                Policy        @relation(fields: [policyId], references: [id], onDelete: Cascade)
+  job                   AnalysisJob   @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  evidenceList          Evidence[]
+
+  @@index([policyId, createdAt(sort: Desc)])
+  @@index([jobId])
+  @@map("analysis_results")
+}
+
+/// Evidence: Structured references linking findings to supporting comments or authoritative sources.
+model Evidence {
+  id              String         @id @default(cuid())
+  resultId        String         @map("result_id")
+  commentId       String?        @map("comment_id")
+  theme           String
+  stance          String?
+  demandStatus    String?        @map("demand_status")
+  attributionTier String?        @map("attribution_tier")
+  excerptText     String         @map("excerpt_text") @db.Text
+  confidenceScore Float?         @map("confidence_score")
+  sourceAuthority String?        @map("source_authority")
+  createdAt       DateTime       @default(now()) @map("created_at")
+
+  result          AnalysisResult @relation(fields: [resultId], references: [id], onDelete: Cascade)
+  comment         Comment?       @relation(fields: [commentId], references: [id], onDelete: SetNull)
+
+  @@index([resultId])
+  @@index([commentId])
+  @@index([theme])
+  @@map("evidence")
+}
+
+/// Session: Secure server-side session records for authenticated users.
+/// Stores only the SHA-256 hash of the opaque session token.
+model Session {
+  id         String   @id @default(cuid())
+  tokenHash  String   @unique @map("token_hash")
+  userId     String   @map("user_id")
+  expiresAt  DateTime @map("expires_at")
+  ipAddress  String?  @map("ip_address")
+  userAgent  String?  @map("user_agent")
+  isRevoked  Boolean  @default(false) @map("is_revoked")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tokenHash])
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+/// RateLimit: Persistent database-backed sliding/fixed window rate limiter.
+/// Prevents authentication abuse and credential stuffing without paid external services.
+model RateLimit {
+  id              String   @id @default(cuid())
+  key             String   @unique
+  count           Int      @default(1)
+  windowExpiresAt DateTime @map("window_expires_at")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([key, windowExpiresAt])
+  @@map("rate_limits")
+}
+
+/// VerificationToken: Secure single-use email verification tokens.
+/// Stores only the SHA-256 hash of the opaque token with an expiration timestamp.
+model VerificationToken {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  tokenHash String   @unique @map("token_hash")
+  expiresAt DateTime @map("expires_at")
+  isUsed    Boolean  @default(false) @map("is_used")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([tokenHash])
+  @@index([userId])
+  @@map("verification_tokens")
+}
+

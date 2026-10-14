@@ -1,6 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { AppChrome } from "@/components/app-chrome";
+
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-open-sans",
+  fallback: ["sans-serif"],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -12,11 +21,11 @@ export const metadata: Metadata = {
   applicationName: "Public Policy Portal",
   icons: {
     icon: [
-      { url: "/logo.png", type: "image/png" },
-      { url: "/icon.png", type: "image/png" }
+      { url: "public/favicon.png", type: "image/png" },
+      { url: "public/favicon.png", type: "image/png" }
     ],
-    shortcut: "/logo.png",
-    apple: "/logo.png"
+    shortcut: "/favicon.png",
+    apple: "/favicon.png"
   },
   robots: { index: false, follow: false }
 };
@@ -30,8 +39,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
+    <html lang="en" className={openSans.variable} suppressHydrationWarning>
+      <body className={openSans.className}>
         <AppChrome>{children}</AppChrome>
       </body>
     </html>

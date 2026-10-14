@@ -6,14 +6,22 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "db:generate": "prisma generate",
+    "db:validate": "prisma validate"
+  },
+  "prisma": {
+    "seed": "node --experimental-strip-types prisma/seed.ts"
   },
   "dependencies": {
+    "@node-rs/argon2": "^2.2.2",
+    "@prisma/client": "^6.19.3",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
     "next": "^16.4.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
-    "lucide-react": "^0.468.0",
-    "clsx": "^2.1.1",
+    "resend": "^6.32.1",
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
@@ -23,6 +31,7 @@
     "@types/react-dom": "^19.2.0",
     "eslint": "^10.12.0",
     "eslint-config-next": "^16.4.0",
+    "prisma": "^6.19.3",
     "tailwindcss": "^4.1.0",
     "typescript": "^5.8.0"
   }

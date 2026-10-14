@@ -2,12 +2,12 @@
 
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
-import { ExternalLink, ShieldAlert, PhoneCall, Building2, CheckCircle2, Search, SlidersHorizontal, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ShieldAlert, PhoneCall, Building2, Search, SlidersHorizontal, ArrowUpRight } from "lucide-react";
 import { GovHeader } from "@/components/navigation/gov-header";
 import { PolicyCard } from "@/features/feed/policy-card";
 import { officialPolicies } from "@/features/feed/demo-data";
 import { FeedToolbar, SortTimeFilter, TopicCategory } from "@/features/feed/feed-toolbar";
-import { InstitutionIllustration } from "@/components/brand/institution-illustration";
+import { GovernmentBannerCarousel } from "@/components/hero/government-banner-carousel";
 
 export default function HomePage() {
   const [sortTime, setSortTime] = useState<SortTimeFilter>("Latest");
@@ -78,42 +78,10 @@ export default function HomePage() {
       {/* 1. Header & Navigation (White Masthead + Navy Blue Navigation Bar) */}
       <GovHeader />
 
+      {/* 2. Full-Width Government Banner Slideshow with Expanded Full-View Height */}
+      <GovernmentBannerCarousel />
+
       <main className="max-w-7xl mx-auto px-4 py-5 sm:py-6">
-        {/* 2. Compact Government Portal Introduction Banner */}
-        <section className="mb-5 rounded-xl border border-[#e5e7eb] bg-white p-4 sm:p-5 shadow-2xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
-            <div className="lg:col-span-7 space-y-2.5">
-              <div className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[12px] font-semibold text-[#143454] bg-[#e8eef5]">
-                <CheckCircle2 size={14} className="text-[#16834A]" />
-                <span>Verified Public Policy &amp; Programme Directory</span>
-              </div>
-              <h1 className="font-display text-[24px] sm:text-[30px] font-extrabold tracking-tight text-[#171717] leading-tight">
-                National Policy Updates &amp; Welfare Schemes Repository
-              </h1>
-              <p className="text-[14px] sm:text-[15px] leading-relaxed text-[#374151] max-w-2xl">
-                Access official Government of India welfare schemes, direct benefit transfers,
-                and ministry releases verified from the Press Information Bureau (PIB) and the
-                National Portal of India. All updates directly cite authenticated government documents.
-              </p>
-              <div className="pt-1 flex flex-wrap items-center gap-3 text-[12px] text-[#666666]">
-                <span className="flex items-center gap-1 text-[#16834A] font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#16834A]" />
-                  Zero Fabricated Metrics
-                </span>
-                <span>•</span>
-                <span>Direct Primary Source Citations</span>
-                <span>•</span>
-                <span>Multilingual Access</span>
-              </div>
-            </div>
-
-            {/* Clean Architectural Illustration */}
-            <div className="lg:col-span-5">
-              <InstitutionIllustration />
-            </div>
-          </div>
-        </section>
-
         {/* 3. Main Content Grid (Feed + Sidebar) */}
         <div id="feed" className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left Column: Feed Toolbar & Policy Cards */}
@@ -143,7 +111,7 @@ export default function HomePage() {
               ))}
 
               {filteredPolicies.length === 0 && (
-                <div className="rounded-xl border border-[#e5e7eb] bg-white p-10 text-center space-y-3">
+                <div className="border border-[#e5e7eb] bg-white p-10 text-center space-y-3">
                   <Search size={28} className="mx-auto text-[#9ca3af]" />
                   <h3 className="font-display text-lg font-bold text-[#171717]">
                     No policy updates match your filters
@@ -154,7 +122,7 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={handleReset}
-                    className="inline-flex items-center gap-1.5 rounded-md bg-[#E87518] px-4 py-2 text-[12px] font-semibold text-white shadow-xs hover:bg-[#c25e0e] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 bg-[#E87518] px-4 py-2 text-[12px] font-semibold text-white hover:bg-[#c25e0e] transition-colors cursor-pointer"
                   >
                     <SlidersHorizontal size={13} />
                     Reset All Filters
@@ -164,10 +132,10 @@ export default function HomePage() {
             </div>
 
             {/* Independent Civic Platform Clarification */}
-            <div className="rounded-lg border border-[#e5e7eb] bg-white p-3.5 text-[11px] leading-relaxed text-[#666666] flex items-start gap-2.5">
+            <div className="border border-[#e5e7eb] bg-white p-3.5 text-[11px] leading-relaxed text-[#666666] flex items-start gap-2.5">
               <ShieldAlert size={16} className="text-[#E87518] shrink-0 mt-0.5" />
               <div>
-                <strong className="text-[#171717]">Public Information Notice:</strong> This portal provides an independent, structured directory of official public policies for citizen research and public information. All links navigate to authenticated publications on <code className="bg-[#f3f4f6] px-1 py-0.5 rounded text-[#171717]">pib.gov.in</code>, <code className="bg-[#f3f4f6] px-1 py-0.5 rounded text-[#171717]">india.gov.in</code>, and respective ministry domains.
+                <strong className="text-[#171717]">Public Information Notice:</strong> This portal provides an independent, structured directory of official public policies for citizen research and public information. All links navigate to authenticated publications on <code className="bg-[#f3f4f6] px-1 py-0.5 text-[#171717]">pib.gov.in</code>, <code className="bg-[#f3f4f6] px-1 py-0.5 text-[#171717]">india.gov.in</code>, and respective ministry domains.
               </div>
             </div>
           </section>
@@ -175,13 +143,13 @@ export default function HomePage() {
           {/* Right Column: Institutional Directory & Official Portals */}
           <aside className="lg:col-span-4 space-y-4">
             {/* Official Portals Index */}
-            <div className="rounded-xl border border-[#e5e7eb] bg-white p-4 shadow-2xs">
+            <div className="border border-[#e5e7eb] bg-white p-4">
               <div className="flex items-center justify-between pb-2.5 border-b border-[#f1f3f5]">
                 <h3 className="font-display text-[14px] font-bold text-[#171717] flex items-center gap-2">
                   <Building2 size={16} className="text-[#143454]" />
                   Official National Portals
                 </h3>
-                <span className="text-[10px] uppercase font-bold text-[#16834A] bg-[#e6f4ea] px-1.5 py-0.5 rounded">Verified</span>
+                <span className="text-[10px] uppercase font-bold text-[#16834A] bg-[#e6f4ea] px-1.5 py-0.5 border border-[#c3e6cb]">Verified</span>
               </div>
               <ul className="mt-3 space-y-2 text-[12px]">
                 {[
@@ -213,45 +181,45 @@ export default function HomePage() {
             </div>
 
             {/* Essential Citizen Helplines */}
-            <div className="rounded-xl border border-[#e5e7eb] bg-white p-4 shadow-2xs">
+            <div className="border border-[#e5e7eb] bg-white p-4">
               <h3 className="font-display text-[14px] font-bold text-[#171717] flex items-center gap-2 pb-2 border-b border-[#f1f3f5]">
                 <PhoneCall size={15} className="text-[#E87518]" />
                 National Citizen Helplines
               </h3>
               <div className="mt-3 space-y-2 text-[12px]">
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                <div className="flex items-center justify-between p-2.5 bg-[#f9fafb] border border-[#e5e7eb]">
                   <div>
                     <span className="block font-semibold text-[#171717]">Emergency Helpline</span>
                     <span className="text-[10px] text-[#666666]">Police, Fire, Ambulance</span>
                   </div>
-                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">112</span>
+                  <span className="font-mono font-bold text-[13px] text-[#143454] bg-white px-2 py-0.5 border border-[#cbd5e1]">112</span>
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                <div className="flex items-center justify-between p-2.5 bg-[#f9fafb] border border-[#e5e7eb]">
                   <div>
                     <span className="block font-semibold text-[#171717]">National Health Authority</span>
                     <span className="text-[10px] text-[#666666]">Ayushman Bharat (PM-JAY)</span>
                   </div>
-                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">14555</span>
+                  <span className="font-mono font-bold text-[13px] text-[#143454] bg-white px-2 py-0.5 border border-[#cbd5e1]">14555</span>
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                <div className="flex items-center justify-between p-2.5 bg-[#f9fafb] border border-[#e5e7eb]">
                   <div>
                     <span className="block font-semibold text-[#171717]">Kisan Call Centre</span>
                     <span className="text-[10px] text-[#666666]">Agriculture queries &amp; support</span>
                   </div>
-                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">1800-180-1551</span>
+                  <span className="font-mono font-bold text-[13px] text-[#143454] bg-white px-2 py-0.5 border border-[#cbd5e1]">1800-180-1551</span>
                 </div>
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[#f9fafb] border border-[#f1f3f5]">
+                <div className="flex items-center justify-between p-2.5 bg-[#f9fafb] border border-[#e5e7eb]">
                   <div>
                     <span className="block font-semibold text-[#171717]">National Consumer Helpline</span>
                     <span className="text-[10px] text-[#666666]">Grievances &amp; redressal</span>
                   </div>
-                  <span className="font-mono font-bold text-[14px] text-[#143454] bg-white px-2 py-0.5 rounded border border-[#e5e7eb]">1915</span>
+                  <span className="font-mono font-bold text-[13px] text-[#143454] bg-white px-2 py-0.5 border border-[#cbd5e1]">1915</span>
                 </div>
               </div>
             </div>
 
             {/* Portal Notice and Guidelines */}
-            <div className="rounded-xl border border-[#e5e7eb] bg-[#f8fafc] p-4 text-[11px] text-[#666666] space-y-2">
+            <div className="border border-[#e5e7eb] bg-[#f8fafc] p-4 text-[11px] text-[#666666] space-y-2">
               <span className="font-bold text-[#143454] uppercase tracking-wider block">Portal Standards</span>
               <p className="leading-relaxed">
                 All listed policy documents are public government publications. Summaries are strictly factual, free of personal bias, and provide unmediated access to Union ministry resources.

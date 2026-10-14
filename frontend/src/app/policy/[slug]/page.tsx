@@ -115,7 +115,7 @@ export default async function PolicyDetailPage({ params }: { params: Promise<{ s
                 <ShieldCheck size={15} />
                 Verified Primary Source Publication
               </span>
-              <p className="text-[13px] text-[#3b82f6] leading-relaxed">
+              <p className="text-[13px] text-[#1e40af] leading-relaxed">
                 Published by {post.sourceName}. View complete gazette notifications, press releases, and circulars.
               </p>
             </div>
@@ -123,10 +123,10 @@ export default async function PolicyDetailPage({ params }: { params: Promise<{ s
               href={post.sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#143454] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs hover:bg-[#0e2a47] transition-colors shrink-0"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#143454] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs hover:bg-[#0e2a47] transition-colors shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#143454]"
             >
-              <span>View Official Source</span>
-              <ExternalLink size={14} />
+              <span className="text-white font-semibold">View Official Source</span>
+              <ExternalLink size={14} className="text-white shrink-0" />
             </a>
           </div>
 

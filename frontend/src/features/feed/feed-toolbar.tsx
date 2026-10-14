@@ -54,7 +54,7 @@ export function FeedToolbar({
   totalCount
 }: FeedToolbarProps) {
   return (
-    <div className="w-full rounded-xl border border-[#e5e7eb] bg-white p-3 sm:p-4 shadow-2xs space-y-3">
+    <div className="w-full border border-[#e5e7eb] bg-white p-3 sm:p-4 space-y-3">
       {/* First Row — Sorting & Time (Left) + Search & Language (Right) */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
         {/* Sorting and Time Buttons */}
@@ -69,10 +69,10 @@ export function FeedToolbar({
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => onSortTimeChange(tab)}
-                className={`shrink-0 rounded-md px-3.5 py-1.5 text-[13px] font-semibold transition-all cursor-pointer ${
+                className={`shrink-0 px-3 py-1.5 text-[12px] sm:text-[13px] font-semibold transition-colors cursor-pointer border ${
                   isSelected
-                    ? "bg-[#E87518] text-white shadow-xs"
-                    : "bg-[#f3f4f6] text-[#444444] hover:bg-[#e5e7eb] hover:text-[#171717]"
+                    ? "bg-[#143454] border-[#143454] text-white"
+                    : "bg-[#f8fafc] border-[#e5e7eb] text-[#444444] hover:bg-[#f1f5f9] hover:text-[#171717]"
                 }`}
               >
                 {tab === "Latest" ? "All items" : tab === "Trending" ? "Most recent" : tab}
@@ -91,7 +91,7 @@ export function FeedToolbar({
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Search policies..."
-              className="w-full rounded-md border border-[#e5e7eb] bg-[#f9fafb] py-1.5 pl-8 pr-7 text-[13px] text-[#171717] outline-none transition-colors focus:border-[#E87518] focus:bg-white"
+              className="w-full border border-[#e5e7eb] bg-[#f9fafb] py-1.5 pl-8 pr-7 text-[13px] text-[#171717] outline-none transition-colors focus:border-[#143454] focus:bg-white"
               aria-label="Search policy updates"
             />
             {searchQuery && (
@@ -107,7 +107,7 @@ export function FeedToolbar({
           </div>
 
           {/* Small Language Icon & Selector */}
-          <div className="relative inline-flex items-center rounded-md border border-[#e5e7eb] bg-[#f9fafb] px-2 py-1.5 text-[12px] text-[#444444] hover:border-[#d1d5db]">
+          <div className="relative inline-flex items-center border border-[#e5e7eb] bg-[#f9fafb] px-2 py-1.5 text-[12px] text-[#444444] hover:border-[#d1d5db]">
             <Globe size={14} className="mr-1.5 text-[#666666] shrink-0" aria-hidden="true" />
             <select
               value={selectedLanguage}
@@ -128,9 +128,9 @@ export function FeedToolbar({
       {/* Second Row — Topic Categories */}
       <div className="border-t border-[#f1f3f5] pt-2.5">
         <div className="flex items-center justify-between gap-2">
-          {/* Horizontally scrollable topic pills */}
+          {/* Horizontally scrollable topic tabs */}
           <div
-            className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none w-full"
+            className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none w-full"
             role="tablist"
             aria-label="Topic categories"
           >
@@ -144,7 +144,7 @@ export function FeedToolbar({
                   role="tab"
                   aria-selected={isSelected}
                   onClick={() => onTopicChange(cat)}
-                  className={`shrink-0 rounded-full px-3 py-1 text-[12px] font-medium transition-colors cursor-pointer border ${
+                  className={`shrink-0 px-2.5 py-1 text-[12px] font-medium transition-colors cursor-pointer border ${
                     isSelected
                       ? "border-[#E87518] bg-[#fff5eb] text-[#E87518] font-bold"
                       : "border-[#e5e7eb] bg-white text-[#555555] hover:border-[#d1d5db] hover:text-[#171717]"

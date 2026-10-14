@@ -7,6 +7,7 @@ import { SiteNav } from "@/components/navigation/site-nav";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
 import { IndianFlagBackground } from "@/components/brand/indian-flag-background";
+import { AuthProvider } from "@/features/auth/auth-context";
 
 function InnerChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -26,10 +27,12 @@ function InnerChrome({ children }: { children: ReactNode }) {
 export function AppChrome({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider>
-      <IndianFlagBackground />
-      <div className="relative z-10 min-h-screen flex flex-col">
-        <InnerChrome>{children}</InnerChrome>
-      </div>
+      <AuthProvider>
+        <IndianFlagBackground />
+        <div className="relative z-10 min-h-screen flex flex-col">
+          <InnerChrome>{children}</InnerChrome>
+        </div>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

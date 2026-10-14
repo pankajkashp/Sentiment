@@ -22,25 +22,25 @@ export function IndianFlagBackground() {
     >
       {/* 1. Ambient atmospheric tricolour glow on viewport edges */}
       <div
-        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[120vw] h-80 opacity-[0.045] dark:opacity-[0.03] blur-3xl pointer-events-none"
+        className="absolute -top-24 left-1/2 -translate-x-1/2 w-[120vw] h-96 opacity-[0.09] dark:opacity-[0.06] blur-3xl pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at top, #FF9933 0%, rgba(255, 153, 51, 0.4) 45%, transparent 75%)"
+          background: "radial-gradient(ellipse at top, #FF9933 0%, rgba(255, 153, 51, 0.5) 50%, transparent 80%)"
         }}
       />
       <div
-        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[120vw] h-80 opacity-[0.045] dark:opacity-[0.03] blur-3xl pointer-events-none"
+        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[120vw] h-96 opacity-[0.09] dark:opacity-[0.06] blur-3xl pointer-events-none"
         style={{
-          background: "radial-gradient(ellipse at bottom, #138808 0%, rgba(19, 136, 8, 0.4) 45%, transparent 75%)"
+          background: "radial-gradient(ellipse at bottom, #138808 0%, rgba(19, 136, 8, 0.5) 50%, transparent 80%)"
         }}
       />
 
       {/* 2. Centered Indian National Flag Watermark */}
       <div className="absolute inset-0 flex items-center justify-center p-4">
         <div
-          className="w-[90vw] max-w-[840px] aspect-[3/2] opacity-[0.055] dark:opacity-[0.04] transition-opacity duration-300"
+          className="w-[95vw] max-w-[1280px] xl:max-w-[1440px] aspect-[3/2] opacity-[0.14] dark:opacity-[0.09] transition-opacity duration-300"
           style={{
-            maskImage: "radial-gradient(ellipse 88% 78% at 50% 50%, black 45%, rgba(0, 0, 0, 0.6) 70%, transparent 98%)",
-            WebkitMaskImage: "radial-gradient(ellipse 88% 78% at 50% 50%, black 45%, rgba(0, 0, 0, 0.6) 70%, transparent 98%)"
+            maskImage: "radial-gradient(ellipse 92% 84% at 50% 50%, black 50%, rgba(0, 0, 0, 0.7) 75%, transparent 98%)",
+            WebkitMaskImage: "radial-gradient(ellipse 92% 84% at 50% 50%, black 50%, rgba(0, 0, 0, 0.7) 75%, transparent 98%)"
           }}
         >
           <svg

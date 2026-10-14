@@ -5,19 +5,20 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { House, History, Bookmark, Compass, UserRound, Menu, X, ExternalLink, ShieldCheck } from "lucide-react";
 import { PortalIdentity } from "@/components/brand/portal-identity";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { useAuth } from "@/features/auth/auth-context";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/", icon: House },
-  { label: "History", href: "/history", icon: History },
-  { label: "Saved", href: "/saved", icon: Bookmark },
   { label: "Explore", href: "/discover", icon: Compass },
+  { label: "Saved", href: "/saved", icon: Bookmark },
+  { label: "History", href: "/history", icon: History },
   { label: "Profile", href: "/profile", icon: UserRound },
 ];
 
 export function GovHeader() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   return (
     <header className="w-full bg-white border-b border-[#e5e7eb] sticky top-0 z-40 shadow-xs">
@@ -56,7 +57,32 @@ export function GovHeader() {
               PIB <ExternalLink size={10} />
             </a>
             <span className="text-[#9ca3af] hidden sm:inline">|</span>
-            <ThemeToggle />
+
+            {/* User Authentication Status */}
+            {user ? (
+              <Link
+                href="/profile"
+                className="font-semibold text-[#143454] hover:text-[#E87518] transition-colors inline-flex items-center gap-1.5"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#16834A]" />
+                <span className="truncate max-w-[120px]">{user.name || user.email.split("@")[0]}</span>
+                {user.role === "ADMIN" && (
+                  <span className="text-[9px] uppercase font-extrabold px-1.5 py-0.2 rounded bg-purple-100 text-purple-800 border border-purple-200">
+                    Admin
+                  </span>
+                )}
+              </Link>
+            ) : (
+              <div className="flex items-center gap-1.5">
+                <Link href="/login" className="font-semibold text-[#143454] hover:text-[#E87518] transition-colors">
+                  Sign in
+                </Link>
+                <span className="text-[#cbd5e1]">/</span>
+                <Link href="/register" className="font-semibold text-[#E87518] hover:underline transition-colors">
+                  Register
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -120,11 +146,10 @@ export function GovHeader() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className={`inline-flex items-center gap-2.5 px-4 py-3.5 transition-colors border-b-4 ${
-                      isActive
+                    className={`inline-flex items-center gap-2.5 px-4 py-3.5 transition-colors border-b-4 ${isActive
                         ? "bg-[#0e2a47] text-white border-[#E87518]"
                         : "text-[#f1f5f9] hover:bg-[#1a4168] hover:text-white border-transparent"
-                    }`}
+                      }`}
                   >
                     <Icon size={18} className={isActive ? "text-[#E87518]" : "text-[#cbd5e1]"} strokeWidth={isActive ? 2.2 : 1.8} />
                     <span>{item.label}</span>
@@ -132,6 +157,22 @@ export function GovHeader() {
                 </li>
               );
             })}
+
+            {/* Admin Studio Quick Link for Admins */}
+            {user?.role === "ADMIN" && (
+              <li>
+                <Link
+                  href="/admin"
+                  className={`inline-flex items-center gap-2 px-3 py-3.5 transition-colors border-b-4 ${pathname.startsWith("/admin")
+                      ? "bg-[#0e2a47] text-white border-[#E87518]"
+                      : "text-purple-200 hover:bg-[#1a4168] hover:text-white border-transparent"
+                    }`}
+                >
+                  <ShieldCheck size={18} className="text-purple-300" />
+                  <span>Admin Studio</span>
+                </Link>
+              </li>
+            )}
           </ul>
 
           {/* Quick External Portals Link on right */}
@@ -164,17 +205,68 @@ export function GovHeader() {
                   key={item.label}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-[16px] font-medium transition-colors ${
-                    isActive
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg text-[16px] font-medium transition-colors ${isActive
                       ? "bg-[#143454] text-white border-l-4 border-[#E87518]"
                       : "text-[#cbd5e1] hover:bg-[#1a4168] hover:text-white"
-                  }`}
+                    }`}
                 >
                   <Icon size={20} className={isActive ? "text-[#E87518]" : "text-[#cbd5e1]"} strokeWidth={isActive ? 2.2 : 1.8} />
                   <span>{item.label}</span>
                 </Link>
               );
             })}
+
+            {user?.role === "ADMIN" && (
+              <Link
+                href="/admin"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-[16px] font-medium transition-colors ${pathname.startsWith("/admin")
+                    ? "bg-[#143454] text-white border-l-4 border-[#E87518]"
+                    : "text-purple-200 hover:bg-[#1a4168] hover:text-white"
+                  }`}
+              >
+                <ShieldCheck size={20} className="text-purple-300" strokeWidth={2.2} />
+                <span>Admin Studio</span>
+              </Link>
+            )}
+
+            {/* Mobile Auth Actions */}
+            {user ? (
+              <div className="pt-3 pb-1 mt-2 border-t border-[#1a4168] flex items-center justify-between text-xs text-[#cbd5e1]">
+                <div>
+                  <span className="text-[10px] text-[#94a3b8] uppercase tracking-wider block">Signed in as</span>
+                  <span className="font-semibold text-white">{user.name || user.email}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await logout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="rounded bg-[#1e4770] px-3 py-1.5 text-xs font-semibold text-red-300 hover:text-white transition-colors cursor-pointer"
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <div className="pt-3 pb-1 mt-2 border-t border-[#1a4168] flex items-center gap-3 text-xs">
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex-1 text-center py-2 rounded-lg bg-[#E87518] font-semibold text-white hover:bg-[#c25e0e] transition-colors"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/register"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex-1 text-center py-2 rounded-lg border border-[#3b82f6]/40 font-semibold text-[#cbd5e1] hover:text-white transition-colors"
+                >
+                  Register
+                </Link>
+              </div>
+            )}
+
             <div className="pt-3 mt-2 border-t border-[#1a4168] flex items-center justify-between text-[12px] text-[#94a3b8]">
               <a
                 href="https://www.india.gov.in"
