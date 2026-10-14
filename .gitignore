@@ -30,6 +30,12 @@ data/synthetic/*
 !data/synthetic/.gitkeep
 data/external/*
 !data/external/.gitkeep
+data/submissions/*
+!data/submissions/.gitkeep
+data/jobs/*
+!data/jobs/.gitkeep
+data/analysis/*
+!data/analysis/.gitkeep
 
 # ------------------------------------------------------------------------------
 # ML MODELS, CHECKPOINTS & EMBEDDINGS
@@ -98,3 +104,18 @@ Thumbs.db
 .idea/
 *.sublime-project
 *.sublime-workspace
+
+# ------------------------------------------------------------------------------
+# FRONTEND BUILD OUTPUTS
+# ------------------------------------------------------------------------------
+node_modules/
+.next/
+out/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+playwright-report/
+test-results/
+frontend/playwright-report/
+frontend/test-results/
